@@ -154,7 +154,7 @@ Create a `.env` file for local development:
 
 ```env
 VITE_API_URL=your_api_url_here
-VITE_CONTACT_EMAIL=contact@vellmont.com
+VITE_CONTACT_EMAIL=support@vellmontservices.com
 ```
 
 ### Build Configuration
@@ -188,8 +188,8 @@ The project uses Vite with custom configuration:
 ## 📞 Support
 
 For support and inquiries:
-- **Website**: [vellmont.com](https://vellmont.com)
-- **Email**: contact@vellmont.com
+- **Website**: [vellmontservices.com](https://vellmontservices.com)
+- **Email**: support@vellmontservices.com
 - **Phone**: +91-XXXXXXXXXX
 
 ---

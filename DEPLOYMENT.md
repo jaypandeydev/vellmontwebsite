@@ -176,7 +176,8 @@ For deployment issues:
 1. Check Coolify logs
 2. Verify GitHub repository access
 3. Test Docker build locally
-4. Contact Hostinger support for VPS issues
+4. Contact support@vellmontservices.com for assistance
+5. Contact Hostinger support for VPS issues
 
 ## 🎉 Post-Deployment
 
