@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Deep Space Blue Theme Attempt */
+  --background-start-rgb: 10, 10, 30; /* Very Dark Navy/Midnight Blue */
+  --background-end-rgb: 20, 20, 50;   /* Dark Indigo/Space Blue */
+  --text-color: #D1D5DB; /* Light Gray - Cool tone */
+  --primary-accent: #60A5FA; /* Bright Sky Blue */
+  --secondary-accent: #A78BFA; /* Lavender - kept for some contrast */
+  --card-bg: rgba(25, 35, 65, 0.65); /* Dark blue, slightly transparent */
+  --card-border: rgba(100, 116, 139, 0.2); /* Muted slate blue border */
+  --glow-color: rgba(96, 165, 250, 0.5); /* Sky Blue glow */
+
+  /* Invitation Manager specific - designed to work on the dark gradient-bg */
+  --im-card-bg: rgba(30, 40, 70, 0.7); 
+  --im-card-border: rgba(100, 116, 139, 0.25);
+  --im-text-color: #D1D5DB; 
+  --im-input-bg: rgba(10, 10, 30, 0.5); /* Darker input bg */
+  --im-input-border: rgba(100, 116, 139, 0.3);
+  --im-input-text: #D1D5DB;
+  --im-button-primary-bg: var(--primary-accent); 
+  --im-button-primary-text: #0A0A1E; /* Very dark blue for text on light button */
+  --im-label-color: #9CA3AF; /* Gray - Cool tone for labels */
+
+  --font-sans: 'Inter', sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Current setup is already dark-themed */
+  }
+}
+
+body {
+  color: var(--text-color);
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, rgb(var(--background-start-rgb)) 0%, rgb(var(--background-end-rgb)) 100%);
+  min-height: 100vh;
+}
+
+.gradient-text {
+  @apply bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400; /* Adjusted for new theme */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.glass-effect {
+  background-color: var(--card-bg);
+  backdrop-filter: blur(12px) saturate(130%);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
+  border: 1px solid var(--card-border);
+  border-radius: 1rem; 
+}
+
+.glow-effect:hover {
+  box-shadow: 0 0 20px var(--glow-color), 0 0 8px var(--glow-color) inset;
+}
+
+.pulse-glow {
+  animation: pulseGlowAnimation 2s infinite alternate;
+}
+
+@keyframes pulseGlowAnimation {
+  0% { box-shadow: 0 0 5px var(--glow-color), 0 0 2px var(--glow-color) inset; }
+  100% { box-shadow: 0 0 15px var(--glow-color), 0 0 5px var(--glow-color) inset; }
+}
+
+.pulse-glow-stronger {
+  animation: pulseGlowStrongerAnimation 1.5s infinite alternate;
+}
+
+@keyframes pulseGlowStrongerAnimation {
+  0% { 
+    text-shadow: 0 0 3px rgba(167, 139, 250, 0.6), 0 0 6px rgba(167, 139, 250, 0.4); /* Kept lavender for this specific glow */
+    color: #c4b5fd; 
+  }
+  100% { 
+    text-shadow: 0 0 6px rgba(192, 132, 252, 0.8), 0 0 12px rgba(167, 139, 250, 0.6);
+    color: #ddd6fe; 
+  }
+}
+
+.button-primary {
+  @apply bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105;
+}
+
+.button-secondary {
+  @apply bg-transparent border-2 border-blue-400 hover:bg-blue-400/20 text-blue-300 hover:text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105;
+}
+
+.input-glass {
+  @apply w-full px-4 py-3 rounded-lg border border-slate-600/50 bg-slate-800/30 placeholder-gray-500 text-gray-200 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 outline-none transition-all duration-300;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.textarea-glass {
+   @apply w-full px-4 py-3 rounded-lg border border-slate-600/50 bg-slate-800/30 placeholder-gray-500 text-gray-200 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 outline-none transition-all duration-300 resize-none;
+  min-height: 120px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.im-card {
+  background-color: var(--im-card-bg);
+  border: 1px solid var(--im-card-border);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.4), 0 2px 6px -1px rgba(0, 0, 0, 0.3); /* Adjusted shadow */
+  color: var(--im-text-color);
+}
+
+.im-button-primary {
+  @apply font-semibold py-2 px-4 rounded-md shadow-sm transition-colors duration-200;
+  background-color: var(--im-button-primary-bg);
+  color: var(--im-button-primary-text);
+}
+.im-button-primary:hover {
+  background-color: #3B82F6; /* Slightly darker blue for hover */
+}
+
+.im-button-secondary {
+   @apply bg-transparent border-2 font-semibold py-2 px-4 rounded-md shadow-sm transition-colors duration-200;
+   border-color: var(--primary-accent);
+   color: var(--primary-accent);
+}
+.im-button-secondary:hover {
+  background-color: rgba(96, 165, 250, 0.15); /* primary accent with alpha */
+  color: var(--text-color);
+}
+
+.im-input {
+  @apply block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none sm:text-sm;
+  background-color: var(--im-input-bg);
+  border-color: var(--im-input-border);
+  color: var(--im-input-text);
+  caret-color: var(--primary-accent);
+  outline-color: transparent; 
+}
+.im-input:focus {
+  border-color: var(--primary-accent);
+  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.3); /* primary accent with alpha */
+}
+
+.im-input::placeholder {
+  color: rgba(209, 213, 219, 0.5); /* text-color with alpha */
+}
+
+.im-label {
+  @apply block text-sm font-medium mb-1;
+  color: var(--im-label-color);
+}
+
+*:focus-visible {
+  outline: 2px solid var(--primary-accent);
+  outline-offset: 2px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(var(--background-end-rgb), 0.7); /* Darker track */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-accent);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-accent);
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-accent) rgba(var(--background-end-rgb), 0.7);
+}
