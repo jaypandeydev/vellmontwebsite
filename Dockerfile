@@ -22,6 +22,9 @@ FROM nginx:alpine AS production
 # Install curl for health checks
 RUN apk add --no-cache curl
 
+# Create required directories with correct permissions
+RUN mkdir -p /run/nginx && chmod -R 777 /run/nginx
+
 # Copy custom nginx config
 COPY nginx.conf /etc/nginx/nginx.conf
 
@@ -51,6 +54,9 @@ EXPOSE 3001
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD curl -f http://localhost:3001/health || exit 1
+
+# Run nginx as root to avoid pid permission issues
+USER root
 
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"]
