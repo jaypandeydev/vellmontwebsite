@@ -57,12 +57,13 @@ const Footer = ({ companyName, logoUrl }) => {
           <div>
             <span className="font-semibold mb-4 block">Products</span>
             <ul className="space-y-2 text-gray-400">
-              <li><Link to="/products/marrysmartai" className="hover:text-white transition-colors">MarrySmartAI</Link></li>
+              <li><a href="https://marrysmartly.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">MarrySmartlyAI</a></li>
               <li><Link to="/products/glowzy" className="hover:text-white transition-colors">Glowzy</Link></li>
               <li><Link to="/products/courtmate" className="hover:text-white transition-colors">CourtMate</Link></li>
-              <li><Link to="/invitation-manager" className="hover:text-white transition-colors flex items-center">
+              <li><Link to="/products/medical-queue" className="hover:text-white transition-colors">AI-Powered Medical Queue Management</Link></li>
+              <li><a href="https://invitesync.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center">
                 <CalendarDays className="w-4 h-4 mr-2" /> Invitation Manager
-              </Link></li>
+              </a></li>
               <li><Link to="/#pricing" className="hover:text-white transition-colors">All SaaS Products</Link></li>
               <li><Link to="#" className="hover:text-white transition-colors">API Docs</Link></li>
             </ul>

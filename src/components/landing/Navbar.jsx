@@ -38,13 +38,16 @@ const Navbar = ({ companyName, logoUrl, onGetStarted }) => {
                   <Link to="/#pricing" className="hover:!bg-purple-500/30 hover:!text-white">SaaS Suite</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link to="/products/marrysmartai" className="hover:!bg-purple-500/30 hover:!text-white">MarrySmartAI</Link>
+                  <a href="https://marrysmartly.com" target="_blank" rel="noopener noreferrer" className="hover:!bg-purple-500/30 hover:!text-white">MarrySmartlyAI</a>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link to="/products/glowzy" className="hover:!bg-purple-500/30 hover:!text-white">Glowzy</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link to="/products/courtmate" className="hover:!bg-purple-500/30 hover:!text-white">CourtMate</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/products/medical-queue" className="hover:!bg-purple-500/30 hover:!text-white">Medical Queue Management</Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

@@ -27,21 +27,21 @@ const HeroSection = ({ companyName, tagline, description, onGetStarted, onContac
           animate="animate"
           className="space-y-8"
         >
-          <motion.div variants={fadeInUp} className="space-y-4">
-            <div className="inline-flex items-center px-4 py-2 rounded-full glass-effect text-sm">
-              <img src={logoUrl} alt={`${companyName} logo`} className="h-12 w-auto mr-3" />
-              Trusted by leading businesses
+          <motion.div variants={fadeInUp} className="space-y-6">
+            <div className="inline-flex items-center px-6 py-3 rounded-full glass-effect text-sm font-medium">
+              <img src={logoUrl} alt={`${companyName} logo`} className="h-8 w-auto mr-3" />
+              <span className="text-purple-400">Trusted by leading businesses</span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-              {tagline}
-              <span className="gradient-text block">with {companyName}</span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight max-w-6xl mx-auto">
+              <span className="block mb-4">{tagline.replace(/,/g, ' ')}</span>
+              <span className="gradient-text text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">with {companyName}</span>
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               {description}
             </p>
           </motion.div>
 
-          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center">
+          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
             <Button 
               onClick={onGetStarted}
               size="lg" 
@@ -60,7 +60,7 @@ const HeroSection = ({ companyName, tagline, description, onGetStarted, onContac
             </Button>
           </motion.div>
 
-          <motion.div variants={fadeInUp} className="pt-12">
+          <motion.div variants={fadeInUp} className="pt-16">
             <img    
               className="w-full max-w-5xl mx-auto rounded-2xl shadow-2xl glow-effect floating-animation" 
               alt={`${companyName} dashboard showcasing software solutions and SaaS products`} 

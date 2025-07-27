@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code, Server, Brain, Globe, Shield, Users as UsersIcon, Scissors, Briefcase, Heart } from 'lucide-react'; // Renamed Users to UsersIcon to avoid conflict
+import { Code, Server, Brain, Globe, Shield, Users as UsersIcon, Scissors, Briefcase, Heart, Stethoscope } from 'lucide-react'; // Renamed Users to UsersIcon to avoid conflict
 import { Link } from 'react-router-dom';
 
 const fadeInUp = {
@@ -54,9 +54,10 @@ const productsData = [
   },
   {
     icon: <Heart className="w-8 h-8 text-pink-400" />,
-    title: "MarrySmartAI",
+    title: "MarrySmartlyAI",
     description: "AI-powered wedding planning for your dream Indian wedding.",
-    link: "/products/marrysmartai"
+    link: "https://marrysmartly.com",
+    external: true
   },
   {
     icon: <Scissors className="w-8 h-8 text-rose-400" />,
@@ -69,6 +70,12 @@ const productsData = [
     title: "CourtMate",
     description: "On-demand platform for managing court appearances.",
     link: "/products/courtmate"
+  },
+  {
+    icon: <Stethoscope className="w-8 h-8 text-green-400" />,
+    title: "AI-Powered Medical Queue Management",
+    description: "Streamline patient flow and optimize healthcare operations.",
+    link: "/products/medical-queue"
   }
 ];
 
@@ -149,9 +156,15 @@ const FeaturesSection = () => {
               </div>
               <h3 className="text-xl font-semibold mb-3">{product.title}</h3>
               <p className="text-gray-300 leading-relaxed flex-grow">{product.description}</p>
-              <Link to={product.link} className="mt-4 inline-block text-purple-400 hover:text-purple-300 font-medium self-start">
-                Learn More &rarr;
-              </Link>
+              {product.external ? (
+                <a href={product.link} target="_blank" rel="noopener noreferrer" className="mt-4 inline-block text-purple-400 hover:text-purple-300 font-medium self-start">
+                  Learn More &rarr;
+                </a>
+              ) : (
+                <Link to={product.link} className="mt-4 inline-block text-purple-400 hover:text-purple-300 font-medium self-start">
+                  Learn More &rarr;
+                </Link>
+              )}
             </motion.div>
           ))}
         </motion.div>

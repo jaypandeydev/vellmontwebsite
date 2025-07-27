@@ -39,13 +39,19 @@ const PlanCard = ({ plan, index }) => {
         ))}
       </ul>
       {plan.comingSoon ? (
-        <Button 
-            disabled 
-            className="w-full mt-auto bg-gray-700 hover:bg-gray-600 text-gray-400 cursor-not-allowed transition-colors duration-300"
-            aria-label={`${plan.name} is coming soon`}
-        >
-          Coming Soon
-        </Button>
+        plan.external ? (
+          <Button asChild className="w-full mt-auto bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold py-3">
+            <a href={plan.ctaLink} target="_blank" rel="noopener noreferrer">{plan.ctaText || "Get Started"}</a>
+          </Button>
+        ) : (
+          <Button
+              disabled
+              className="w-full mt-auto bg-gray-700 hover:bg-gray-600 text-gray-400 cursor-not-allowed transition-colors duration-300"
+              aria-label={`${plan.name} is coming soon`}
+          >
+            Coming Soon
+          </Button>
+        )
       ) : (
         <Button asChild className="w-full mt-auto bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold py-3">
           <Link to={plan.ctaLink || "#"}>{plan.ctaText || "Get Started"}</Link>
@@ -58,7 +64,7 @@ const PlanCard = ({ plan, index }) => {
 const PricingSection = () => {
   const plans = [
     {
-      name: 'MarrySmartAI',
+      name: 'MarrySmartlyAI',
       description: 'AI-powered Indian wedding planning. Simplify your dream wedding.',
       priceText: 'Coming Soon',
       features: [
@@ -68,10 +74,11 @@ const PricingSection = () => {
         { icon: CheckCircle, text: 'AI Invitation Creator' },
         { icon: CheckCircle, text: 'Guest List Organizer' },
       ],
-      ctaText: 'Join Waitlist',
-      ctaLink: '#',
+      ctaText: 'Visit Website',
+      ctaLink: 'https://marrysmartly.com',
       comingSoon: true,
       featured: true,
+      external: true,
     },
     {
       name: 'Glowzy',
@@ -104,9 +111,27 @@ const PricingSection = () => {
       comingSoon: true,
     },
     {
+      name: 'AI-Powered Medical Queue Management',
+      description: 'Streamline patient flow and optimize healthcare operations.',
+      priceText: 'Coming Soon',
+      features: [
+        { icon: CheckCircle, text: 'Appointment Request System' },
+        { icon: CheckCircle, text: 'Patient Queue Management' },
+        { icon: CheckCircle, text: 'Doctor Dashboard' },
+        { icon: CheckCircle, text: 'Patient Notifications' },
+        { icon: CheckCircle, text: 'Patient Record Keeping' },
+        { icon: CheckCircle, text: 'Receptionist/Admin Panel' },
+        { icon: CheckCircle, text: 'Registration via WhatsApp' },
+        { icon: CheckCircle, text: 'Real-Time Doctor Availability Status' },
+      ],
+      ctaText: 'Learn More',
+      ctaLink: '/products/medical-queue',
+      comingSoon: true,
+    },
+    {
       name: 'Invitation Manager',
       description: 'Organize all your event invitations in one smart place.',
-      priceText: 'Coming Soon',
+      priceText: 'Available Now',
       features: [
         { icon: LayoutDashboard, text: 'Visual Card Dashboard' },
         { icon: CalendarDays, text: 'Calendar Sync (Google/Device)' },
@@ -114,9 +139,10 @@ const PricingSection = () => {
         { icon: MapPin, text: 'Map View for Destinations' },
         { icon: CheckCircle, text: 'OCR for Card Data Extraction' },
       ],
-      ctaText: 'Explore App',
-      ctaLink: '/invitation-manager',
-      comingSoon: true, 
+      ctaText: 'Visit Website',
+      ctaLink: 'https://invitesync.com',
+      comingSoon: false,
+      external: true,
     },
   ];
 
