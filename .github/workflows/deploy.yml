@@ -20,13 +20,6 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H 147.93.106.12 >> ~/.ssh/known_hosts
 
-      - name: Set SSH config
-        run: |
-          echo "Host *" > ~/.ssh/config
-          echo "  StrictHostKeyChecking no" >> ~/.ssh/config
-          echo "  IdentityFile ~/.ssh/id_ed25519" >> ~/.ssh/config
-          chmod 600 ~/.ssh/config
-
       - name: Build site
         run: |
           npm install
@@ -34,4 +27,4 @@ jobs:
 
       - name: Deploy to VPS
         run: |
-          rsync -avz --delete -e "ssh -F ~/.ssh/config" ./dist/ root@147.93.106.12:/var/www/vellmontservices.com/
+          rsync -avz --delete -e "ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no" ./dist/ root@147.93.106.12:/var/www/vellmontservices.com/
