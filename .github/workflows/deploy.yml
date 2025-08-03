@@ -1,0 +1,30 @@
+name: Deploy Vellmont Site to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H 147.93.106.12 >> ~/.ssh/known_hosts
+
+      - name: Build site
+        run: |
+          npm install
+          npm run build
+
+      - name: Deploy to VPS
+        run: |
+          rsync -avz --delete -e "ssh -i ~/.ssh/id_ed25519" ./dist/ root@147.93.106.12:/var/www/vellmontservices.com/
