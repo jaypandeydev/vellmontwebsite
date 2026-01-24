@@ -28,6 +28,5 @@ jobs:
 
       - name: Deploy to VPS via rsync
         run: |
-          rsync -avz --delete \
-          -e "ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no" \
-          ./dist/ jay@147.93.106.12:/var/www/vellmontservices.com/
+          rsync -avz --delete -e "ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no" ./dist/ jay@147.93.106.12:/var/www/vellmontservices.com/
+
