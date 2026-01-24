@@ -71,10 +71,24 @@ const ContactPage = ({ companyName }) => {
                 <div className="flex items-start space-x-4">
                   <MapPin className="w-8 h-8 text-purple-400 mt-1 flex-shrink-0" />
                   <div>
-                    <h3 className="text-xl font-medium">Our Office</h3>
+                    <h3 className="text-xl font-medium mb-2">Our Offices</h3>
+                    <p className="text-gray-300">VELLMONT IT SERVICES L.L.C</p>
+                    <p className="text-gray-300">Building Name/No Rigga Business Centre-3001</p>
+                    <p className="text-gray-300">Land Area - Al Murqabat Plot No - 466-0</p>
+                    <p className="text-gray-300">Dubai UAE</p>
+                    <a 
+                      href="https://maps.app.goo.gl/fUaPtF2UWsYZ3KWUA"
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-purple-400 hover:text-purple-300 transition-colors mt-1 inline-block mb-4"
+                    >
+                      View on Map
+                    </a>
+                    <br></br>
+                    <p className="text-gray-300">Vellmont Services OPC PVT Ltd</p>
                     <p className="text-gray-300">WeWork Rajapushpa Summit, SY. 130P & 115/1P</p>
                     <p className="text-gray-300">Financial District,Nanakramguda Rd,Manikonda Jagir</p>
-                    <p className="text-gray-300">Rangareddy Dist.,Hyderabad, Telangana 500032</p>
+                    <p className="text-gray-300">Rangareddy Dist.,Hyderabad, Telangana 500032 INDIA</p>
                     <a 
                       href="https://maps.app.goo.gl/GmkTFXkzesuFMvsM9"
                       target="_blank" 
@@ -89,16 +103,20 @@ const ContactPage = ({ companyName }) => {
                   <Mail className="w-8 h-8 text-purple-400 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="text-xl font-medium">Email Us</h3>
-                    <a href="mailto:support@vellmontservices.com" className="text-gray-300 hover:text-purple-300 transition-colors">
+                    <a href="mailto:support@vellmontservices.com" className="text-gray-300 hover:text-purple-300 transition-colors block">
                       support@vellmontservices.com
+                    </a>
+                    <a href="mailto:finance@vellmontservices.com" className="text-gray-300 hover:text-purple-300 transition-colors block mt-1">
+                      finance@vellmontservices.com
                     </a>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
                   <Phone className="w-8 h-8 text-purple-400 mt-1 flex-shrink-0" />
                   <div>
-                    <h3 className="text-xl font-medium">Call Us (Hypothetical)</h3>
-                    <p className="text-gray-300">+91 8143210000</p>
+                    <h3 className="text-xl font-medium">Call Us </h3>
+                    <p className="text-gray-300">+971 547594261 (Dubai-UAE)</p>
+                    <p className="text-gray-300">+91 8143210000 (Hyderabad-India)</p>
                   </div>
                 </div>
               </div>
@@ -106,7 +124,7 @@ const ContactPage = ({ companyName }) => {
             
             <div className="pt-6 border-t border-white/10">
               <h3 className="text-xl font-medium mb-3">Business Hours</h3>
-              <p className="text-gray-300">Monday - Friday: 9 AM - 6 PM (IST)</p>
+              <p className="text-gray-300">Monday - Friday: 9 AM - 6 PM </p>
               <p className="text-gray-300">Saturday - Sunday: Closed</p>
             </div>
           </motion.div>

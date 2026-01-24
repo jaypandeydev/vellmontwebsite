@@ -28,7 +28,7 @@ function App() {
     });
   };
 
-  const companyName = "Vellmont Services OPC Pvt Ltd";
+  const companyName = "Vellmont Services";
   const navbarLogoUrl = "https://res.cloudinary.com/dzdaksuzp/image/upload/v1750354259/Vellmont_final_logo_Png_isk7ol.png";
   const footerLogoUrl = "https://res.cloudinary.com/dzdaksuzp/image/upload/v1750354259/Vellmont_final_logo_Png_isk7ol.png";
 

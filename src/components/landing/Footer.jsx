@@ -33,10 +33,10 @@ const Footer = ({ companyName, logoUrl }) => {
               <img src={logoUrl} alt={`${companyName} logo`} className="h-16 w-auto" />
             </Link>
             <p className="text-xl font-bold gradient-text">
-              Vellmont Services OPC Pvt Ltd
+              Vellmont Services
             </p>
-            <p className="text-gray-400 leading-relaxed">WeWork Rajapushpa Summit, SY. 130P & 115/1P Financial District, Nanakramguda Rd, Manikonda Jagir Rangareddy Dist, Hyderabad, Telangana 500032
-           </p>
+            <p className="text-gray-400 leading-relaxed mt-4">VELLMONT IT SERVICES L.L.C Building Name/No Rigga Business Centre-3001 Land Area - Al Murqabat Plot No - 466-0 Dubai UAE</p>
+            <p className="text-gray-400 leading-relaxed mt-4">WeWork Rajapushpa Summit, SY. 130P & 115/1P Financial District, Nanakramguda Rd, Manikonda Jagir Rangareddy Dist, Hyderabad, Telangana 500032</p>
             <div className="mt-6 flex space-x-4">
               {socialLinks.map(link => (
                 <SocialLink key={link.label} href={link.href} icon={link.icon} label={link.label} />

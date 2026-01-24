@@ -2,7 +2,7 @@
 
 **Redefining the standard, delivering excellence**
 
-A modern, responsive website for Vellmont Services OPC Pvt Ltd, built with React, Vite, and Tailwind CSS.
+A modern, responsive website for Vellmont Services, built with React, Vite, and Tailwind CSS.
 
 ## 🚀 Features
 
@@ -183,7 +183,7 @@ The project uses Vite with custom configuration:
 
 ## 📄 License
 
-© 2024 Vellmont Services OPC Pvt Ltd. All rights reserved.
+© 2026 Vellmont Services. All rights reserved.
 
 ## 📞 Support
 
@@ -194,4 +194,4 @@ For support and inquiries:
 
 ---
 
-**Vellmont Services OPC Pvt Ltd** - *Redefining the standard, delivering excellence*
+**Vellmont Services** - *Redefining the standard, delivering excellence*
