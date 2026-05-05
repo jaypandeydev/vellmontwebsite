@@ -11,7 +11,7 @@ export default function Hero() {
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
         <div className="flex flex-wrap gap-x-6 gap-y-2 mb-8 font-mono text-[11px] uppercase tracking-wider text-neutral-500">
-          <span>EST. 2023</span>
+          <span>EST. 2025</span>
           <span>HYDERABAD</span>
           <span>6 PRODUCTS LIVE</span>
           <span className="text-emerald-600 flex items-center gap-1.5">

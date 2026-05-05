@@ -4,7 +4,7 @@
 
 ## About
 
-Vellmont was founded in 2023 to build the software that "long-tail" Indian businesses actually need — software that doesn't break, works on a ₹8,000 phone, takes payments via UPI, and speaks Hindi when needed. We do not chase the Fortune 500 or unicorn label; we build for the 7,000 tour operators in Rajasthan, the astrologer in Pune with 200 daily clients, and the tutor in Hyderabad with 40 students.
+Vellmont was founded in 2025 to build the software that "long-tail" Indian businesses actually need — software that doesn't break, works on a ₹8,000 phone, takes payments via UPI, and speaks Hindi when needed. We do not chase the Fortune 500 or unicorn label; we build for the 7,000 tour operators in Rajasthan, the astrologer in Pune with 200 daily clients, and the tutor in Hyderabad with 40 students.
 
 ## Products
 
