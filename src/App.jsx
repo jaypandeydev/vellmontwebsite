@@ -33,10 +33,16 @@ function App() {
   const footerLogoUrl = "https://res.cloudinary.com/dzdaksuzp/image/upload/v1750354259/Vellmont_final_logo_Png_isk7ol.png";
 
   const isInvitationManagerRoute = location.pathname.startsWith('/invitation-manager');
-  const showMainNavbarAndFooter = !isInvitationManagerRoute;
+  const redesignedRoutes = ['/', '/contact'];
+  const isRedesignedRoute = redesignedRoutes.includes(location.pathname);
+  const showMainNavbarAndFooter = !isInvitationManagerRoute && !isRedesignedRoute;
+
+  const wrapperClass = isRedesignedRoute
+    ? 'min-h-screen bg-white text-neutral-900 overflow-x-hidden font-sans antialiased'
+    : 'min-h-screen text-white overflow-x-hidden gradient-bg';
 
   return (
-    <div className="min-h-screen text-white overflow-x-hidden gradient-bg">
+    <div className={wrapperClass}>
       {showMainNavbarAndFooter && <Navbar companyName={companyName} logoUrl={navbarLogoUrl} onGetStarted={handleGetStarted} />}
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>

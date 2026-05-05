@@ -1,0 +1,45 @@
+# Vellmont Services
+
+> Software studio building production tools for Indian SMBs and the industries that still run on WhatsApp — clinics, astrologers, tour operators, tutors, freelancers, and event hosts. Six products live; custom builds available. Headquartered in Hyderabad, India with an office in Dubai, UAE.
+
+## About
+
+Vellmont was founded in 2023 to build the software that "long-tail" Indian businesses actually need — software that doesn't break, works on a ₹8,000 phone, takes payments via UPI, and speaks Hindi when needed. We do not chase the Fortune 500 or unicorn label; we build for the 7,000 tour operators in Rajasthan, the astrologer in Pune with 200 daily clients, and the tutor in Hyderabad with 40 students.
+
+## Products
+
+- [MedQuePMS](https://medquepms.com): Clinic OS — queue management, doctor consultation, patient records, pharmacy CRM, and medical-representative scheduling. Patients book via WhatsApp, call, or IVR. Built for Indian clinics, doctors, and small hospitals.
+- [Vedjyotix](https://vedjyotix.com): Astrology, numerology, gun-milan compatibility, and a verified astrologer marketplace where users book chat and video consultations. UPI payments.
+- [TourConnect](https://tourconnect.vellmontservices.com): Tour operator management software — hotels, drivers, tourists, and multi-day itineraries in one screen. Auto-shares itineraries with tourists in multiple languages.
+- [Tutora](https://vellmontservices.org): Tutoring management platform where tutors and students register, fees are paid up front via UPI, classes run inside the app, and recordings are auto-shared. Subscription-based for tutors.
+- [InviteSync](https://invitesync.com): Store every invitation you ever received — wedding, birthday, corporate — on web and mobile. Reminders included.
+- [Invoicer](https://invoicer.vellmontservices.com): GST-aware invoicing and expense management for Indian SMBs and freelancers. Supports random one-off invoices.
+
+## Services
+
+- Custom software development (web, mobile, AI, automation)
+- Indian-market product builds (UPI, WhatsApp, IVR, regional language)
+- Long-term product engineering partnerships
+
+## Process
+
+1. Argue with you until the brief is sharp enough to cut something
+2. Build the working version first; prettify after
+3. Ship in weeks, not quarters
+4. Stick around — most of our work is for the same people, twice
+
+## Contact
+
+- Email (general): support@vellmontservices.com
+- Email (billing): finance@vellmontservices.com
+- Phone (Hyderabad, India): +91 8143210000
+- Phone (Dubai, UAE): +971 547594261
+- Hyderabad office: WeWork Rajapushpa Summit, Financial District, Nanakramguda Rd, Hyderabad, Telangana 500032, India
+- Dubai office: Rigga Business Centre-3001, Al Murqabat, Dubai, UAE
+- Hours: Monday – Friday, 9 AM – 6 PM IST. Closed weekends.
+
+## Site map
+
+- Home: https://vellmontservices.com/
+- Contact: https://vellmontservices.com/contact
+- Sitemap (XML): https://vellmontservices.com/sitemap.xml

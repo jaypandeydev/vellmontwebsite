@@ -1,53 +1,28 @@
 import React from 'react';
-import { useToast } from '@/components/ui/use-toast';
-import HeroSection from '@/components/landing/HeroSection';
-import FeaturesSection from '@/components/landing/FeaturesSection';
-import PricingSection from '@/components/landing/PricingSection';
-import TestimonialsSection from '@/components/landing/TestimonialsSection';
-import CtaSection from '@/components/landing/CtaSection';
+import Nav from '@/components/redesign/Nav';
+import Hero from '@/components/redesign/Hero';
+import AIDemoBlock from '@/components/redesign/AIDemoBlock';
+import Products from '@/components/redesign/Products';
+import { Thesis, Process, Endgame } from '@/components/redesign/Sections';
+import Seo from '@/components/redesign/Seo';
 
-const LandingPage = ({ companyName, logoUrl }) => {
-  const { toast } = useToast();
-
-  const handleGetStarted = () => {
-    toast({
-      title: "Welcome to Vellmont Services! 🚀",
-      description: "Let's build something amazing together!",
-    });
-  };
-
-  const handleContactSales = () => {
-    toast({
-      title: "Sales Team Alerted! 📞",
-      description: "We'll be in touch shortly to discuss your software needs.",
-    });
-  };
-  
-  const tagline = "Redefining the standard, delivering excellence";
-  const heroDescription = "We provide cutting-edge software services and innovative SaaS products to elevate your business. Partner with us to unlock your full potential.";
-  const ctaText = "Ready to elevate your business?";
-  const ctaDescription = "Join innovative companies leveraging Vellmont Services to achieve their goals.";
-
+const LandingPage = () => {
   return (
-    <>
-      <HeroSection 
-        companyName={companyName} 
-        tagline={tagline}
-        description={heroDescription}
-        onGetStarted={handleGetStarted} 
-        onContactSales={handleContactSales} 
-        logoUrl={logoUrl}
+    <main className="min-h-screen bg-white text-neutral-900 font-sans antialiased">
+      <Seo
+        title="Vellmont Services — Software for the industries that still run on WhatsApp"
+        description="Vellmont is a software studio building production tools for Indian SMBs — clinic queue management (MedQuePMS), astrology marketplace (Vedjyotix), tour operator OS (TourConnect), tutoring platform (Tutora), invitation manager (InviteSync), and GST invoicing (Invoicer). Six products live, custom builds available."
+        canonical="https://vellmontservices.com/"
+        image="https://res.cloudinary.com/dzdaksuzp/image/upload/v1750354259/Vellmont_final_logo_Png_isk7ol.png"
       />
-      <FeaturesSection />
-      <PricingSection onGetStarted={handleGetStarted} onContactSales={handleContactSales} />
-      <TestimonialsSection companyName={companyName} />
-      <CtaSection 
-        title={ctaText}
-        description={ctaDescription}
-        onGetStarted={handleGetStarted} 
-        onContactSales={handleContactSales} 
-      />
-    </>
+      <Nav />
+      <Hero />
+      <AIDemoBlock />
+      <Thesis />
+      <Products />
+      <Process />
+      <Endgame />
+    </main>
   );
 };
 
