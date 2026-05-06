@@ -87,7 +87,7 @@ const ContactPage = () => {
       />
       <Nav />
 
-      <section className="px-5 md:px-10 lg:px-20 pt-16 md:pt-24 pb-10">
+      <section className="px-5 md:px-10 lg:px-20 pt-8 md:pt-12 pb-6">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -116,7 +116,7 @@ const ContactPage = () => {
         </motion.div>
       </section>
 
-      <section className="px-5 md:px-10 lg:px-20 pb-12">
+      <section className="px-5 md:px-10 lg:px-20 pb-8">
         <SectionLabel left="── OUR OFFICES ────────────" right="01/03 ──" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {offices.map((o) => (
@@ -152,7 +152,7 @@ const ContactPage = () => {
         </div>
       </section>
 
-      <section className="px-5 md:px-10 lg:px-20 pb-12">
+      <section className="px-5 md:px-10 lg:px-20 pb-8">
         <SectionLabel left="── REACH US ───────────────" right="02/03 ──" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           <motion.div
@@ -241,7 +241,7 @@ const ContactPage = () => {
         </div>
       </section>
 
-      <section className="px-5 md:px-10 lg:px-20 pb-20">
+      <section className="px-5 md:px-10 lg:px-20 pb-12">
         <SectionLabel left="── SEND A MESSAGE ─────────" right="03/03 ──" />
         <motion.form
           initial={{ opacity: 0, y: 16 }}

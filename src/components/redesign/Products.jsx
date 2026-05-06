@@ -27,7 +27,7 @@ export default function Products() {
   return (
     <section
       id="products"
-      className="bg-neutral-50 px-5 md:px-10 lg:px-20 py-14"
+      className="bg-neutral-50 px-5 md:px-10 lg:px-20 py-8 md:py-10"
     >
       <SectionLabel
         left="── WHAT WE'VE SHIPPED ─────"

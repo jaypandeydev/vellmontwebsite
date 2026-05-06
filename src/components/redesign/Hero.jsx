@@ -4,13 +4,13 @@ import { typography } from './tokens';
 
 export default function Hero() {
   return (
-    <section className="px-5 md:px-10 lg:px-20 pt-16 md:pt-24 pb-12">
+    <section className="px-5 md:px-10 lg:px-20 pt-8 md:pt-12 pb-6">
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
-        <div className="flex flex-wrap gap-x-6 gap-y-2 mb-8 font-mono text-[11px] uppercase tracking-wider text-neutral-500">
+        <div className="flex flex-wrap gap-x-6 gap-y-2 mb-5 font-mono text-[11px] uppercase tracking-wider text-neutral-500">
           <span>EST. 2025</span>
           <span>HYDERABAD</span>
           <span>6 PRODUCTS LIVE</span>
@@ -28,7 +28,7 @@ export default function Hero() {
           WhatsApp.
         </h1>
 
-        <div className="flex flex-col md:flex-row gap-8 md:gap-10 max-w-[680px] mt-7">
+        <div className="flex flex-col md:flex-row gap-6 md:gap-10 max-w-[680px] mt-5">
           <p className="text-[15px] leading-[1.6] text-neutral-600 flex-1">
             Tour operators with spreadsheets. Astrologers taking bookings via
             DM. Tutors chasing fees on Paytm. Doctors managing queues with

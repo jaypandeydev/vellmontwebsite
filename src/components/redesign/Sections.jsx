@@ -4,7 +4,7 @@ import { typography } from './tokens';
 
 export function Thesis() {
   return (
-    <section id="thesis" className="px-5 md:px-10 lg:px-20 py-10 md:py-12">
+    <section id="thesis" className="px-5 md:px-10 lg:px-20 py-6 md:py-8">
       <div className="flex justify-between items-baseline mb-5">
         <div className="font-mono text-[11px] uppercase tracking-wider text-neutral-400">
           ── THE THESIS ─────────────
@@ -71,7 +71,7 @@ const processSteps = [
 
 export function Process() {
   return (
-    <section id="process" className="px-5 md:px-10 lg:px-20 py-10 md:py-12">
+    <section id="process" className="px-5 md:px-10 lg:px-20 py-6 md:py-8">
       <div className="flex justify-between items-baseline mb-5">
         <div className="font-mono text-[11px] uppercase tracking-wider text-neutral-400">
           ── HOW WE WORK ────────────
@@ -109,7 +109,7 @@ export function Endgame() {
   return (
     <section
       id="contact"
-      className="px-5 md:px-10 lg:px-20 py-10 md:py-14"
+      className="px-5 md:px-10 lg:px-20 py-6 md:py-10"
     >
       <div className="flex justify-between items-baseline mb-5">
         <div className="font-mono text-[11px] uppercase tracking-wider text-neutral-400">

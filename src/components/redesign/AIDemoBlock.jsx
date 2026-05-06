@@ -115,7 +115,7 @@ export default function AIDemoBlock() {
   const current = demos[active];
 
   return (
-    <section className="px-5 md:px-10 lg:px-20 mb-10">
+    <section className="px-5 md:px-10 lg:px-20 mb-6">
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
