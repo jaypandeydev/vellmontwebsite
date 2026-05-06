@@ -8,10 +8,10 @@ Vellmont was founded in 2025 to build the software that "long-tail" Indian busin
 
 ## Products
 
-- [MedQuePMS](https://medquepms.com): Clinic OS — queue management, doctor consultation, patient records, pharmacy CRM, and medical-representative scheduling. Patients book via WhatsApp, call, or IVR. Built for Indian clinics, doctors, and small hospitals.
+- [MedQuePMS](https://medquepms.vellmontservices.com): Clinic OS — queue management, doctor consultation, patient records, pharmacy CRM, and medical-representative scheduling. Patients book via WhatsApp, call, or IVR. Built for Indian clinics, doctors, and small hospitals.
 - [Vedjyotix](https://vedjyotix.com): Astrology, numerology, gun-milan compatibility, and a verified astrologer marketplace where users book chat and video consultations. UPI payments.
 - [TourConnect](https://tourconnect.vellmontservices.com): Tour operator management software — hotels, drivers, tourists, and multi-day itineraries in one screen. Auto-shares itineraries with tourists in multiple languages.
-- [Tutora](https://vellmontservices.org): Tutoring management platform where tutors and students register, fees are paid up front via UPI, classes run inside the app, and recordings are auto-shared. Subscription-based for tutors.
+- [Tutora](https://totorra.vellmontservices.com): Tutoring management platform where tutors and students register, fees are paid up front via UPI, classes run inside the app, and recordings are auto-shared. Subscription-based for tutors.
 - [InviteSync](https://invitesync.com): Store every invitation you ever received — wedding, birthday, corporate — on web and mobile. Reminders included.
 - [Invoicer](https://invoicer.vellmontservices.com): GST-aware invoicing and expense management for Indian SMBs and freelancers. Supports random one-off invoices.
 

@@ -57,7 +57,7 @@ export const products = [
     id: "medquepms",
     name: "MedQue",
     suffix: "PMS",
-    domain: "medquepms.com",
+    domain: "medquepms.vellmontservices.com",
     category: "healthcare",
     oneLiner: "Clinic OS: queue, consultation, pharmacy CRM, MR schedule.",
     longDescription:
@@ -90,7 +90,7 @@ export const products = [
   {
     id: "tutora",
     name: "Tutora",
-    domain: "vellmontservices.org",
+    domain: "totorra.vellmontservices.com",
     category: "education",
     oneLiner: "Tutors book, students pay, classes happen.",
     longDescription:
