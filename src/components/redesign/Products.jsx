@@ -45,12 +45,15 @@ export default function Products() {
         <span className={typography.italicAccent}>all in production.</span>
       </motion.h2>
 
-      <motion.div
+      <motion.a
+        href={`https://${flagshipProduct.domain}`}
+        target="_blank"
+        rel="noopener noreferrer"
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 0.5 }}
-        className="bg-white rounded-2xl border border-neutral-200 overflow-hidden mb-2 hover:border-neutral-300 transition-colors"
+        className="block bg-white rounded-2xl border border-neutral-200 overflow-hidden mb-2 hover:border-neutral-300 transition-colors no-underline"
       >
         <div className="grid grid-cols-1 md:grid-cols-[1.3fr_1fr]">
           <div className="p-6 md:p-7">
@@ -114,19 +117,22 @@ export default function Products() {
             </div>
           </div>
         </div>
-      </motion.div>
+      </motion.a>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
         {mediumProducts.map((p, i) => {
           const c = colorCategories[p.category];
           return (
-            <motion.div
+            <motion.a
               key={p.id}
+              href={`https://${p.domain}`}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-30px' }}
               transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="bg-white rounded-2xl border border-neutral-200 p-5 min-h-[140px] hover:border-neutral-300 hover:-translate-y-0.5 transition-all"
+              className="block bg-white rounded-2xl border border-neutral-200 p-5 min-h-[140px] hover:border-neutral-300 hover:-translate-y-0.5 transition-all no-underline"
             >
               <div className="flex justify-between items-start mb-2.5">
                 <span className="font-mono text-[10px] text-neutral-400">
@@ -147,7 +153,7 @@ export default function Products() {
               <p className="text-[12px] text-neutral-600 leading-[1.5]">
                 {p.oneLiner}
               </p>
-            </motion.div>
+            </motion.a>
           );
         })}
       </div>
@@ -156,13 +162,16 @@ export default function Products() {
         {smallProducts.map((p, i) => {
           const c = colorCategories[p.category];
           return (
-            <motion.div
+            <motion.a
               key={p.id}
+              href={`https://${p.domain}`}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-30px' }}
               transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="bg-white rounded-2xl border border-neutral-200 p-4 min-h-[120px] hover:border-neutral-300 hover:-translate-y-0.5 transition-all"
+              className="block bg-white rounded-2xl border border-neutral-200 p-4 min-h-[120px] hover:border-neutral-300 hover:-translate-y-0.5 transition-all no-underline"
             >
               <div className="flex justify-between items-start mb-2">
                 <span className="font-mono text-[10px] text-neutral-400">
@@ -175,10 +184,13 @@ export default function Products() {
                 </span>
               </div>
               <div className="font-medium text-[14px] text-neutral-900">{p.name}</div>
-              <p className="text-[11px] text-neutral-600 mt-1 leading-[1.5]">
+              <div className="font-mono text-[10px] text-neutral-400 mt-0.5 mb-1.5">
+                {p.domain}
+              </div>
+              <p className="text-[11px] text-neutral-600 leading-[1.5]">
                 {p.oneLiner}
               </p>
-            </motion.div>
+            </motion.a>
           );
         })}
       </div>

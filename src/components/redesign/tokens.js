@@ -90,7 +90,7 @@ export const products = [
   {
     id: "tutora",
     name: "Tutora",
-    domain: "totorra.vellmontservices.com",
+    domain: "tutorra.vellmontservices.com",
     category: "education",
     oneLiner: "Tutors book, students pay, classes happen.",
     longDescription:
