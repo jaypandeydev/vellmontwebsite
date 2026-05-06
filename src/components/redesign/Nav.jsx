@@ -11,8 +11,8 @@ export default function Nav() {
             alt="Vellmont"
             className="h-8 w-auto"
           />
-          <span className="font-mono text-neutral-400 text-[11px] hidden sm:inline">
-            / studio
+          <span className="font-medium text-[14px] text-indigo-600 hidden sm:inline">
+            Vellmont Services
           </span>
         </Link>
         <div className="flex gap-4 md:gap-5 text-neutral-600">
