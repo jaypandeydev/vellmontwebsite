@@ -1,0 +1,26 @@
+# Caddyfile for vellmontservices.com
+#
+# This file is documentation. The CI deploy (.github/workflows/deploy.yml)
+# only rsyncs ./dist/ to the VPS — it does NOT copy this file. To apply
+# changes:
+#
+#   scp Caddyfile deploy@147.93.106.12:/tmp/Caddyfile
+#   ssh deploy@147.93.106.12 "sudo mv /tmp/Caddyfile /etc/caddy/Caddyfile \
+#       && sudo caddy validate --config /etc/caddy/Caddyfile \
+#       && sudo systemctl reload caddy"
+
+vellmontservices.com, www.vellmontservices.com {
+    root * /var/www/vellmontservices.com
+
+    encode gzip zstd
+
+    # Hashed Vite assets — safe to cache aggressively (filename changes per build).
+    @hashed path /assets/*
+    header @hashed Cache-Control "public, max-age=31536000, immutable"
+
+    # SPA fallback: serve the requested file if it exists, otherwise index.html.
+    # Without this line, deep routes like /contact return 404 on direct hits.
+    try_files {path} /index.html
+
+    file_server
+}
