@@ -13,7 +13,7 @@ Vellmont was founded in 2025 to build the software that "long-tail" Indian busin
 - [TourConnect](https://tourconnect.vellmontservices.com): Tour operator management software — hotels, drivers, tourists, and multi-day itineraries in one screen. Auto-shares itineraries with tourists in multiple languages.
 - [Tutora](https://tutorra.vellmontservices.com): Tutoring management platform where tutors and students register, fees are paid up front via UPI, classes run inside the app, and recordings are auto-shared. Subscription-based for tutors.
 - [InviteSync](https://invitesync.com): Store every invitation you ever received — wedding, birthday, corporate — on web and mobile. Reminders included.
-- [Invoicer](https://invoicer.vellmontservices.com): GST-aware invoicing and expense management for Indian SMBs and freelancers. Supports random one-off invoices.
+- [Vellbill](https://vellbill.com): GST-aware invoicing and expense management for Indian SMBs and freelancers. Supports random one-off invoices.
 
 ## Services
 

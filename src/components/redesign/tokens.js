@@ -110,9 +110,9 @@ export const products = [
     size: "small",
   },
   {
-    id: "invoicer",
-    name: "Invoicer",
-    domain: "invoicer.vellmontservices.com",
+    id: "vellbill",
+    name: "Vellbill",
+    domain: "vellbill.com",
     category: "finance",
     oneLiner: "Invoices and expenses for businesses still emailing PDFs.",
     longDescription:
