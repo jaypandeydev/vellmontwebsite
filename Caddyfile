@@ -14,9 +14,21 @@ vellmontservices.com, www.vellmontservices.com {
 
     encode gzip zstd
 
-    # Hashed Vite assets — safe to cache aggressively (filename changes per build).
+    # Hashed Vite assets — safe to cache for a year (filename changes per build).
     @hashed path /assets/*
     header @hashed Cache-Control "public, max-age=31536000, immutable"
+
+    # index.html and other entry HTML must never be cached, otherwise visitors
+    # keep referencing asset hashes from old deploys (which rsync --delete
+    # removed from disk → 404 on every deploy).
+    @html {
+        path / *.html /contact /privacy-policy /terms
+    }
+    header @html Cache-Control "no-cache, no-store, must-revalidate"
+
+    # Crawler files: short cache so updates show up quickly.
+    @crawler path /robots.txt /sitemap.xml /llms.txt
+    header @crawler Cache-Control "public, max-age=3600"
 
     # SPA fallback: serve the requested file if it exists, otherwise index.html.
     # Without this line, deep routes like /contact return 404 on direct hits.
