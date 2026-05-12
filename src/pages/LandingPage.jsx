@@ -4,6 +4,7 @@ import Hero from '@/components/redesign/Hero';
 import AIDemoBlock from '@/components/redesign/AIDemoBlock';
 import Products from '@/components/redesign/Products';
 import { Thesis, Process, Endgame } from '@/components/redesign/Sections';
+import Footer from '@/components/redesign/Footer';
 import Seo from '@/components/redesign/Seo';
 
 const LandingPage = () => {
@@ -22,6 +23,7 @@ const LandingPage = () => {
       <Products />
       <Process />
       <Endgame />
+      <Footer />
     </main>
   );
 };

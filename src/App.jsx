@@ -7,6 +7,8 @@ import Navbar from '@/components/landing/Navbar';
 import Footer from '@/components/landing/Footer';
 import LandingPage from '@/pages/LandingPage';
 import ContactPage from '@/pages/ContactPage';
+import PrivacyPolicyPage from '@/pages/PrivacyPolicyPage';
+import TermsPage from '@/pages/TermsPage';
 import MarrySmartAIPage from '@/pages/MarrySmartAIPage';
 import GlowzyPage from '@/pages/GlowzyPage';
 import CourtMatePage from '@/pages/CourtMatePage';
@@ -33,7 +35,7 @@ function App() {
   const footerLogoUrl = "https://res.cloudinary.com/dzdaksuzp/image/upload/v1750354259/Vellmont_final_logo_Png_isk7ol.png";
 
   const isInvitationManagerRoute = location.pathname.startsWith('/invitation-manager');
-  const redesignedRoutes = ['/', '/contact'];
+  const redesignedRoutes = ['/', '/contact', '/privacy-policy', '/terms'];
   const isRedesignedRoute = redesignedRoutes.includes(location.pathname);
   const showMainNavbarAndFooter = !isInvitationManagerRoute && !isRedesignedRoute;
 
@@ -48,6 +50,8 @@ function App() {
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<LandingPage companyName={companyName} logoUrl={navbarLogoUrl} />} />
           <Route path="/contact" element={<ContactPage companyName={companyName} />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="/terms" element={<TermsPage />} />
           <Route path="/products/marrysmartai" element={<MarrySmartAIPage logoUrl={navbarLogoUrl} />} />
           <Route path="/products/glowzy" element={<GlowzyPage logoUrl={navbarLogoUrl} />} />
           <Route path="/products/courtmate" element={<CourtMatePage logoUrl={navbarLogoUrl} />} />

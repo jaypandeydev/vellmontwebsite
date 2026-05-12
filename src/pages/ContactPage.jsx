@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useToast } from '@/components/ui/use-toast';
 import Nav from '@/components/redesign/Nav';
+import Footer from '@/components/redesign/Footer';
 import Seo from '@/components/redesign/Seo';
 import { typography } from '@/components/redesign/tokens';
 
@@ -324,6 +325,8 @@ const ContactPage = () => {
           </div>
         </motion.form>
       </section>
+
+      <Footer />
     </main>
   );
 };
