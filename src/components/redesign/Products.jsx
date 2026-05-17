@@ -21,6 +21,23 @@ function SectionLabel({ left, right }) {
   );
 }
 
+// Colored monogram badge — stands in for each product's app icon / favicon.
+function Monogram({ label, color, size = 'md' }) {
+  const dims =
+    size === 'lg'
+      ? 'w-11 h-11 text-[18px] rounded-xl'
+      : size === 'sm'
+      ? 'w-8 h-8 text-[13px] rounded-lg'
+      : 'w-9 h-9 text-[15px] rounded-lg';
+  return (
+    <div
+      className={`${dims} ${color.pillBg} ${color.text} flex items-center justify-center font-mono font-semibold shrink-0`}
+    >
+      {label}
+    </div>
+  );
+}
+
 export default function Products() {
   const flagshipColor = colorCategories[flagshipProduct.category];
 
@@ -57,15 +74,22 @@ export default function Products() {
       >
         <div className="grid grid-cols-1 md:grid-cols-[1.3fr_1fr]">
           <div className="p-6 md:p-7">
-            <div className="flex gap-2 items-center mb-2.5">
-              <span className="font-mono text-[11px] text-neutral-400">
-                /01 · FLAGSHIP
-              </span>
-              <span
-                className={`font-mono text-[10px] ${flagshipColor.pillBg} ${flagshipColor.pillText} px-2 py-0.5 rounded-full`}
-              >
-                {flagshipColor.label}
-              </span>
+            <div className="flex items-center gap-3 mb-3">
+              <Monogram
+                label={flagshipProduct.name[0]}
+                color={flagshipColor}
+                size="lg"
+              />
+              <div className="flex gap-2 items-center flex-wrap">
+                <span className="font-mono text-[11px] text-neutral-400">
+                  /01 · FLAGSHIP
+                </span>
+                <span
+                  className={`font-mono text-[10px] ${flagshipColor.pillBg} ${flagshipColor.pillText} px-2 py-0.5 rounded-full`}
+                >
+                  {flagshipColor.label}
+                </span>
+              </div>
             </div>
             <div className="text-2xl md:text-[28px] font-medium tracking-[-0.02em] mb-1">
               {flagshipProduct.name}
@@ -134,10 +158,13 @@ export default function Products() {
               transition={{ duration: 0.5, delay: i * 0.05 }}
               className="block bg-white rounded-2xl border border-neutral-200 p-5 min-h-[140px] hover:border-neutral-300 hover:-translate-y-0.5 transition-all no-underline"
             >
-              <div className="flex justify-between items-start mb-2.5">
-                <span className="font-mono text-[10px] text-neutral-400">
-                  /0{i + 2}
-                </span>
+              <div className="flex justify-between items-start mb-3">
+                <div className="flex items-center gap-2">
+                  <Monogram label={p.name[0]} color={c} size="md" />
+                  <span className="font-mono text-[10px] text-neutral-400">
+                    /0{i + 2}
+                  </span>
+                </div>
                 <span
                   className={`font-mono text-[9px] ${c.pillBg} ${c.pillText} px-2 py-0.5 rounded-full`}
                 >
@@ -173,10 +200,13 @@ export default function Products() {
               transition={{ duration: 0.5, delay: i * 0.05 }}
               className="block bg-white rounded-2xl border border-neutral-200 p-4 min-h-[120px] hover:border-neutral-300 hover:-translate-y-0.5 transition-all no-underline"
             >
-              <div className="flex justify-between items-start mb-2">
-                <span className="font-mono text-[10px] text-neutral-400">
-                  /0{i + 4}
-                </span>
+              <div className="flex justify-between items-start mb-2.5">
+                <div className="flex items-center gap-2">
+                  <Monogram label={p.name[0]} color={c} size="sm" />
+                  <span className="font-mono text-[10px] text-neutral-400">
+                    /0{i + 4}
+                  </span>
+                </div>
                 <span
                   className={`font-mono text-[9px] ${c.pillBg} ${c.pillText} px-2 py-0.5 rounded-full`}
                 >
