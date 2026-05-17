@@ -50,8 +50,8 @@ const demos = {
     ),
     prompts: ['Daily horoscope', 'Numerology check', 'Find astrologer'],
   },
-  tourconnect: {
-    label: 'tourconnect',
+  vellroute: {
+    label: 'vellroute',
     render: () => (
       <>
         <div className="font-mono text-[10px] opacity-50 mb-2">

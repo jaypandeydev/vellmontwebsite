@@ -77,9 +77,9 @@ export const products = [
     size: "medium",
   },
   {
-    id: "tourconnect",
-    name: "TourConnect",
-    domain: "tourconnect.vellmontservices.com",
+    id: "vellroute",
+    name: "Vellroute",
+    domain: "vellroute.com",
     category: "travel",
     oneLiner: "Tour operators stop juggling six WhatsApp groups.",
     longDescription:
