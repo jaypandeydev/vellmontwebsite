@@ -69,6 +69,7 @@ export const products = [
     id: "vedjyotix",
     name: "Vedjyotix",
     domain: "vedjyotix.com",
+    logo: "https://vedjyotix.com/favicon.svg",
     category: "astrology",
     oneLiner: "Astrology, numerology, gun-milan + astrologer marketplace.",
     longDescription:
@@ -80,6 +81,7 @@ export const products = [
     id: "vellroute",
     name: "Vellroute",
     domain: "vellroute.com",
+    logo: "https://vellroute.com/logo.svg",
     category: "travel",
     oneLiner: "Tour operators stop juggling six WhatsApp groups.",
     longDescription:
@@ -102,6 +104,7 @@ export const products = [
     id: "invitesync",
     name: "InviteSync",
     domain: "invitesync.com",
+    logo: "https://invitesync.com/favicon.svg",
     category: "social",
     oneLiner: "Every invite you ever got, in one place.",
     longDescription:
@@ -113,6 +116,7 @@ export const products = [
     id: "vellbill",
     name: "Vellbill",
     domain: "vellbill.com",
+    logo: "https://vellbill.com/vellbill-icon.svg",
     category: "finance",
     oneLiner: "Invoices and expenses for businesses still emailing PDFs.",
     longDescription:

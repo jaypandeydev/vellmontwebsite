@@ -21,19 +21,39 @@ function SectionLabel({ left, right }) {
   );
 }
 
-// Colored monogram badge — stands in for each product's app icon / favicon.
-function Monogram({ label, color, size = 'md' }) {
+// Product mark — renders the hosted logo when available, otherwise falls back
+// to a colored monogram badge (the product's initial in its category color).
+function ProductMark({ product, color, size = 'md' }) {
+  const [imgFailed, setImgFailed] = React.useState(false);
+
   const dims =
     size === 'lg'
       ? 'w-11 h-11 text-[18px] rounded-xl'
       : size === 'sm'
       ? 'w-8 h-8 text-[13px] rounded-lg'
       : 'w-9 h-9 text-[15px] rounded-lg';
+
+  if (product.logo && !imgFailed) {
+    return (
+      <div
+        className={`${dims} bg-white border border-neutral-200 flex items-center justify-center shrink-0 overflow-hidden`}
+      >
+        <img
+          src={product.logo}
+          alt={`${product.name} logo`}
+          loading="lazy"
+          onError={() => setImgFailed(true)}
+          className="w-full h-full object-contain p-1"
+        />
+      </div>
+    );
+  }
+
   return (
     <div
       className={`${dims} ${color.pillBg} ${color.text} flex items-center justify-center font-mono font-semibold shrink-0`}
     >
-      {label}
+      {product.name[0]}
     </div>
   );
 }
@@ -75,8 +95,8 @@ export default function Products() {
         <div className="grid grid-cols-1 md:grid-cols-[1.3fr_1fr]">
           <div className="p-6 md:p-7">
             <div className="flex items-center gap-3 mb-3">
-              <Monogram
-                label={flagshipProduct.name[0]}
+              <ProductMark
+                product={flagshipProduct}
                 color={flagshipColor}
                 size="lg"
               />
@@ -160,7 +180,7 @@ export default function Products() {
             >
               <div className="flex justify-between items-start mb-3">
                 <div className="flex items-center gap-2">
-                  <Monogram label={p.name[0]} color={c} size="md" />
+                  <ProductMark product={p} color={c} size="md" />
                   <span className="font-mono text-[10px] text-neutral-400">
                     /0{i + 2}
                   </span>
@@ -202,7 +222,7 @@ export default function Products() {
             >
               <div className="flex justify-between items-start mb-2.5">
                 <div className="flex items-center gap-2">
-                  <Monogram label={p.name[0]} color={c} size="sm" />
+                  <ProductMark product={p} color={c} size="sm" />
                   <span className="font-mono text-[10px] text-neutral-400">
                     /0{i + 4}
                   </span>
