@@ -5,9 +5,10 @@
 # recovery — the CI deploy (.github/workflows/deploy.yml) only rsyncs ./dist/,
 # it does NOT copy this file.
 #
-# To restore this config onto the server (e.g. after a rebuild):
+# To apply this config onto the server:
 #   scp Caddyfile deploy@147.93.106.12:/tmp/Caddyfile
-#   ssh deploy@147.93.106.12 "sudo mv /tmp/Caddyfile /etc/caddy/Caddyfile \
+#   ssh deploy@147.93.106.12 "sudo cp /etc/caddy/Caddyfile /etc/caddy/Caddyfile.bak \
+#       && sudo mv /tmp/Caddyfile /etc/caddy/Caddyfile \
 #       && sudo caddy validate --config /etc/caddy/Caddyfile \
 #       && sudo systemctl reload caddy"
 
@@ -20,19 +21,28 @@ vellmontservices.com {
 
     encode zstd gzip
 
-    # SPA fallback — serve the requested file if it exists, otherwise
-    # index.html. Without this line, deep routes like /contact,
-    # /privacy-policy, and /terms return 404 on direct hits, and Google
-    # cannot index them.
-    try_files {path} /index.html
-    file_server
-
     header {
         Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
         X-Content-Type-Options "nosniff"
         X-Frame-Options "SAMEORIGIN"
         Referrer-Policy "strict-origin-when-cross-origin"
         -Server
+    }
+
+    # Legacy product pages (glowzy, courtmate, marrysmartai, medical-queue)
+    # have been retired. Return 410 Gone so search engines de-index them
+    # instead of being served the SPA shell as a soft 404.
+    handle /products/* {
+        respond 410
+    }
+
+    # Everything else: single-page app with history-mode fallback. Serve the
+    # requested file if it exists, otherwise index.html so React Router can
+    # resolve the route. Without this, deep links like /contact, /terms, and
+    # /privacy-policy return 404 on direct hits.
+    handle {
+        try_files {path} /index.html
+        file_server
     }
 
     log {
