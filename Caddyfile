@@ -1,38 +1,41 @@
 # Caddyfile for vellmontservices.com
 #
-# This file is documentation. The CI deploy (.github/workflows/deploy.yml)
-# only rsyncs ./dist/ to the VPS — it does NOT copy this file. To apply
-# changes:
+# This file MIRRORS the live production config at /etc/caddy/Caddyfile on the
+# VPS (deploy@147.93.106.12 / srv719322). It is documentation + disaster
+# recovery — the CI deploy (.github/workflows/deploy.yml) only rsyncs ./dist/,
+# it does NOT copy this file.
 #
+# To restore this config onto the server (e.g. after a rebuild):
 #   scp Caddyfile deploy@147.93.106.12:/tmp/Caddyfile
 #   ssh deploy@147.93.106.12 "sudo mv /tmp/Caddyfile /etc/caddy/Caddyfile \
 #       && sudo caddy validate --config /etc/caddy/Caddyfile \
 #       && sudo systemctl reload caddy"
 
-vellmontservices.com, www.vellmontservices.com {
+www.vellmontservices.com {
+    redir https://vellmontservices.com{uri} permanent
+}
+
+vellmontservices.com {
     root * /var/www/vellmontservices.com
 
-    encode gzip zstd
+    encode zstd gzip
 
-    # Hashed Vite assets — safe to cache for a year (filename changes per build).
-    @hashed path /assets/*
-    header @hashed Cache-Control "public, max-age=31536000, immutable"
-
-    # index.html and other entry HTML must never be cached, otherwise visitors
-    # keep referencing asset hashes from old deploys (which rsync --delete
-    # removed from disk → 404 on every deploy).
-    @html {
-        path / *.html /contact /privacy-policy /terms
-    }
-    header @html Cache-Control "no-cache, no-store, must-revalidate"
-
-    # Crawler files: short cache so updates show up quickly.
-    @crawler path /robots.txt /sitemap.xml /llms.txt
-    header @crawler Cache-Control "public, max-age=3600"
-
-    # SPA fallback: serve the requested file if it exists, otherwise index.html.
-    # Without this line, deep routes like /contact return 404 on direct hits.
+    # SPA fallback — serve the requested file if it exists, otherwise
+    # index.html. Without this line, deep routes like /contact,
+    # /privacy-policy, and /terms return 404 on direct hits, and Google
+    # cannot index them.
     try_files {path} /index.html
-
     file_server
+
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "SAMEORIGIN"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        -Server
+    }
+
+    log {
+        output file /var/log/caddy/vellmontservices.log
+    }
 }
