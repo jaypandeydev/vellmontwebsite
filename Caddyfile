@@ -1,20 +1,17 @@
-# Caddyfile for vellmontservices.com
+# ⚠️ REFERENCE FRAGMENT — NOT a deployable file. DO NOT scp this over
+# /etc/caddy/Caddyfile.
 #
-# This file MIRRORS the live production config at /etc/caddy/Caddyfile on the
-# VPS (deploy@147.93.106.12 / srv719322). It is documentation + disaster
-# recovery — the CI deploy (.github/workflows/deploy.yml) only rsyncs ./dist/,
-# it does NOT copy this file.
+# The production Caddyfile on the VPS is a SHARED, multi-site config that
+# hosts many unrelated domains (sanatanmahaparishad.org, invitesync.com,
+# api.invitesync.com, vellbill.com, vedjyotix.com, medquepms.vellmontservices.com,
+# vellroute.com + admin/api/platform, tutorra.vellmontservices.com,
+# paperclip.vellmontservices.com, and more). Overwriting that file with this
+# one would take every other site on the server offline.
 #
-# To apply this config onto the server:
-#   scp Caddyfile deploy@147.93.106.12:/tmp/Caddyfile
-#   ssh deploy@147.93.106.12 "sudo cp /etc/caddy/Caddyfile /etc/caddy/Caddyfile.bak \
-#       && sudo mv /tmp/Caddyfile /etc/caddy/Caddyfile \
-#       && sudo caddy validate --config /etc/caddy/Caddyfile \
-#       && sudo systemctl reload caddy"
-
-www.vellmontservices.com {
-    redir https://vellmontservices.com{uri} permanent
-}
+# This fragment documents ONLY the vellmontservices.com site block, so this
+# project's serving config is reviewable in version control. To change it,
+# hand-edit just the `vellmontservices.com { }` block in /etc/caddy/Caddyfile
+# on the server, then: sudo caddy validate && sudo systemctl reload caddy
 
 vellmontservices.com {
     root * /var/www/vellmontservices.com
