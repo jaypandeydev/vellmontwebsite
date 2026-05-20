@@ -1,6 +1,6 @@
 # Vellmont Services
 
-> AI-first software studio building production tools for Indian SMBs and the industries that still run on humans, paper, and WhatsApp — clinics, astrologers, tour operators, tutors, freelancers, and event hosts. We rewire those workflows with AI. Six products live; custom AI builds available. Headquartered in Hyderabad, India with an office in Dubai, UAE.
+> AI-first software studio building production tools for Indian SMBs and the industries that still run on humans, paper, and WhatsApp — clinics, astrologers, tour operators, tutors, freelancers, and event hosts. We rewire those workflows with AI. Six products shipped; custom AI builds available. Headquartered in Hyderabad, India with an office in Dubai, UAE.
 
 ## About
 
@@ -26,7 +26,7 @@ Vellmont was founded in 2025 to build the software that "long-tail" Indian busin
 1. Argue with you until the brief is sharp enough to cut something
 2. Build the working version first; prettify after
 3. Ship in weeks, not quarters
-4. Stick around — most of our work is for the same people, twice
+4. Stick around — we don't build and ghost; we keep iterating with you
 
 ## Contact
 

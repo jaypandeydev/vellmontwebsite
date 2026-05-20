@@ -65,7 +65,7 @@ const processSteps = [
   {
     n: '04',
     title: 'Stick around',
-    body: 'Most of our work is for the same people, twice.',
+    body: "We don't build and ghost. We keep iterating with you.",
   },
 ];
 

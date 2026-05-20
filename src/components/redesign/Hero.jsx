@@ -13,7 +13,7 @@ export default function Hero() {
         <div className="flex flex-wrap gap-x-6 gap-y-2 mb-5 font-mono text-[11px] uppercase tracking-wider text-neutral-500">
           <span>EST. 2025</span>
           <span>HYDERABAD</span>
-          <span>6 PRODUCTS LIVE</span>
+          <span>6 PRODUCTS SHIPPED</span>
           <span className="text-emerald-600 flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
             TAKING NEW PROJECTS

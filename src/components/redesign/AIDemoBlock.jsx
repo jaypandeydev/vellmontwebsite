@@ -129,7 +129,7 @@ export default function AIDemoBlock() {
               {'// PICK A PRODUCT — POKE AROUND'}
             </div>
             <div className="text-[17px] font-medium">
-              Six live products. None of them are decks.
+              Six shipped products. None of them are decks.
             </div>
           </div>
           <div className="flex gap-1 flex-wrap">
