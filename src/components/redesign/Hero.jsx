@@ -25,7 +25,7 @@ export default function Hero() {
         >
           Software for the industries that{' '}
           <span className={typography.italicAccent}>still run</span> on
-          WhatsApp.
+          humans. We rewire them with AI.
         </h1>
 
         <div className="flex flex-col md:flex-row gap-6 md:gap-10 max-w-[680px] mt-5">
