@@ -28,18 +28,18 @@ export function Thesis() {
           <span className="text-neutral-400">unicorn label.</span>
           <br />
           We build for the{' '}
-          <span className="font-medium">7,000 tour operators in Rajasthan</span>
+          <span className="font-medium">tour operator running on spreadsheets</span>
           , the{' '}
-          <span className="font-medium">astrologer in Pune</span> with 200
-          daily clients, and the{' '}
-          <span className="font-medium">tutor in Hyderabad</span> juggling 40
-          students.
+          <span className="font-medium">astrologer taking bookings via DM</span>
+          , and the{' '}
+          <span className="font-medium">tutor chasing fees on Paytm</span> — the
+          long tail nobody else is shipping for.
         </div>
         <div className="text-[14px] leading-[1.7] text-neutral-600">
-          They don't need "AI-first" or "10x productivity." They need software
-          that doesn't break, works on a ₹8,000 phone, takes payments via UPI,
-          and speaks Hindi when needed. That's the bar. Everything we ship
-          clears it.
+          They don't need AI as a slogan. They need AI that books the next
+          patient, drafts a GST invoice, and chases a fee while they sleep —
+          running on a ₹8,000 phone, paid by UPI, in Hindi when needed. That's
+          the bar.
         </div>
       </motion.div>
     </section>
