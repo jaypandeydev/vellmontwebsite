@@ -10,10 +10,10 @@ const LAST_UPDATED = 'May 2026';
 function SectionLabel({ left, right }) {
   return (
     <div className="flex justify-between items-baseline mb-4">
-      <div className="font-mono text-[11px] uppercase tracking-wider text-neutral-400">
+      <div className="font-mono text-[11px] uppercase tracking-wider text-neutral-500">
         {left}
       </div>
-      <div className="font-mono text-[11px] uppercase tracking-wider text-neutral-400">
+      <div className="font-mono text-[11px] uppercase tracking-wider text-neutral-500">
         {right}
       </div>
     </div>
@@ -31,10 +31,10 @@ function Section({ id, label, count, title, children }) {
       className="px-5 md:px-10 lg:px-20 pb-8"
     >
       <SectionLabel left={label} right={count} />
-      <h2 className={`${typography.sectionHeading} mb-3 text-neutral-900`}>
+      <h2 className={`${typography.sectionHeading} mb-3 text-white`}>
         {title}
       </h2>
-      <div className="max-w-[760px] text-[14px] leading-[1.7] text-neutral-700 space-y-3">
+      <div className="max-w-[760px] text-[14px] leading-[1.7] text-neutral-300 space-y-3">
         {children}
       </div>
     </motion.section>
@@ -43,7 +43,7 @@ function Section({ id, label, count, title, children }) {
 
 const TermsPage = () => {
   return (
-    <main className="min-h-screen bg-white text-neutral-900 font-sans antialiased">
+    <main className="min-h-screen bg-[#070710] text-neutral-100 font-sans antialiased">
       <Seo
         title="Terms of Service — Vellmont Services"
         description="The terms that govern your use of vellmontservices.com and the products and services Vellmont Services offers."
@@ -53,14 +53,18 @@ const TermsPage = () => {
       <Nav />
 
       <section className="px-5 md:px-10 lg:px-20 pt-8 md:pt-12 pb-6">
-        <div className="flex flex-wrap gap-x-6 gap-y-2 mb-5 font-mono text-[11px] uppercase tracking-wider text-neutral-500">
+        <div className="flex flex-wrap gap-x-6 gap-y-2 mb-5 font-mono text-[11px] uppercase tracking-wider text-neutral-400">
           <span>TERMS OF SERVICE</span>
           <span>LAST UPDATED · {LAST_UPDATED}</span>
         </div>
-        <h1 className={`${typography.displayHeadline} max-w-[640px] mb-5 text-neutral-900`}>
-          The rules of the <span className={typography.italicAccent}>road</span>.
+        <h1 className={`${typography.displayHeadline} max-w-[640px] mb-5 text-white`}>
+          The rules of the{' '}
+          <span className={`${typography.italicAccent} text-indigo-300`}>
+            road
+          </span>
+          .
         </h1>
-        <p className="text-[15px] leading-[1.6] text-neutral-600 max-w-[680px]">
+        <p className="text-[15px] leading-[1.6] text-neutral-400 max-w-[680px]">
           By using vellmontservices.com or any Vellmont Services product, you
           agree to these terms. Please read them — they're meant to be plain
           English, not lawyer-speak.
@@ -164,7 +168,7 @@ const TermsPage = () => {
         <ul className="list-disc pl-5 space-y-1">
           <li>
             Email:{' '}
-            <a href="mailto:support@vellmontservices.com" className="underline underline-offset-4">support@vellmontservices.com</a>
+            <a href="mailto:support@vellmontservices.com" className="underline underline-offset-4 text-indigo-300 hover:text-indigo-200 transition-colors">support@vellmontservices.com</a>
           </li>
           <li>India office: WeWork Rajapushpa Summit, Financial District, Hyderabad, Telangana 500032</li>
           <li>UAE office: Rigga Business Centre-3001, Al Murqabat, Dubai</li>

@@ -3,7 +3,11 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="theme-color" content="#ffffff" />
+		<meta name="theme-color" content="#070710" />
+		<style>
+			/* Pre-paint background so there is no white flash before React boots. */
+			html, body { background-color: #070710; color: #f5f5f5; }
+		</style>
 
 		<title>Vellmont Services — Software for the industries that still run on humans. We rewire them with AI.</title>
 		<meta
@@ -106,22 +110,70 @@
 				{
 					"@type": "SoftwareApplication",
 					"name": "MedQuePMS",
-					"alternateName": "MedQue PMS",
+					"alternateName": ["MedQue PMS", "MedQue"],
 					"url": "https://medquepms.vellmontservices.com/",
 					"applicationCategory": "HealthApplication",
-					"applicationSubCategory": "Practice Management Software",
+					"applicationSubCategory": "Clinic and Hospital Management Software (HMS / PMS)",
 					"operatingSystem": "Web, iOS, Android",
-					"description": "Clinic OS for Indian doctors and small hospitals — queue management, doctor consultation, patient records, pharmacy CRM, and medical representative scheduling. Patients book via WhatsApp, call, or IVR.",
-					"audience": { "@type": "Audience", "audienceType": "Doctors, clinics, small hospitals, pharmacies in India" },
+					"description": "Cloud-based clinic and hospital management platform built for India. Unifies the live patient queue, doctor consultation workspace, AI Clinical Pre-Read, pharmacy POS, billing, cashless/TPA workflow, and a native patient mobile app into one system. WhatsApp-native booking, rupee billing, DLT-compliant telecom, ABDM-ready. From a single doctor to a multi-branch group.",
+					"audience": { "@type": "Audience", "audienceType": "Solo doctors, multi-doctor clinics, small hospitals, clinic chains, and patients in India" },
 					"featureList": [
-						"Queue and token management",
-						"Doctor consultation workflow",
-						"Pharmacy CRM",
-						"WhatsApp and IVR booking",
-						"Medical representative scheduling",
-						"UPI payments"
+						"Smart Live Queue — patients wait by their phone with live position and push notifications",
+						"QR self check-in with duplicate-proof registration",
+						"Doctor consultation workspace with structured notes, ICD-10, e-prescription, video, shortcuts",
+						"AI Clinical Pre-Read — red-flag banner, lab trends, per-line Rx Approve & Sign, referral guidance, provenance on every fact",
+						"AI consult assist for doctors (bring-your-own-key)",
+						"AI Support Assistant for patients 24x7",
+						"Multi-channel booking: WhatsApp, missed-call/IVR, SMS, AI chat",
+						"Missed-call to WhatsApp capture",
+						"Pharmacy POS with auto-flow from prescription",
+						"Billing and invoicing — cash + Razorpay, GST, reconciliation",
+						"Cashless / TPA workflow (26 insurers + 15 TPAs seeded, claim-packet PDF)",
+						"Collections and analytics reports",
+						"Native patient mobile app (iOS and Android) — live queue position, records, receipts, push",
+						"Notifications engine (push, WhatsApp, SMS, email) with fallback",
+						"Diagnostic-centre portal and referrals",
+						"Medical representative module",
+						"Multi-clinic and super-admin (multi-tenant from day one)",
+						"R25 Pre-Consult Intelligence — async document ingestion, 15 disease trend panels, AI Nurse tablet intake, Consultation Readiness Score",
+						"Per-clinic row-level data isolation, encrypted credentials, audit trail",
+						"ABDM-ready"
 					],
-					"offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR", "availability": "https://schema.org/InStock" },
+					"offers": [
+						{
+							"@type": "Offer",
+							"name": "Solo",
+							"price": "3999",
+							"priceCurrency": "INR",
+							"unitText": "MONTH",
+							"description": "1 doctor, 1 location — queue, billing, records, patient app, AI consult assist (BYO key)",
+							"availability": "https://schema.org/InStock"
+						},
+						{
+							"@type": "Offer",
+							"name": "Clinic",
+							"price": "7999",
+							"priceCurrency": "INR",
+							"unitText": "MONTH",
+							"description": "Up to 3 doctors — adds Pharmacy POS, cashless/TPA flow, platform AI, 1,500 WhatsApp messages",
+							"availability": "https://schema.org/InStock"
+						},
+						{
+							"@type": "Offer",
+							"name": "Clinic Pro",
+							"price": "14999",
+							"priceCurrency": "INR",
+							"unitText": "MONTH",
+							"description": "Up to 8 doctors — adds WhatsApp booking bot, missed-call capture, telemedicine, diagnostic-centre integration, SLA",
+							"availability": "https://schema.org/InStock"
+						},
+						{
+							"@type": "Offer",
+							"name": "Chain / Hospital",
+							"description": "9+ doctors or multi-branch — everything in Pro plus multi-tenant oversight and onboarding assistance",
+							"availability": "https://schema.org/InStock"
+						}
+					],
 					"provider": { "@id": "https://vellmontservices.com/#organization" }
 				},
 				{

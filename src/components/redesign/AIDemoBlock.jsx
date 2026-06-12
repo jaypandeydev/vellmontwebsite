@@ -121,11 +121,17 @@ export default function AIDemoBlock() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-80px' }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="bg-neutral-900 text-white rounded-2xl p-6 md:p-7"
+        className="relative bg-[#0f0f1c] text-white rounded-2xl p-6 md:p-7 overflow-hidden border border-white/10 shadow-[0_20px_60px_-20px_rgba(99,102,241,0.5)]"
       >
+        {/* Brand-gradient top edge */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-400/70 to-transparent" />
+        <div className="absolute -top-px left-1/4 right-1/4 h-px bg-gradient-to-r from-indigo-500 via-violet-500 to-emerald-500" />
+        {/* Subtle radial glow inside */}
+        <div className="absolute -top-32 -right-32 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-indigo-500/15 to-emerald-500/10 blur-3xl pointer-events-none" />
         <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-4">
           <div>
-            <div className="font-mono text-[11px] opacity-50 mb-1.5">
+            <div className="font-mono text-[11px] mb-1.5 flex items-center gap-2 text-emerald-400/80">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.8)]" />
               {'// PICK A PRODUCT — POKE AROUND'}
             </div>
             <div className="text-[17px] font-medium">
@@ -137,10 +143,10 @@ export default function AIDemoBlock() {
               <button
                 key={key}
                 onClick={() => setActive(key)}
-                className={`px-2.5 py-1 rounded-full text-[11px] font-mono transition-colors ${
+                className={`px-3 py-1 rounded-full text-[11px] font-mono transition-all ${
                   active === key
-                    ? 'bg-white/15 text-white'
-                    : 'bg-transparent text-white/60 hover:text-white/80'
+                    ? 'bg-emerald-500/15 text-emerald-300 ring-1 ring-emerald-500/40 shadow-[0_0_12px_rgba(16,185,129,0.25)]'
+                    : 'bg-transparent text-white/55 hover:text-white/85 ring-1 ring-white/10 hover:ring-white/20'
                 }`}
               >
                 {demos[key].label}
@@ -167,7 +173,7 @@ export default function AIDemoBlock() {
           {current.prompts.map((p) => (
             <span
               key={p}
-              className="bg-white/10 px-2.5 py-1 rounded-full text-[11px] cursor-pointer hover:bg-white/15 transition-colors"
+              className="bg-indigo-500/10 ring-1 ring-indigo-500/25 text-indigo-200 px-2.5 py-1 rounded-full text-[11px] cursor-pointer hover:bg-indigo-500/20 hover:ring-indigo-500/40 transition-colors"
             >
               {p}
             </span>

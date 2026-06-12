@@ -9,7 +9,7 @@ import Seo from '@/components/redesign/Seo';
 
 const LandingPage = () => {
   return (
-    <main className="min-h-screen bg-white text-neutral-900 font-sans antialiased">
+    <main className="min-h-screen bg-[#070710] text-neutral-100 font-sans antialiased">
       <Seo
         title="Vellmont Services — Software for the industries that still run on humans. We rewire them with AI."
         description="Vellmont is an AI-first software studio rewiring the industries that still run on humans, paper, and WhatsApp — AI clinic queue management (MedQuePMS), AI astrology marketplace (Vedjyotix), AI tour operator OS (Vellroute), AI tutoring platform (Tutora), invitation manager (InviteSync), and AI GST invoicing (Vellbill). Six products shipped, custom AI builds available."

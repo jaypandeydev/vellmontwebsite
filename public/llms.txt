@@ -8,7 +8,7 @@ Vellmont was founded in 2025 to build the software that "long-tail" Indian busin
 
 ## Products
 
-- [MedQuePMS](https://medquepms.vellmontservices.com): Clinic OS — queue management, doctor consultation, patient records, pharmacy CRM, and medical-representative scheduling. Patients book via WhatsApp, call, or IVR. Built for Indian clinics, doctors, and small hospitals.
+- [MedQuePMS](https://medquepms.vellmontservices.com): Cloud clinic and hospital OS for India — live token queue (patients wait by their phone, not your bench), QR self check-in, doctor consultation workspace with AI Clinical Pre-Read (red-flag banner + lab trends + e-Rx Approve & Sign), pharmacy POS, billing (cash + Razorpay + GST), cashless/TPA workflow (26 insurers + 15 TPAs seeded), native patient mobile app (iOS + Android), WhatsApp/IVR/SMS/AI-chat booking, missed-call capture, diagnostic-centre portal, medical-representative module, multi-clinic super-admin. Bring-your-own AI key for cost control. ABDM-ready, DLT-compliant, rupee billing. Plans: Solo ₹3,999/mo · Clinic ₹7,999/mo · Clinic Pro ₹14,999/mo · Chain/Hospital custom. Tagline: "Less waiting. More caring."
 - [Vedjyotix](https://vedjyotix.com): Astrology, numerology, gun-milan compatibility, and a verified astrologer marketplace where users book chat and video consultations. UPI payments.
 - [Vellroute](https://vellroute.com): Tour operator management software — hotels, drivers, tourists, and multi-day itineraries in one screen. Auto-shares itineraries with tourists in multiple languages.
 - [Tutora](https://tutorra.vellmontservices.com): Tutoring management platform where tutors and students register, fees are paid up front via UPI, classes run inside the app, and recordings are auto-shared. Subscription-based for tutors.

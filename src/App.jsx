@@ -17,11 +17,11 @@ function App() {
   const location = useLocation();
   const isInvitationManagerRoute = location.pathname.startsWith('/invitation-manager');
 
-  // Invitation Manager keeps the legacy dark theme; everything else is the
-  // redesigned light site.
+  // Invitation Manager keeps its own legacy gradient theme; the redesigned
+  // site is now dark by default (deep near-black with subtle blue tint).
   const wrapperClass = isInvitationManagerRoute
     ? 'min-h-screen text-white overflow-x-hidden gradient-bg'
-    : 'min-h-screen bg-white text-neutral-900 overflow-x-hidden font-sans antialiased';
+    : 'min-h-screen bg-[#070710] text-neutral-100 overflow-x-hidden font-sans antialiased';
 
   return (
     <div className={wrapperClass}>

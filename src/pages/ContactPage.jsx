@@ -39,13 +39,19 @@ const phones = [
   { number: '+91 8143210000', label: 'Hyderabad, India' },
 ];
 
+const cardBase =
+  'rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm transition-colors hover:bg-white/[0.05] hover:border-white/20';
+
+const inputBase =
+  'bg-white/[0.04] border border-white/10 rounded-lg px-3 py-2.5 text-[14px] text-neutral-100 placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/50 transition-colors';
+
 function SectionLabel({ left, right }) {
   return (
     <div className="flex justify-between items-baseline mb-5">
-      <div className="font-mono text-[11px] uppercase tracking-wider text-neutral-400">
+      <div className="font-mono text-[11px] uppercase tracking-wider text-neutral-500">
         {left}
       </div>
-      <div className="font-mono text-[11px] uppercase tracking-wider text-neutral-400">
+      <div className="font-mono text-[11px] uppercase tracking-wider text-neutral-500">
         {right}
       </div>
     </div>
@@ -79,7 +85,7 @@ const ContactPage = () => {
   };
 
   return (
-    <main className="min-h-screen bg-white text-neutral-900 font-sans antialiased">
+    <main className="min-h-screen bg-[#070710] text-neutral-100 font-sans antialiased">
       <Seo
         title="Contact Vellmont Services — Hyderabad & Dubai offices"
         description="Reach Vellmont Services for software builds, product partnerships, or support. Offices in Hyderabad (India) and Dubai (UAE). Email support@vellmontservices.com or call +91 8143210000 / +971 547594261."
@@ -88,28 +94,38 @@ const ContactPage = () => {
       />
       <Nav />
 
-      <section className="px-5 md:px-10 lg:px-20 pt-8 md:pt-12 pb-6">
+      <section className="relative px-5 md:px-10 lg:px-20 pt-10 md:pt-14 pb-8 overflow-hidden">
+        {/* Atmospheric brand glow */}
+        <div className="absolute inset-0 -z-10 pointer-events-none">
+          <div className="absolute -top-32 -right-32 w-[680px] h-[680px] rounded-full bg-gradient-to-br from-indigo-600/20 via-violet-600/12 to-transparent blur-3xl" />
+          <div className="absolute top-1/3 -left-32 w-[420px] h-[420px] rounded-full bg-gradient-to-tr from-emerald-500/12 to-transparent blur-3xl" />
+        </div>
+
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          <div className="flex flex-wrap gap-x-6 gap-y-2 mb-8 font-mono text-[11px] uppercase tracking-wider text-neutral-500">
+          <div className="flex flex-wrap gap-x-6 gap-y-2 mb-6 font-mono text-[11px] uppercase tracking-wider text-neutral-400">
             <span>CONTACT</span>
             <span>DUBAI · HYDERABAD</span>
-            <span className="text-emerald-600 flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+            <span className="text-emerald-400 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
               REPLIES WITHIN 1 BUSINESS DAY
             </span>
           </div>
 
           <h1
-            className={`${typography.displayHeadline} max-w-[640px] mb-6 text-neutral-900`}
+            className={`${typography.displayHeadline} max-w-[640px] mb-5 text-white`}
           >
-            Tell us what you're <span className={typography.italicAccent}>building</span>.
+            Tell us what you're{' '}
+            <span className={`${typography.italicAccent} text-indigo-300`}>
+              building
+            </span>
+            .
           </h1>
 
-          <p className="text-[15px] leading-[1.6] text-neutral-600 max-w-[620px]">
+          <p className="text-[15px] leading-[1.6] text-neutral-400 max-w-[620px]">
             Send a real brief, a half-formed Notion doc, or a one-line idea.
             We read every message and reply with either a real plan or an honest
             "we're not the right team."
@@ -127,15 +143,15 @@ const ContactPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.5 }}
-              className="bg-neutral-50 rounded-2xl border border-neutral-200 p-6 md:p-7 hover:border-neutral-300 transition-colors"
+              className={`${cardBase} p-6 md:p-7`}
             >
-              <div className="font-mono text-[10px] text-neutral-400 mb-2 uppercase tracking-wider">
+              <div className="font-mono text-[10px] text-neutral-500 mb-2 uppercase tracking-wider">
                 {o.locationLabel}
               </div>
-              <div className="font-medium text-[17px] tracking-[-0.01em] mb-2">
+              <div className="font-medium text-[17px] tracking-[-0.01em] mb-2 text-white">
                 {o.company}
               </div>
-              <div className="text-[13px] text-neutral-600 leading-[1.6] space-y-0.5 mb-4">
+              <div className="text-[13px] text-neutral-400 leading-[1.6] space-y-0.5 mb-4">
                 {o.lines.map((line) => (
                   <div key={line}>{line}</div>
                 ))}
@@ -144,7 +160,7 @@ const ContactPage = () => {
                 href={o.mapUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-mono text-[12px] text-neutral-900 underline underline-offset-4 hover:text-neutral-600 transition-colors"
+                className="font-mono text-[12px] text-indigo-300 underline underline-offset-4 hover:text-indigo-200 transition-colors"
               >
                 view on map →
               </a>
@@ -161,9 +177,9 @@ const ContactPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-30px' }}
             transition={{ duration: 0.5 }}
-            className="bg-white rounded-2xl border border-neutral-200 p-5 hover:border-neutral-300 transition-colors"
+            className={`${cardBase} p-5`}
           >
-            <div className="font-mono text-[10px] text-neutral-400 mb-2 uppercase tracking-wider">
+            <div className="font-mono text-[10px] text-neutral-500 mb-2 uppercase tracking-wider">
               Email
             </div>
             <div className="flex flex-col gap-2">
@@ -171,11 +187,11 @@ const ContactPage = () => {
                 <div key={e.addr}>
                   <a
                     href={`mailto:${e.addr}`}
-                    className="text-[14px] font-medium text-neutral-900 hover:text-neutral-600 transition-colors block"
+                    className="text-[14px] font-medium text-white hover:text-indigo-300 transition-colors block"
                   >
                     {e.addr}
                   </a>
-                  <div className="font-mono text-[11px] text-neutral-400">
+                  <div className="font-mono text-[11px] text-neutral-500">
                     {e.label}
                   </div>
                 </div>
@@ -188,9 +204,9 @@ const ContactPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-30px' }}
             transition={{ duration: 0.5, delay: 0.05 }}
-            className="bg-white rounded-2xl border border-neutral-200 p-5 hover:border-neutral-300 transition-colors"
+            className={`${cardBase} p-5`}
           >
-            <div className="font-mono text-[10px] text-neutral-400 mb-2 uppercase tracking-wider">
+            <div className="font-mono text-[10px] text-neutral-500 mb-2 uppercase tracking-wider">
               Phone
             </div>
             <div className="flex flex-col gap-2">
@@ -198,11 +214,11 @@ const ContactPage = () => {
                 <div key={p.number}>
                   <a
                     href={`tel:${p.number.replace(/\s+/g, '')}`}
-                    className="text-[14px] font-medium text-neutral-900 hover:text-neutral-600 transition-colors block"
+                    className="text-[14px] font-medium text-white hover:text-indigo-300 transition-colors block"
                   >
                     {p.number}
                   </a>
-                  <div className="font-mono text-[11px] text-neutral-400">
+                  <div className="font-mono text-[11px] text-neutral-500">
                     {p.label}
                   </div>
                 </div>
@@ -215,25 +231,25 @@ const ContactPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-30px' }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="bg-white rounded-2xl border border-neutral-200 p-5 hover:border-neutral-300 transition-colors"
+            className={`${cardBase} p-5`}
           >
-            <div className="font-mono text-[10px] text-neutral-400 mb-2 uppercase tracking-wider">
+            <div className="font-mono text-[10px] text-neutral-500 mb-2 uppercase tracking-wider">
               Hours
             </div>
             <div className="flex flex-col gap-2">
               <div>
-                <div className="text-[14px] font-medium text-neutral-900">
+                <div className="text-[14px] font-medium text-white">
                   Mon – Fri
                 </div>
-                <div className="font-mono text-[11px] text-neutral-400">
+                <div className="font-mono text-[11px] text-neutral-500">
                   9 AM – 6 PM IST
                 </div>
               </div>
               <div>
-                <div className="text-[14px] font-medium text-neutral-900">
+                <div className="text-[14px] font-medium text-white">
                   Sat – Sun
                 </div>
-                <div className="font-mono text-[11px] text-neutral-400">
+                <div className="font-mono text-[11px] text-neutral-500">
                   closed
                 </div>
               </div>
@@ -250,7 +266,7 @@ const ContactPage = () => {
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.5 }}
           onSubmit={handleSubmit}
-          className="bg-neutral-50 rounded-2xl border border-neutral-200 p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[820px]"
+          className={`${cardBase} p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[820px]`}
         >
           <div className="flex flex-col gap-1.5">
             <label htmlFor="name" className="font-mono text-[10px] uppercase tracking-wider text-neutral-500">
@@ -263,7 +279,7 @@ const ContactPage = () => {
               value={formData.name}
               onChange={handleChange}
               placeholder="Your full name"
-              className="bg-white border border-neutral-200 rounded-lg px-3 py-2.5 text-[14px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-900/10 focus:border-neutral-400 transition-colors"
+              className={inputBase}
             />
           </div>
 
@@ -278,7 +294,7 @@ const ContactPage = () => {
               value={formData.email}
               onChange={handleChange}
               placeholder="you@company.com"
-              className="bg-white border border-neutral-200 rounded-lg px-3 py-2.5 text-[14px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-900/10 focus:border-neutral-400 transition-colors"
+              className={inputBase}
             />
           </div>
 
@@ -293,7 +309,7 @@ const ContactPage = () => {
               value={formData.subject}
               onChange={handleChange}
               placeholder="What's this about?"
-              className="bg-white border border-neutral-200 rounded-lg px-3 py-2.5 text-[14px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-900/10 focus:border-neutral-400 transition-colors"
+              className={inputBase}
             />
           </div>
 
@@ -308,7 +324,7 @@ const ContactPage = () => {
               value={formData.message}
               onChange={handleChange}
               placeholder="Tell us what you're trying to build, what you've tried, what's stuck."
-              className="bg-white border border-neutral-200 rounded-lg px-3 py-2.5 text-[14px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-900/10 focus:border-neutral-400 transition-colors resize-y"
+              className={`${inputBase} resize-y`}
             />
           </div>
 
@@ -318,7 +334,7 @@ const ContactPage = () => {
             </p>
             <button
               type="submit"
-              className="bg-neutral-900 text-white px-5 py-3 rounded-lg text-[13px] font-medium hover:bg-neutral-800 transition-colors whitespace-nowrap"
+              className="bg-gradient-to-r from-indigo-500 to-violet-600 text-white px-5 py-3 rounded-lg text-[13px] font-medium hover:from-indigo-400 hover:to-violet-500 transition-colors whitespace-nowrap shadow-[0_8px_24px_-6px_rgba(99,102,241,0.55)]"
             >
               Send message →
             </button>
