@@ -92,7 +92,8 @@ export const products = [
     id: "vellroute",
     name: "Vellroute",
     domain: "vellroute.com",
-    logo: "https://vellroute.com/logo.svg",
+    logo: "/logos/vellroute.svg",
+    logoBleed: true,
     category: "travel",
     oneLiner: "Tour operators stop juggling six WhatsApp groups.",
     longDescription:
@@ -127,7 +128,7 @@ export const products = [
     id: "vellbill",
     name: "Vellbill",
     domain: "vellbill.com",
-    logo: "https://vellbill.com/vellbill-icon.svg",
+    logo: "https://vellbill.com/vellbill-mark.png",
     category: "finance",
     oneLiner: "Invoices and expenses for businesses still emailing PDFs.",
     longDescription:

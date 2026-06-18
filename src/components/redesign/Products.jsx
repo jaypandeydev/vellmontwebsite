@@ -34,16 +34,23 @@ function ProductMark({ product, color, size = 'md' }) {
       : 'w-9 h-9 text-[15px] rounded-lg';
 
   if (product.logo && !imgFailed) {
+    // logoBleed: the logo already has its own background (e.g. a coloured
+    // tile mark). Render edge-to-edge without the white frame so the logo
+    // *is* the icon, not framed by another icon.
+    const tileClass = product.logoBleed
+      ? `${dims} flex items-center justify-center shrink-0 overflow-hidden ring-1 ring-white/10 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.6)]`
+      : `${dims} bg-white border border-white/15 flex items-center justify-center shrink-0 overflow-hidden shadow-[0_2px_8px_-2px_rgba(0,0,0,0.6)]`;
+    const imgClass = product.logoBleed
+      ? 'w-full h-full object-cover'
+      : 'w-full h-full object-contain p-1';
     return (
-      <div
-        className={`${dims} bg-white border border-white/15 flex items-center justify-center shrink-0 overflow-hidden shadow-[0_2px_8px_-2px_rgba(0,0,0,0.6)]`}
-      >
+      <div className={tileClass}>
         <img
           src={product.logo}
           alt={`${product.name} logo`}
           loading="lazy"
           onError={() => setImgFailed(true)}
-          className="w-full h-full object-contain p-1"
+          className={imgClass}
         />
       </div>
     );
