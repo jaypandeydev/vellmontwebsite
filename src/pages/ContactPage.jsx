@@ -85,7 +85,7 @@ const ContactPage = () => {
   };
 
   return (
-    <main className="min-h-screen bg-[#070710] text-neutral-100 font-sans antialiased">
+    <main className="min-h-screen bg-[#050816] text-neutral-100 font-sans antialiased">
       <Seo
         title="Contact Vellmont Services — Hyderabad & Dubai offices"
         description="Reach Vellmont Services for software builds, product partnerships, or support. Offices in Hyderabad (India) and Dubai (UAE). Email support@vellmontservices.com or call +91 8143210000 / +971 547594261."
@@ -119,7 +119,7 @@ const ContactPage = () => {
             className={`${typography.displayHeadline} max-w-[640px] mb-5 text-white`}
           >
             Tell us what you're{' '}
-            <span className={`${typography.italicAccent} text-indigo-300`}>
+            <span className={`${typography.italicAccent}`}>
               building
             </span>
             .

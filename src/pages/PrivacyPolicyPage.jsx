@@ -43,7 +43,7 @@ function Section({ id, label, count, title, children }) {
 
 const PrivacyPolicyPage = () => {
   return (
-    <main className="min-h-screen bg-[#070710] text-neutral-100 font-sans antialiased">
+    <main className="min-h-screen bg-[#050816] text-neutral-100 font-sans antialiased">
       <Seo
         title="Privacy Policy — Vellmont Services"
         description="How Vellmont Services collects, uses, and protects information from visitors and customers across our website and products."
@@ -59,7 +59,7 @@ const PrivacyPolicyPage = () => {
         </div>
         <h1 className={`${typography.displayHeadline} max-w-[640px] mb-5 text-white`}>
           How we handle your{' '}
-          <span className={`${typography.italicAccent} text-indigo-300`}>
+          <span className={`${typography.italicAccent}`}>
             data
           </span>
           .

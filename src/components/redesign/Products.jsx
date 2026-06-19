@@ -94,7 +94,7 @@ export default function Products() {
         className={`${typography.sectionHeading} mb-6 text-white`}
       >
         Six products,{' '}
-        <span className={`${typography.italicAccent} text-indigo-300`}>
+        <span className={`${typography.italicAccent}`}>
           all in production.
         </span>
       </motion.h2>

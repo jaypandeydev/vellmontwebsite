@@ -43,7 +43,7 @@ function Section({ id, label, count, title, children }) {
 
 const TermsPage = () => {
   return (
-    <main className="min-h-screen bg-[#070710] text-neutral-100 font-sans antialiased">
+    <main className="min-h-screen bg-[#050816] text-neutral-100 font-sans antialiased">
       <Seo
         title="Terms of Service — Vellmont Services"
         description="The terms that govern your use of vellmontservices.com and the products and services Vellmont Services offers."
@@ -59,7 +59,7 @@ const TermsPage = () => {
         </div>
         <h1 className={`${typography.displayHeadline} max-w-[640px] mb-5 text-white`}>
           The rules of the{' '}
-          <span className={`${typography.italicAccent} text-indigo-300`}>
+          <span className={`${typography.italicAccent}`}>
             road
           </span>
           .

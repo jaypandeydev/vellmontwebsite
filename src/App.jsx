@@ -21,7 +21,7 @@ function App() {
   // site is now dark by default (deep near-black with subtle blue tint).
   const wrapperClass = isInvitationManagerRoute
     ? 'min-h-screen text-white overflow-x-hidden gradient-bg'
-    : 'min-h-screen bg-[#070710] text-neutral-100 overflow-x-hidden font-sans antialiased';
+    : 'min-h-screen bg-[#050816] text-neutral-100 overflow-x-hidden font-sans antialiased';
 
   return (
     <div className={wrapperClass}>
