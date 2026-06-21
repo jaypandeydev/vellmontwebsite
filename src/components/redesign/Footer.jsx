@@ -10,7 +10,7 @@ const cols = [
       { label: 'InviteSync', href: 'https://invitesync.com', ext: true },
       { label: 'Vedjyotix', href: 'https://vedjyotix.com', ext: true },
       { label: 'Vellbill', href: 'https://vellbill.com', ext: true },
-      { label: 'Tutoro', href: 'https://tutorra.vellmontservices.com', ext: true },
+      { label: 'Tutora', href: 'https://tutorra.vellmontservices.com', ext: true },
     ],
   },
   {

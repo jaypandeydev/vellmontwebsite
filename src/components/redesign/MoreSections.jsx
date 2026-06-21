@@ -195,7 +195,7 @@ const roadmap = [
   { year: 'Q2 2025', title: 'MedQuePMS development', body: 'Clinic OS architecture: queue, consult, pharmacy, billing, AI.' },
   { year: 'Q3 2025', title: 'Vedjyotix launch', body: 'Astrology platform + verified astrologer marketplace go live.' },
   { year: 'Q4 2025', title: 'InviteSync + Vellbill launch', body: 'Invitation management on web + mobile, and GST-compliant invoicing ship.' },
-  { year: 'Q1–Q2 2026', title: 'Tutoro + Vellroute launch', body: 'Global tutor marketplace and tour-operator OS roll out across pilot accounts.' },
+  { year: 'Q1–Q2 2026', title: 'Tutora + Vellroute launch', body: 'Global tutor marketplace and tour-operator OS roll out across pilot accounts.' },
   { year: '2026 onwards', title: 'Global product portfolio', body: 'Six shipped products; expansion beyond India + UAE markets and new AI verticals in the pipeline.' },
 ];
 
