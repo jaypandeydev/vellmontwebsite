@@ -10,8 +10,8 @@ const offices = [
   {
     company: 'VELLMONT IT SERVICES L.L.C',
     lines: [
-      'Building Name/No Rigga Business Centre-3001',
-      'Land Area — Al Murqabat Plot No 466-0',
+      'No. 3001-586, Artco Marlin Investment LLC',
+      'Al Muraqqabat, Deira',
       'Dubai, UAE',
     ],
     mapUrl: 'https://maps.app.goo.gl/fUaPtF2UWsYZ3KWUA',

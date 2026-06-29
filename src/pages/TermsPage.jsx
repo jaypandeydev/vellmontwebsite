@@ -171,7 +171,7 @@ const TermsPage = () => {
             <a href="mailto:support@vellmontservices.com" className="underline underline-offset-4 text-indigo-300 hover:text-indigo-200 transition-colors">support@vellmontservices.com</a>
           </li>
           <li>India office: WeWork Rajapushpa Summit, Financial District, Hyderabad, Telangana 500032</li>
-          <li>UAE office: Rigga Business Centre-3001, Al Murqabat, Dubai</li>
+          <li>UAE office: No. 3001-586, Artco Marlin Investment LLC, Al Muraqqabat, Deira, Dubai</li>
         </ul>
       </Section>
 
