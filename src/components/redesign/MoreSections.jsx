@@ -24,10 +24,10 @@ import {
 import { typography } from './tokens';
 
 // Shared header — mono eyebrow + sectionHeading + optional kicker.
-function SectionHeader({ eyebrow, title, kicker, accentClass = 'text-violet-300/70' }) {
+function SectionHeader({ eyebrow, title, kicker, accentClass = 'text-cyan-200/80' }) {
   return (
     <div className="mb-10 md:mb-12">
-      <div className={`font-mono text-[11px] uppercase tracking-wider mb-3 ${accentClass}`}>
+      <div className={`font-mono text-[11px] uppercase tracking-[0.22em] mb-3 ${accentClass}`}>
         {eyebrow}
       </div>
       <h2 className={`${typography.sectionHeading} text-white max-w-[760px] mb-4`}>
@@ -71,12 +71,12 @@ const techGroups = [
 ];
 
 const TONE_CLASSES = {
-  violet: 'text-violet-300 bg-violet-500/12 ring-violet-500/30',
-  cyan: 'text-cyan-300 bg-cyan-500/12 ring-cyan-500/30',
-  fuchsia: 'text-fuchsia-300 bg-fuchsia-500/12 ring-fuchsia-500/30',
-  blue: 'text-blue-300 bg-blue-500/12 ring-blue-500/30',
-  emerald: 'text-emerald-300 bg-emerald-500/12 ring-emerald-500/30',
-  amber: 'text-amber-300 bg-amber-500/12 ring-amber-500/30',
+  violet: 'text-cyan-100 bg-white/[0.035] ring-white/10',
+  cyan: 'text-cyan-100 bg-white/[0.035] ring-white/10',
+  fuchsia: 'text-cyan-100 bg-white/[0.035] ring-white/10',
+  blue: 'text-cyan-100 bg-white/[0.035] ring-white/10',
+  emerald: 'text-cyan-100 bg-white/[0.035] ring-white/10',
+  amber: 'text-cyan-100 bg-white/[0.035] ring-white/10',
 };
 
 export function TechStack() {
@@ -101,7 +101,7 @@ export function TechStack() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.4, delay: i * 0.06 }}
-              className="rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm p-6 hover:bg-white/[0.05] hover:border-white/15 transition-colors"
+              className="rounded-lg bg-white/[0.025] border border-white/[0.08] p-6 hover:bg-white/[0.045] hover:border-white/15 transition-colors"
             >
               <div
                 className={`w-10 h-10 rounded-lg ring-1 ring-inset flex items-center justify-center mb-4 ${TONE_CLASSES[g.tone]}`}
@@ -149,9 +149,7 @@ export function Security() {
       id="security"
       className="relative px-5 md:px-10 lg:px-20 py-16 md:py-24"
     >
-      <div className="absolute inset-0 -z-10 pointer-events-none">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-gradient-to-r from-cyan-500/8 via-blue-500/8 to-violet-500/8 blur-3xl" />
-      </div>
+      <div className="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       <SectionHeader
         eyebrow="Security & Compliance"
@@ -170,7 +168,7 @@ export function Security() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-30px' }}
               transition={{ duration: 0.4, delay: (i % 4) * 0.05 }}
-              className="rounded-xl bg-white/[0.03] border border-white/[0.08] p-5 hover:bg-white/[0.05] transition-colors"
+              className="rounded-lg bg-white/[0.025] border border-white/[0.08] p-5 hover:bg-white/[0.045] transition-colors"
             >
               <Icon className="w-5 h-5 text-cyan-300 mb-3" strokeWidth={1.6} />
               <div className="text-[14px] font-medium text-white mb-1.5">
@@ -261,8 +259,8 @@ export function WhyUs() {
     >
       <SectionHeader
         eyebrow="Why Vellmont"
-        title="Built different, on purpose."
-        accentClass="text-fuchsia-300/70"
+        title="A product company rhythm, applied to your vertical."
+        accentClass="text-cyan-200/80"
       />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -275,10 +273,10 @@ export function WhyUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-30px' }}
               transition={{ duration: 0.4, delay: (i % 3) * 0.06 }}
-              className="rounded-2xl bg-white/[0.03] border border-white/[0.08] p-6 hover:bg-white/[0.05] hover:border-white/15 transition-colors"
+              className="rounded-lg bg-white/[0.025] border border-white/[0.08] p-6 hover:bg-white/[0.045] hover:border-white/15 transition-colors"
             >
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-violet-500/15 to-cyan-500/15 ring-1 ring-white/10 flex items-center justify-center mb-4">
-                <Icon className="w-5 h-5 text-white" strokeWidth={1.6} />
+              <div className="w-10 h-10 rounded-md bg-white/[0.035] ring-1 ring-white/10 flex items-center justify-center mb-4">
+                <Icon className="w-5 h-5 text-cyan-100" strokeWidth={1.6} />
               </div>
               <div className="text-[16px] font-medium text-white mb-1.5">
                 {c.title}

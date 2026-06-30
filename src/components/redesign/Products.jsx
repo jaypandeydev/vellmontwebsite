@@ -78,11 +78,11 @@ export default function Products() {
     >
       {/* Subtle gradient ambience for the section */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[900px] h-[400px] rounded-full bg-gradient-to-r from-indigo-600/[0.06] via-violet-600/[0.06] to-emerald-500/[0.06] blur-3xl" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
       </div>
 
       <SectionLabel
-        left="── WHAT WE'VE SHIPPED ─────"
+        left="── PORTFOLIO INDEX ─────"
         right="02/04 ──"
       />
 
@@ -93,9 +93,9 @@ export default function Products() {
         transition={{ duration: 0.5 }}
         className={`${typography.sectionHeading} mb-6 text-white`}
       >
-        Six products,{' '}
+        Product brands across{' '}
         <span className={`${typography.italicAccent}`}>
-          all in production.
+          six operating domains.
         </span>
       </motion.h2>
 

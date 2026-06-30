@@ -108,6 +108,50 @@ const demos = {
     ),
     prompts: ['Tutor onboarding', 'Class scheduling', 'Fee tracking'],
   },
+  invitesync: {
+    label: 'invitesync',
+    render: () => (
+      <>
+        <div className="font-mono text-[10px] opacity-50 mb-1.5">
+          calendar + family list
+        </div>
+        <div className="text-[13px] mb-3">
+          "We have a wedding invite next Friday. Remind my family and track RSVP."
+        </div>
+        <div className="font-mono text-[10px] opacity-50 mb-1.5">
+          invitesync →
+        </div>
+        <div className="text-[12px] leading-[1.6]">
+          Event saved · RSVP group created · 3 reminders scheduled · Google
+          Calendar synced.{' '}
+          <span className="opacity-60">Auntie needs pickup? Add task.</span>
+        </div>
+      </>
+    ),
+    prompts: ['RSVP reminders', 'Family sharing', 'Event tasks'],
+  },
+  vellbill: {
+    label: 'vellbill',
+    render: () => (
+      <>
+        <div className="font-mono text-[10px] opacity-50 mb-1.5">
+          freelancer → invoice
+        </div>
+        <div className="text-[13px] mb-3">
+          "Create GST invoice from this WhatsApp order and send a payment link."
+        </div>
+        <div className="font-mono text-[10px] opacity-50 mb-1.5">
+          vellbill →
+        </div>
+        <div className="text-[12px] leading-[1.6]">
+          Invoice #VB-1042 drafted · GST calculated · UPI link attached · due
+          reminder set for 7 days.{' '}
+          <span className="opacity-60">PDF and client ledger updated.</span>
+        </div>
+      </>
+    ),
+    prompts: ['GST invoice', 'Payment follow-up', 'Expense summary'],
+  },
 };
 
 export default function AIDemoBlock() {
@@ -115,27 +159,23 @@ export default function AIDemoBlock() {
   const current = demos[active];
 
   return (
-    <section className="px-5 md:px-10 lg:px-20 mb-6">
+    <section id="ai-flows" className="px-5 md:px-10 lg:px-20 py-8 md:py-12">
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-80px' }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="relative bg-[#0f0f1c] text-white rounded-2xl p-6 md:p-7 overflow-hidden border border-white/10 shadow-[0_20px_60px_-20px_rgba(99,102,241,0.5)]"
+        className="relative overflow-hidden rounded-xl border border-white/10 bg-[#080b16] p-5 text-white shadow-[0_24px_80px_-55px_rgba(0,0,0,0.95)] md:p-7"
       >
-        {/* Brand-gradient top edge */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-400/70 to-transparent" />
-        <div className="absolute -top-px left-1/4 right-1/4 h-px bg-gradient-to-r from-indigo-500 via-violet-500 to-emerald-500" />
-        {/* Subtle radial glow inside */}
-        <div className="absolute -top-32 -right-32 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-indigo-500/15 to-emerald-500/10 blur-3xl pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-200/40 to-transparent" />
         <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-4">
           <div>
-            <div className="font-mono text-[11px] mb-1.5 flex items-center gap-2 text-emerald-400/80">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.8)]" />
-              {'// PICK A PRODUCT — POKE AROUND'}
+            <div className="font-mono text-[11px] mb-1.5 flex items-center gap-2 text-cyan-200/80 uppercase tracking-[0.22em]">
+              <span className="h-1.5 w-1.5 rounded-full bg-cyan-200" />
+              AI workflow console
             </div>
-            <div className="text-[17px] font-medium">
-              Six shipped products. None of them are decks.
+            <div className="max-w-[680px] text-[20px] font-medium leading-[1.35] md:text-[24px]">
+              Product intelligence shown as completed work, not as a generic assistant.
             </div>
           </div>
           <div className="flex gap-1 flex-wrap">
@@ -143,10 +183,10 @@ export default function AIDemoBlock() {
               <button
                 key={key}
                 onClick={() => setActive(key)}
-                className={`px-3 py-1 rounded-full text-[11px] font-mono transition-all ${
+                className={`rounded-md px-3 py-1 text-[11px] font-mono transition-all ${
                   active === key
-                    ? 'bg-emerald-500/15 text-emerald-300 ring-1 ring-emerald-500/40 shadow-[0_0_12px_rgba(16,185,129,0.25)]'
-                    : 'bg-transparent text-white/55 hover:text-white/85 ring-1 ring-white/10 hover:ring-white/20'
+                    ? 'bg-white text-[#07111f]'
+                    : 'bg-white/[0.025] text-white/55 ring-1 ring-white/10 hover:text-white/85 hover:ring-white/20'
                 }`}
               >
                 {demos[key].label}
@@ -155,7 +195,7 @@ export default function AIDemoBlock() {
           </div>
         </div>
 
-        <div className="bg-white/5 rounded-lg p-3.5 min-h-[120px]">
+        <div className="min-h-[128px] rounded-lg border border-white/[0.08] bg-white/[0.025] p-4">
           <AnimatePresence mode="wait">
             <motion.div
               key={active}
@@ -173,7 +213,7 @@ export default function AIDemoBlock() {
           {current.prompts.map((p) => (
             <span
               key={p}
-              className="bg-indigo-500/10 ring-1 ring-indigo-500/25 text-indigo-200 px-2.5 py-1 rounded-full text-[11px] cursor-pointer hover:bg-indigo-500/20 hover:ring-indigo-500/40 transition-colors"
+              className="cursor-pointer rounded border border-white/[0.08] bg-white/[0.025] px-2.5 py-1 text-[11px] text-slate-300 transition-colors hover:border-cyan-200/30 hover:text-white"
             >
               {p}
             </span>

@@ -17,8 +17,8 @@ const cols = [
     heading: 'Company',
     links: [
       { label: 'About', href: '/#thesis' },
-      { label: 'Roadmap', href: '/#roadmap' },
-      { label: 'Careers', href: '#' },
+      { label: 'Portfolio', href: '/#products-detail' },
+      { label: 'AI Flows', href: '/#ai-flows' },
       { label: 'Contact', to: '/contact' },
     ],
   },
@@ -38,7 +38,7 @@ export default function Footer() {
   return (
     <footer className="relative border-t border-white/[0.08] mt-12">
       <div className="absolute inset-0 -z-10 pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[280px] rounded-full bg-gradient-to-r from-violet-700/8 via-blue-700/8 to-cyan-700/8 blur-3xl" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
       </div>
 
       <div className="px-5 md:px-10 lg:px-20 py-14">
@@ -56,9 +56,9 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-[13px] text-slate-400 leading-[1.6] max-w-[320px] mb-5">
-              An AI product studio building production-grade SaaS for
-              healthcare, tourism, education and small businesses. Hyderabad ·
-              Dubai.
+              An AI product company building production-grade vertical SaaS
+              for healthcare, tourism, finance, education and everyday
+              operations. Hyderabad · Dubai.
             </p>
             <div className="flex flex-wrap gap-2 text-[11px] font-mono text-slate-500">
               <span className="px-2 py-1 bg-white/[0.04] ring-1 ring-white/[0.08] rounded-md">
@@ -67,8 +67,8 @@ export default function Footer() {
               <span className="px-2 py-1 bg-white/[0.04] ring-1 ring-white/[0.08] rounded-md">
                 UAE
               </span>
-              <span className="px-2 py-1 bg-white/[0.04] ring-1 ring-white/[0.08] rounded-md text-emerald-300">
-                ● Taking new projects
+              <span className="px-2 py-1 bg-white/[0.04] ring-1 ring-white/[0.08] rounded-md text-cyan-100">
+                Taking new projects
               </span>
             </div>
           </div>

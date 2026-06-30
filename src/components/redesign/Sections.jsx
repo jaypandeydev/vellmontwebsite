@@ -8,7 +8,7 @@ export function Thesis() {
       id="thesis"
       className="relative px-5 md:px-10 lg:px-20 py-16 md:py-24"
     >
-      <div className="font-mono text-[11px] uppercase tracking-wider text-violet-300/70 mb-4">
+      <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-cyan-200/80 mb-4">
         Why Vellmont Exists
       </div>
       <motion.div
@@ -22,15 +22,15 @@ export function Thesis() {
           <h2
             className={`${typography.sectionHeading} text-white mb-6 max-w-[680px]`}
           >
-            Most software is built for{' '}
-            <span className={typography.italicAccent}>Fortune 500</span>{' '}
-            companies. We build for everyone else.
+            We turn operational businesses into{' '}
+            <span className={typography.italicAccent}>software-first</span>{' '}
+            companies.
           </h2>
           <p className={`${typography.bodyLg} max-w-[640px]`}>
             Clinics, tour operators, tutors, astrologers and small businesses
             still run on spreadsheets, WhatsApp groups and manual processes.
-            Our mission is to replace operational chaos with intelligent
-            automation — production-grade software, AI-first by default,
+            Vellmont replaces that operational chaos with productized
+            automation: production-grade SaaS, AI-first by default,
             built for the way these businesses actually work.
           </p>
         </div>
@@ -38,20 +38,20 @@ export function Thesis() {
           {[
             {
               k: 'Production-grade',
-              v: 'No demos, no MVPs that crumble. Every product runs real workloads from day one.',
+              v: 'Every product is designed around real roles, permissions, payments, notifications and daily operating screens.',
             },
             {
               k: 'AI-first by default',
-              v: 'AI is wired into the workflow, not pinned to it. Booking, billing, intake, follow-up.',
+              v: 'AI is wired into booking, billing, intake, analysis and follow-up instead of sitting outside the product.',
             },
             {
-              k: 'Built for the long tail',
-              v: 'Rupee billing, UPI, WhatsApp, IVR, Hindi when needed. The local stack as a first principle.',
+              k: 'Built for local reality',
+              v: 'UPI, WhatsApp, IVR, GST, multilingual flows and UAE/India operating patterns are first-class design inputs.',
             },
           ].map((row) => (
             <div
               key={row.k}
-              className="rounded-xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm p-5"
+              className="rounded-lg bg-white/[0.025] border border-white/[0.08] p-5"
             >
               <div className="text-[15px] font-medium text-white mb-1">
                 {row.k}
@@ -70,23 +70,23 @@ export function Thesis() {
 const processSteps = [
   {
     n: '01',
-    title: 'Argue with you',
-    body: 'Until the brief is sharp enough to cut something.',
+    title: 'Map the operation',
+    body: 'We model roles, workflows, edge cases and business rules before designing screens.',
   },
   {
     n: '02',
-    title: 'Build the ugly version',
-    body: "Working beats pretty. Always. We'll prettify after.",
+    title: 'Design the product system',
+    body: 'Dashboards, mobile flows, notifications, AI steps and admin controls become one product surface.',
   },
   {
     n: '03',
-    title: 'Ship in weeks',
-    body: 'Not quarters. Not "Q3 roadmap." Weeks.',
+    title: 'Ship production modules',
+    body: 'Authentication, payments, reporting, integrations and support tooling ship with the core product.',
   },
   {
     n: '04',
-    title: 'Stick around',
-    body: "We don't build and ghost. We keep iterating with you.",
+    title: 'Operate and improve',
+    body: 'Usage data, support requests and customer behavior feed the next product iteration.',
   },
 ];
 
@@ -109,8 +109,8 @@ export function Process() {
         className="grid grid-cols-1 md:grid-cols-4 gap-px bg-white/10 rounded-lg overflow-hidden border border-white/10"
       >
         {processSteps.map((s) => (
-          <div key={s.n} className="bg-[#0d0d18] p-5">
-            <div className="font-mono text-2xl font-medium mb-2 bg-gradient-to-br from-indigo-300 to-emerald-300 bg-clip-text text-transparent">
+          <div key={s.n} className="bg-[#080b16] p-5">
+            <div className="font-mono text-2xl font-medium mb-2 text-cyan-100">
               {s.n}
             </div>
             <div className="text-[13px] font-medium mb-1 text-white">
@@ -137,36 +137,35 @@ export function Endgame() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 0.5 }}
-        className="relative bg-white/[0.03] border border-white/10 rounded-3xl p-10 md:p-14 overflow-hidden"
+        className="relative bg-[#080b16] border border-white/10 rounded-xl p-8 md:p-12 overflow-hidden"
       >
-        {/* Brand-color glow */}
-        <div className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-violet-500/25 via-fuchsia-500/12 to-transparent blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-32 -left-32 w-[400px] h-[400px] rounded-full bg-gradient-to-tr from-cyan-500/20 to-transparent blur-3xl pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-200/35 to-transparent" />
 
         <div className="relative grid grid-cols-1 md:grid-cols-[1.1fr_1fr] gap-10 items-center">
           <div>
-            <div className="font-mono text-[11px] uppercase tracking-wider text-violet-300/70 mb-4">
+            <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-cyan-200/80 mb-4">
               Let's Talk
             </div>
             <div className={`${typography.sectionHeading} mb-4 text-white max-w-[520px] leading-[1.1]`}>
-              Let's build something{' '}
-              <span className={typography.italicAccent}>meaningful</span>.
+              Build your next{' '}
+              <span className={typography.italicAccent}>AI product</span> with Vellmont.
             </div>
             <div className={`${typography.bodyLg} max-w-[480px] mb-6`}>
-              Looking to digitize your business? Need AI automation? Want a
-              custom SaaS product? Let's talk.
+              Bring us an operational business with messy workflows. We will
+              shape it into a polished SaaS product with AI where it actually
+              improves the work.
             </div>
             <div className="flex flex-wrap gap-3">
               <a
                 href="#contact"
-                className="group bg-gradient-to-r from-violet-500 to-cyan-500 text-white px-5 py-3.5 rounded-lg text-[14px] font-medium flex items-center gap-2 hover:from-violet-400 hover:to-cyan-400 transition-all shadow-[0_10px_30px_-8px_rgba(124,58,237,0.6)] whitespace-nowrap"
+                className="group bg-white text-[#07111f] px-5 py-3.5 rounded-md text-[14px] font-medium flex items-center gap-2 hover:bg-cyan-100 transition-colors whitespace-nowrap"
               >
                 <span>Book Discovery Call</span>
                 <span className="transition-transform group-hover:translate-x-0.5">→</span>
               </a>
               <a
                 href="mailto:support@vellmontservices.com"
-                className="group px-5 py-3.5 rounded-lg text-[14px] font-medium flex items-center gap-2 text-white border border-white/15 hover:border-white/30 hover:bg-white/[0.04] transition-colors"
+                className="group px-5 py-3.5 rounded-md text-[14px] font-medium flex items-center gap-2 text-white border border-white/15 hover:border-white/30 hover:bg-white/[0.04] transition-colors"
               >
                 <span>Contact Sales</span>
                 <span className="text-slate-400 transition-transform group-hover:translate-x-0.5">→</span>
@@ -174,13 +173,13 @@ export function Endgame() {
             </div>
           </div>
 
-          <div className="rounded-2xl bg-[#070716]/60 border border-white/[0.08] p-6">
+          <div className="rounded-lg bg-white/[0.025] border border-white/[0.08] p-6">
             <div className="text-[11px] font-mono uppercase tracking-wider text-slate-500 mb-3">
               Direct
             </div>
             <a
               href="mailto:support@vellmontservices.com"
-              className="block text-[18px] font-medium text-white hover:text-violet-300 transition-colors mb-1"
+              className="block text-[18px] font-medium text-white hover:text-cyan-100 transition-colors mb-1"
             >
               support@vellmontservices.com
             </a>

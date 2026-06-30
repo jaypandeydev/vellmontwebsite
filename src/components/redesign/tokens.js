@@ -276,7 +276,7 @@ export const typography = {
   // Used for emphasised words inline in headings — gradient text in the brand
   // primary→secondary range, no longer a serif italic.
   italicAccent:
-    "bg-gradient-to-r from-violet-400 via-blue-400 to-cyan-300 bg-clip-text text-transparent",
+    "bg-gradient-to-r from-white via-slate-200 to-cyan-200 bg-clip-text text-transparent",
   monoLabel:
     "font-mono text-[11px] uppercase tracking-wider text-slate-400",
   sectionHeading:
