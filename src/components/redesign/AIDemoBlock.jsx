@@ -152,6 +152,28 @@ const demos = {
     ),
     prompts: ['GST invoice', 'Payment follow-up', 'Expense summary'],
   },
+  vellpass: {
+    label: 'vellpass',
+    render: () => (
+      <>
+        <div className="font-mono text-[10px] opacity-50 mb-1.5">
+          security desk → vellpass
+        </div>
+        <div className="text-[13px] mb-3">
+          "Visitor for Flat B-1203 has arrived. Check approval and issue entry."
+        </div>
+        <div className="font-mono text-[10px] opacity-50 mb-1.5">
+          vellpass →
+        </div>
+        <div className="text-[12px] leading-[1.6]">
+          Host approval verified · QR gatepass scanned · visitor photo logged ·
+          check-in started.{' '}
+          <span className="opacity-60">Auto-remind security if not checked out.</span>
+        </div>
+      </>
+    ),
+    prompts: ['Visitor pre-approval', 'QR gatepass', 'Security audit trail'],
+  },
 };
 
 export default function AIDemoBlock() {

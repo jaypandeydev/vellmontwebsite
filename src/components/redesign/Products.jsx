@@ -95,7 +95,7 @@ export default function Products() {
       >
         Product brands across{' '}
         <span className={`${typography.italicAccent}`}>
-          six operating domains.
+          seven operating domains.
         </span>
       </motion.h2>
 

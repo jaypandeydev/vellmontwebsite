@@ -8,6 +8,7 @@ import {
   CheckCircle2,
   CreditCard,
   Layers3,
+  ShieldCheck,
   MessageSquare,
   Route,
   Sparkles,
@@ -18,9 +19,9 @@ import {
 } from './tokens';
 
 const metrics = [
-  { value: '6', label: 'Vertical products' },
-  { value: '5', label: 'Live brands' },
-  { value: '24+', label: 'Core workflows' },
+  { value: '7', label: 'Vertical products' },
+  { value: '6', label: 'Live brands' },
+  { value: '28+', label: 'Core workflows' },
   { value: 'IN + UAE', label: 'Markets' },
 ];
 
@@ -28,7 +29,7 @@ const proofPoints = [
   {
     icon: Layers3,
     title: 'Product portfolio',
-    body: 'Healthcare, tourism, finance, astrology, invitations and tutoring run as owned product lines.',
+    body: 'Healthcare, tourism, finance, facility ops, astrology, invitations and tutoring run as owned product lines.',
   },
   {
     icon: BrainCircuit,
@@ -45,7 +46,7 @@ const proofPoints = [
 const labNotes = [
   'Clinic queues, WhatsApp bookings and AI pre-read',
   'Tour CRM, vendors, itineraries and traveller portals',
-  'GST billing, RSVP tracking and marketplace workflows',
+  'GST billing, gatepass, RSVP and marketplace workflows',
 ];
 
 const labProducts = [
@@ -169,10 +170,42 @@ const labProducts = [
     ],
     icon: CalendarCheck2,
   },
+  {
+    id: 'vellpass',
+    name: 'Vellpass',
+    domain: 'Gatepass OS',
+    metric: 'QR entry',
+    context: 'facility gate',
+    title: 'Visitor access layer',
+    badge: 'live',
+    metrics: [
+      ['128', 'visitors'],
+      ['24', 'pre-approved'],
+      ['8', 'open passes'],
+    ],
+    events: [
+      ['Visitor arrives', 'QR gatepass scanned at security desk', ShieldCheck],
+      ['Host approval checked', 'Resident or admin approval verified', BrainCircuit],
+      ['Entry logged', 'Check-in, purpose and audit trail saved', Activity],
+    ],
+    insight: 'Entry context, host approval and visitor history stay visible before access is granted.',
+    sideStats: [
+      ['open passes', '8'],
+      ['sites', '3'],
+    ],
+    fabric: [
+      ['Gatepass', 'QR entry'],
+      ['Host', 'approval'],
+      ['Audit', 'logs'],
+    ],
+    icon: ShieldCheck,
+  },
 ];
 
 function ProductShowcase() {
-  const liveCount = products.filter((p) => p.status === 'Live').length;
+  const liveCount = products.filter((p) =>
+    ['Live', 'Production Ready'].includes(p.status)
+  ).length;
   const [activeId, setActiveId] = useState('medquepms');
   const activeProduct =
     labProducts.find((product) => product.id === activeId) || labProducts[0];

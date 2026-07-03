@@ -4,10 +4,8 @@ import { ArrowUpRight, BrainCircuit, CheckCircle2, Workflow } from 'lucide-react
 import { products, colorCategories, typography } from './tokens';
 
 /**
- * Premium SaaS-style product strips. One row per product (zig-zag layout):
- * marketing banner on one side, copy + features + CTA on the other.
- * Only renders products that have a `banner` set in tokens.js — the rest
- * stay in the compact Products grid below.
+ * Premium product-lab case studies. One row per product, using custom console
+ * mockups so the portfolio reads like shipped systems instead of a screenshot gallery.
  */
 
 const TONE_PILL = {
@@ -17,6 +15,7 @@ const TONE_PILL = {
   education: 'bg-emerald-500/15 text-emerald-300 ring-emerald-500/30',
   social: 'bg-purple-500/15 text-purple-300 ring-purple-500/30',
   finance: 'bg-amber-500/15 text-amber-300 ring-amber-500/30',
+  security: 'bg-cyan-500/15 text-cyan-300 ring-cyan-500/30',
 };
 
 const AI_FLOWS = {
@@ -44,6 +43,11 @@ const AI_FLOWS = {
     system: 'SMB finance workspace',
     outcome: 'Invoices, GST, quotes, recurring billing, expenses and payment reminders stay audit-ready.',
     flows: ['Invoice drafting', 'GST-aware flows', 'Payment follow-up', 'Expense summaries'],
+  },
+  vellpass: {
+    system: 'Visitor access layer',
+    outcome: 'Visitors, host approvals, digital gatepasses, security desk check-ins and audit logs stay synchronized.',
+    flows: ['QR gatepass', 'Host approval', 'Visitor audit trail', 'Security desk workflow'],
   },
   tutora: {
     system: 'Learning marketplace OS',
@@ -132,6 +136,22 @@ const CASE_STUDIES = {
     ],
     intelligence: 'AI reduces invoice creation and follow-up work while keeping GST context visible.',
     fabric: ['Invoices', 'Quotes', 'Expenses', 'Reports'],
+  },
+  vellpass: {
+    headline: 'Visitor access layer',
+    status: 'gate / live',
+    metrics: [
+      ['128', 'visitors'],
+      ['24', 'approved'],
+      ['8', 'open passes'],
+    ],
+    workflow: [
+      ['Register', 'Visitor details captured before or at the gate'],
+      ['Approve', 'Host or admin approval verified instantly'],
+      ['Audit', 'Check-in, check-out and purpose saved for security'],
+    ],
+    intelligence: 'Security teams see visitor context, host approval and entry history before access is granted.',
+    fabric: ['Gatepass', 'QR Entry', 'Host Approval', 'Audit Logs'],
   },
   tutora: {
     headline: 'Learning marketplace OS',
@@ -396,7 +416,7 @@ function ProductStrip({ product, idx }) {
 }
 
 export default function ProductsInDetail() {
-  const withBanners = products.filter((p) => p.banner);
+  const withBanners = products;
 
   if (!withBanners.length) return null;
 
@@ -414,7 +434,7 @@ export default function ProductsInDetail() {
           Product Portfolio
         </div>
         <h2 className={`${typography.sectionHeading} text-white max-w-[820px] mb-4`}>
-          Six products, one product-lab standard.
+          Seven products, one product-lab standard.
         </h2>
         <p className={`${typography.bodyLg} max-w-[760px]`}>
           Each product owns a concrete operational layer: intake, CRM, booking,
@@ -427,7 +447,7 @@ export default function ProductsInDetail() {
         {[
           ['Vertical SaaS', 'Built around industry-specific jobs, not generic templates.'],
           ['AI-Native UX', 'Intelligence appears at intake, routing, analysis, reports and follow-up.'],
-          ['Production Depth', 'Authentication, roles, payments, portals, alerts and admin controls.'],
+          ['Production Depth', 'Authentication, roles, payments, portals, alerts, access control and admin controls.'],
         ].map(([title, body]) => (
           <div
             key={title}

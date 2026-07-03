@@ -86,8 +86,8 @@ const TermsPage = () => {
         <p>
           Vellmont operates this marketing website and a portfolio of
           software products (currently MedQuePMS, Vedjyotix, Vellroute,
-          Tutora, InviteSync, and Vellbill) and offers custom software
-          development. Each product may have its own additional terms; where
+          Tutora, InviteSync, Vellbill, and Vellpass) and offers custom
+          software development. Each product may have its own additional terms; where
           there is a conflict, the product-specific terms apply for that
           product.
         </p>
