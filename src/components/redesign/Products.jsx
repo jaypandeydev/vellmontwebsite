@@ -95,7 +95,7 @@ export default function Products() {
       >
         Product brands across{' '}
         <span className={`${typography.italicAccent}`}>
-          seven operating domains.
+          a production-ready SaaS portfolio.
         </span>
       </motion.h2>
 

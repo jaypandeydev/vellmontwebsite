@@ -29,7 +29,7 @@ const proofPoints = [
   {
     icon: Layers3,
     title: 'Product portfolio',
-    body: 'Healthcare, tourism, finance, facility ops, astrology, invitations and tutoring run as owned product lines.',
+    body: 'Enterprise software across healthcare, logistics, finance, business automation and consumer AI.',
   },
   {
     icon: BrainCircuit,
@@ -45,8 +45,8 @@ const proofPoints = [
 
 const labNotes = [
   'Clinic queues, WhatsApp bookings and AI pre-read',
-  'Tour CRM, vendors, itineraries and traveller portals',
-  'GST billing, gatepass, RSVP and marketplace workflows',
+  'Logistics, tour CRM, vendors and traveller portals',
+  'GST billing, visitor management, events and business automation',
 ];
 
 const labProducts = [
@@ -442,11 +442,18 @@ export default function Hero() {
               <span className="block sm:inline">operations.</span>
             </h1>
 
-            <p className="mb-7 max-w-[320px] text-[17px] leading-[1.65] text-slate-300 sm:max-w-[620px] md:text-[18px]">
-              Vellmont builds vertical SaaS products that turn messy daily
-              operations into polished workflows, with AI embedded at the exact
-              point of work.
-            </p>
+            <div className="mb-7 max-w-[320px] space-y-3 sm:max-w-[620px]">
+              <p className="text-[17px] leading-[1.65] text-slate-300 md:text-[18px]">
+                Vellmont Services is an AI-powered SaaS company building
+                enterprise software across healthcare, logistics, finance,
+                business automation, and consumer AI. Our flagship platform,
+                MedQuePMS, leads our commercial expansion into healthcare.
+              </p>
+              <p className="border-l border-cyan-200/30 pl-4 text-[14px] leading-[1.65] text-slate-400 md:text-[15px]">
+                A wider portfolio of production-ready products across adjacent
+                verticals proves the product depth behind the company.
+              </p>
+            </div>
 
             <div className="mb-8 space-y-2">
               {labNotes.map((note) => (

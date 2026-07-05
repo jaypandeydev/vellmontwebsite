@@ -194,7 +194,7 @@ const roadmap = [
   { year: 'Q3 2025', title: 'Vedjyotix launch', body: 'Astrology platform + verified astrologer marketplace go live.' },
   { year: 'Q4 2025', title: 'InviteSync + Vellbill launch', body: 'Invitation management on web + mobile, and GST-compliant invoicing ship.' },
   { year: 'Q1–Q2 2026', title: 'Tutora + Vellroute launch', body: 'Global tutor marketplace and tour-operator OS roll out across pilot accounts.' },
-  { year: '2026 onwards', title: 'Global product portfolio', body: 'Seven shipped products across clinic, travel, finance, education, events and facility operations; expansion beyond India + UAE markets continues.' },
+  { year: '2026 onwards', title: 'AI-powered SaaS portfolio', body: 'MedQuePMS leads commercial expansion into healthcare while the wider portfolio serves logistics, finance, business automation, visitor management, events and consumer AI.' },
 ];
 
 export function Roadmap() {

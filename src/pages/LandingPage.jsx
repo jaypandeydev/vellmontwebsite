@@ -17,7 +17,7 @@ const LandingPage = () => {
     <main className="min-h-screen bg-[#05070d] text-neutral-100 font-sans antialiased">
       <Seo
         title="Vellmont Services — AI Product Lab For Vertical SaaS"
-        description="Vellmont builds AI-native vertical SaaS products for healthcare, tourism, finance, education, astrology, events and facility access. Seven product systems across India and the UAE."
+        description="Vellmont Services is an AI-powered SaaS company building enterprise software across healthcare, logistics, finance, business automation and consumer AI."
         canonical="https://vellmontservices.com/"
         image="https://res.cloudinary.com/dzdaksuzp/image/upload/v1750354259/Vellmont_final_logo_Png_isk7ol.png"
       />

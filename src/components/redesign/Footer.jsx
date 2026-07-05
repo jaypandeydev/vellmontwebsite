@@ -57,9 +57,9 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-[13px] text-slate-400 leading-[1.6] max-w-[320px] mb-5">
-              An AI product company building production-grade vertical SaaS
-              for healthcare, tourism, finance, education, events and secure
-              facility operations. Hyderabad · Dubai.
+              An AI-powered SaaS company building enterprise software across
+              healthcare, logistics, finance, business automation and consumer
+              AI. Hyderabad · Dubai.
             </p>
             <div className="flex flex-wrap gap-2 text-[11px] font-mono text-slate-500">
               <span className="px-2 py-1 bg-white/[0.04] ring-1 ring-white/[0.08] rounded-md">

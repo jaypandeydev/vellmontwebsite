@@ -434,12 +434,13 @@ export default function ProductsInDetail() {
           Product Portfolio
         </div>
         <h2 className={`${typography.sectionHeading} text-white max-w-[820px] mb-4`}>
-          Seven products, one product-lab standard.
+          A production-ready SaaS portfolio, led by MedQuePMS.
         </h2>
         <p className={`${typography.bodyLg} max-w-[760px]`}>
-          Each product owns a concrete operational layer: intake, CRM, booking,
-          payments, dashboards, roles, reminders, reports and AI assistance
-          designed into the actual user journey.
+          Our flagship healthcare platform anchors the company’s commercial
+          expansion, while the broader portfolio addresses logistics, finance,
+          business automation, visitor management, event management and
+          AI-driven consumer services.
         </p>
       </div>
 
