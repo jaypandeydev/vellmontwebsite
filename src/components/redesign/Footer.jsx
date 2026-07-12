@@ -15,7 +15,12 @@ const socials = [
     icon: Instagram,
     live: true,
   },
-  { label: 'YouTube', href: null, icon: Youtube, live: false },
+  {
+    label: 'YouTube',
+    href: 'https://www.youtube.com/@VellmontServices',
+    icon: Youtube,
+    live: true,
+  },
   { label: 'X', href: null, icon: Twitter, live: false },
 ];
 
@@ -129,7 +134,7 @@ export default function Footer() {
                 })}
               </div>
               <div className="text-[11px] font-mono text-slate-500 mt-2">
-                YouTube · X coming soon
+                X coming soon
               </div>
             </div>
           </div>
