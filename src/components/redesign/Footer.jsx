@@ -1,5 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Facebook, Instagram, Youtube, Twitter } from 'lucide-react';
+
+const socials = [
+  {
+    label: 'Facebook',
+    href: 'https://www.facebook.com/profile.php?id=61589398604871',
+    icon: Facebook,
+    live: true,
+  },
+  {
+    label: 'Instagram',
+    href: 'https://www.instagram.com/vellmontservices/',
+    icon: Instagram,
+    live: true,
+  },
+  { label: 'YouTube', href: null, icon: Youtube, live: false },
+  { label: 'X', href: null, icon: Twitter, live: false },
+];
 
 const cols = [
   {
@@ -71,6 +89,48 @@ export default function Footer() {
               <span className="px-2 py-1 bg-white/[0.04] ring-1 ring-white/[0.08] rounded-md text-cyan-100">
                 Taking new projects
               </span>
+            </div>
+
+            {/* Social */}
+            <div className="mt-5">
+              <div className="text-[11px] font-mono uppercase tracking-wider text-slate-500 mb-3">
+                Follow us
+              </div>
+              <div className="flex items-center gap-2">
+                {socials.map((s) => {
+                  const Icon = s.icon;
+                  const base =
+                    'w-9 h-9 rounded-md ring-1 flex items-center justify-center transition-colors';
+                  if (s.live) {
+                    return (
+                      <a
+                        key={s.label}
+                        href={s.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={s.label}
+                        title={s.label}
+                        className={`${base} bg-white/[0.04] ring-white/[0.08] text-slate-300 hover:text-white hover:bg-white/[0.08] hover:ring-white/20`}
+                      >
+                        <Icon className="w-4 h-4" strokeWidth={1.6} />
+                      </a>
+                    );
+                  }
+                  return (
+                    <span
+                      key={s.label}
+                      aria-label={`${s.label} — coming soon`}
+                      title={`${s.label} — coming soon`}
+                      className={`${base} bg-white/[0.02] ring-white/[0.05] text-slate-600 cursor-not-allowed`}
+                    >
+                      <Icon className="w-4 h-4" strokeWidth={1.6} />
+                    </span>
+                  );
+                })}
+              </div>
+              <div className="text-[11px] font-mono text-slate-500 mt-2">
+                YouTube · X coming soon
+              </div>
             </div>
           </div>
 
