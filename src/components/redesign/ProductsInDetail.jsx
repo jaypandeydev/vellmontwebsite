@@ -340,16 +340,28 @@ function ProductStrip({ product, idx }) {
           </span>
         </div>
 
-        <h3 className="font-display font-medium text-white text-3xl md:text-[40px] leading-[1.05] tracking-[-0.02em] mb-3">
-          {product.name}
-          {product.suffix && (
-            <span className={c.accent}>{product.suffix}</span>
-          )}
+        <h3 className="font-display font-medium text-3xl md:text-[40px] leading-[1.05] tracking-[-0.02em] mb-3">
+          <a
+            href={`https://${product.domain}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white no-underline hover:text-cyan-100 transition-colors"
+          >
+            {product.name}
+            {product.suffix && (
+              <span className={c.accent}>{product.suffix}</span>
+            )}
+          </a>
         </h3>
 
-        <div className="font-mono text-[12px] text-slate-500 mb-4">
-          {product.domain}
-        </div>
+        <a
+          href={`https://${product.domain}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block font-mono text-[12px] text-slate-500 mb-4 hover:text-cyan-200 transition-colors"
+        >
+          {product.domain} <span className="text-slate-600">↗</span>
+        </a>
 
         <div className="mb-5 rounded-lg border border-white/[0.08] bg-white/[0.025] p-4">
           <div className="mb-1 font-mono text-[10px] uppercase tracking-[0.2em] text-cyan-200">
