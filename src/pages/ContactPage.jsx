@@ -36,7 +36,8 @@ const emails = [
 
 const phones = [
   { number: '+971 547594261', label: 'Dubai, UAE' },
-  { number: '+91 8143210000', label: 'Hyderabad, India' },
+  { number: '+91 7702216501', label: 'Hyderabad, India' },
+  { number: '+1 (813) 203-8044', label: 'USA' },
 ];
 
 const cardBase =
@@ -88,7 +89,7 @@ const ContactPage = () => {
     <main className="min-h-screen bg-[#050816] text-neutral-100 font-sans antialiased">
       <Seo
         title="Contact Vellmont Services — Hyderabad & Dubai offices"
-        description="Reach Vellmont Services for software builds, product partnerships, or support. Offices in Hyderabad (India) and Dubai (UAE). Email support@vellmontservices.com or call +91 8143210000 / +971 547594261."
+        description="Reach Vellmont Services for software builds, product partnerships, or support. Offices in Hyderabad (India) and Dubai (UAE). Email support@vellmontservices.com or call +91 7702216501 / +971 547594261 / +1 (813) 203-8044."
         canonical="https://vellmontservices.com/contact"
         image="https://res.cloudinary.com/dzdaksuzp/image/upload/v1750354259/Vellmont_final_logo_Png_isk7ol.png"
       />
@@ -213,7 +214,7 @@ const ContactPage = () => {
               {phones.map((p) => (
                 <div key={p.number}>
                   <a
-                    href={`tel:${p.number.replace(/\s+/g, '')}`}
+                    href={`tel:${p.number.replace(/[^\d+]/g, '')}`}
                     className="text-[14px] font-medium text-white hover:text-indigo-300 transition-colors block"
                   >
                     {p.number}

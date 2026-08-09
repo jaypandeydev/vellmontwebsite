@@ -186,18 +186,24 @@ export function Endgame() {
             <div className="text-[12px] font-mono text-slate-500 mb-6">
               Replies within 1 business day
             </div>
-            <div className="grid grid-cols-2 gap-3 text-[12px]">
+            <div className="grid grid-cols-3 gap-3 text-[12px]">
               <div>
                 <div className="font-mono text-slate-500 uppercase tracking-wider mb-1">
                   Hyderabad
                 </div>
-                <div className="text-slate-300">+91 8143210000</div>
+                <div className="text-slate-300">+91 7702216501</div>
               </div>
               <div>
                 <div className="font-mono text-slate-500 uppercase tracking-wider mb-1">
                   Dubai
                 </div>
                 <div className="text-slate-300">+971 547594261</div>
+              </div>
+              <div>
+                <div className="font-mono text-slate-500 uppercase tracking-wider mb-1">
+                  USA
+                </div>
+                <div className="text-slate-300">+1 (813) 203-8044</div>
               </div>
             </div>
           </div>
