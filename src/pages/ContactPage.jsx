@@ -35,9 +35,9 @@ const emails = [
 ];
 
 const phones = [
-  { number: '+971 547594261', label: 'Dubai, UAE' },
-  { number: '+91 7702216501', label: 'Hyderabad, India' },
-  { number: '+1 (813) 203-8044', label: 'USA' },
+  { flag: '🇦🇪', number: '+971 547594261', label: 'Dubai, UAE' },
+  { flag: '🇮🇳', number: '+91 7702216501', label: 'Hyderabad, India' },
+  { flag: '🇺🇸', number: '+1 (813) 203-8044', label: 'USA' },
 ];
 
 const cardBase =
@@ -215,9 +215,10 @@ const ContactPage = () => {
                 <div key={p.number}>
                   <a
                     href={`tel:${p.number.replace(/[^\d+]/g, '')}`}
-                    className="text-[14px] font-medium text-white hover:text-indigo-300 transition-colors block"
+                    className="text-[14px] font-medium text-white hover:text-indigo-300 transition-colors flex items-center gap-2"
                   >
-                    {p.number}
+                    <span className="text-[15px] leading-none" aria-hidden="true">{p.flag}</span>
+                    <span>{p.number}</span>
                   </a>
                   <div className="font-mono text-[11px] text-neutral-500">
                     {p.label}
