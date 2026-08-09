@@ -1,8 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Youtube, Twitter } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Youtube, Twitter } from 'lucide-react';
 
 const socials = [
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/company/vellmont-services',
+    icon: Linkedin,
+    live: true,
+  },
   {
     label: 'Facebook',
     href: 'https://www.facebook.com/profile.php?id=61589398604871',
