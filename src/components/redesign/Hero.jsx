@@ -436,10 +436,9 @@ export default function Hero() {
             <h1
               className="mb-6 max-w-[760px] font-display text-[40px] font-medium leading-[1.04] tracking-[-0.025em] text-white sm:text-5xl md:text-6xl lg:text-[70px]"
             >
-              <span className="block sm:inline">AI product </span>
-              <span className="block sm:inline">systems for </span>
-              <span className="block sm:inline">real-world </span>
-              <span className="block sm:inline">operations.</span>
+              <span className="block sm:inline">AI software for </span>
+              <span className="block sm:inline">clinics, tour operators </span>
+              <span className="block sm:inline">and small businesses.</span>
             </h1>
 
             <div className="mb-7 max-w-[320px] space-y-3 sm:max-w-[620px]">
@@ -472,20 +471,20 @@ export default function Hero() {
 
             <div className="mb-9 grid grid-cols-1 gap-3 sm:flex sm:flex-wrap">
               <a
-                href="#products-detail"
+                href="#contact"
                 className="group flex min-w-0 items-center justify-center gap-2 rounded-md bg-white px-5 py-3.5 text-[14px] font-medium text-[#07111f] shadow-[0_18px_40px_-24px_rgba(255,255,255,0.7)] transition-colors hover:bg-cyan-100 sm:justify-start sm:px-6"
               >
-                <span>View Product Portfolio</span>
+                <span>Book a demo</span>
                 <ArrowUpRight
                   className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                   strokeWidth={2}
                 />
               </a>
               <a
-                href="#contact"
+                href="#products-detail"
                 className="group flex min-w-0 items-center justify-center gap-2 rounded-md border border-white/15 px-5 py-3.5 text-[14px] font-medium text-white backdrop-blur-sm transition-colors hover:border-white/30 hover:bg-white/[0.04] sm:justify-start sm:px-6"
               >
-                <span>Build With Us</span>
+                <span>View products</span>
                 <span className="text-slate-400 transition-transform group-hover:translate-x-0.5">
                   →
                 </span>
