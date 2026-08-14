@@ -222,8 +222,8 @@ function ProductShowcase() {
               Portfolio intelligence across live product systems
             </div>
           </div>
-          <div className="hidden items-center gap-2 rounded-md border border-cyan-200/20 bg-cyan-200/[0.05] px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider text-cyan-100 sm:inline-flex">
-            <span className="h-1.5 w-1.5 rounded-full bg-cyan-100" />
+          <div className="hidden items-center gap-2 rounded-md border border-brand-200/20 bg-brand-200/[0.05] px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider text-brand-100 sm:inline-flex">
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-100" />
             {liveCount} live brands
           </div>
         </div>
@@ -234,7 +234,7 @@ function ProductShowcase() {
               <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-slate-500">
                 Product lines
               </div>
-              <Sparkles className="h-3.5 w-3.5 text-cyan-100" strokeWidth={1.8} />
+              <Sparkles className="h-3.5 w-3.5 text-brand-100" strokeWidth={1.8} />
             </div>
 
             <div className="grid grid-cols-2 gap-2 lg:grid-cols-1">
@@ -248,21 +248,21 @@ function ProductShowcase() {
                     onClick={() => setActiveId(product.id)}
                     className={`w-full rounded-md border p-2.5 text-left transition-colors ${
                       isActive
-                        ? 'border-cyan-200/25 bg-cyan-200/[0.055]'
+                        ? 'border-brand-200/25 bg-brand-200/[0.055]'
                         : 'border-white/[0.07] bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04]'
                     }`}
                   >
                     <div className="mb-2 flex items-center justify-between gap-2">
                       <div className="flex min-w-0 items-center gap-2">
                         <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded bg-white/[0.045] ring-1 ring-white/10">
-                          <Icon className="h-3.5 w-3.5 text-cyan-100" strokeWidth={1.8} />
+                          <Icon className="h-3.5 w-3.5 text-brand-100" strokeWidth={1.8} />
                         </div>
                         <div className="min-w-0 truncate text-[12px] font-medium text-white">
                           {product.name}
                         </div>
                       </div>
                       {isActive && (
-                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-100" />
+                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-brand-100" />
                       )}
                     </div>
                     <div className="flex items-center justify-between gap-2 text-[10px] font-mono uppercase tracking-wider">
@@ -280,7 +280,7 @@ function ProductShowcase() {
               <div className="rounded-lg border border-white/10 bg-[#05070d] p-4">
                 <div className="mb-4 flex items-start justify-between gap-4">
                   <div>
-                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-cyan-100">
+                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-100">
                       {activeProduct.name} / {activeProduct.context}
                     </div>
                     <div className="mt-1 text-[22px] font-medium leading-none text-white">
@@ -315,8 +315,8 @@ function ProductShowcase() {
                         key={label}
                         className="grid grid-cols-[28px_1fr_auto] items-center gap-3 rounded-md border border-white/[0.08] bg-white/[0.02] p-2.5"
                       >
-                        <div className="flex h-7 w-7 items-center justify-center rounded bg-cyan-100/[0.08] ring-1 ring-cyan-100/15">
-                          <Icon className="h-3.5 w-3.5 text-cyan-100" strokeWidth={1.8} />
+                        <div className="flex h-7 w-7 items-center justify-center rounded bg-brand-100/[0.08] ring-1 ring-brand-100/15">
+                          <Icon className="h-3.5 w-3.5 text-brand-100" strokeWidth={1.8} />
                         </div>
                         <div className="min-w-0">
                           <div className="truncate text-[12px] font-medium text-white">
@@ -340,8 +340,8 @@ function ProductShowcase() {
                   <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-slate-500">
                     AI pre-read
                   </div>
-                  <div className="mb-3 rounded-md border border-cyan-100/15 bg-cyan-100/[0.055] p-3">
-                    <BrainCircuit className="mb-2 h-4 w-4 text-cyan-100" strokeWidth={1.8} />
+                  <div className="mb-3 rounded-md border border-brand-100/15 bg-brand-100/[0.055] p-3">
+                    <BrainCircuit className="mb-2 h-4 w-4 text-brand-100" strokeWidth={1.8} />
                     <div className="text-[12px] leading-[1.45] text-slate-200">
                       {activeProduct.insight}
                     </div>
@@ -350,7 +350,7 @@ function ProductShowcase() {
                     {activeProduct.sideStats.map(([label, value]) => (
                       <div key={label} className="flex justify-between">
                         <span>{label}</span>
-                        <span className="text-cyan-100">{value}</span>
+                        <span className="text-brand-100">{value}</span>
                       </div>
                     ))}
                   </div>
@@ -366,7 +366,7 @@ function ProductShowcase() {
                         key={key}
                         className="flex items-center justify-between rounded border border-white/[0.07] bg-black/10 px-2 py-1.5 text-[11px]"
                       >
-                        <span className="font-mono text-cyan-100">{key}</span>
+                        <span className="font-mono text-brand-100">{key}</span>
                         <span className="text-slate-400">{value}</span>
                       </div>
                     ))}
@@ -394,7 +394,7 @@ function ProductShowcase() {
         </div>
       </div>
 
-      <div className="pointer-events-none absolute -inset-x-6 -bottom-8 -z-10 h-24 bg-cyan-100/[0.035] blur-3xl" />
+      <div className="pointer-events-none absolute -inset-x-6 -bottom-8 -z-10 h-24 bg-brand-100/[0.035] blur-3xl" />
     </div>
   );
 }
@@ -403,7 +403,7 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden px-5 pb-14 pt-12 md:px-10 md:pb-20 md:pt-20 lg:px-20">
       <div className="absolute inset-0 -z-10 pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(34,211,238,0.08),transparent_40%),linear-gradient(180deg,rgba(255,255,255,0.025),transparent_35%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(88,72,248,0.10),transparent_40%),linear-gradient(180deg,rgba(255,255,255,0.025),transparent_35%)]" />
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
         <div
           className="absolute inset-0 opacity-[0.035]"
@@ -423,8 +423,8 @@ export default function Hero() {
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
         <div className="mb-6 flex max-w-full flex-wrap items-center gap-x-2 gap-y-1 overflow-hidden rounded-md border border-white/10 bg-white/[0.035] px-3 py-1.5 text-[11px] font-mono uppercase tracking-wider text-slate-300 backdrop-blur-sm sm:inline-flex sm:text-[12px]">
-          <span className="h-1.5 w-1.5 rounded-full bg-cyan-200" />
-          <span className="text-cyan-200">Premium product lab</span>
+          <span className="h-1.5 w-1.5 rounded-full bg-brand-200" />
+          <span className="text-brand-200">Premium product lab</span>
           <span className="hidden text-slate-600 sm:inline">/</span>
           <span className="hidden sm:inline">AI-native vertical SaaS</span>
           <span className="hidden text-slate-500 sm:inline">·</span>
@@ -448,7 +448,7 @@ export default function Hero() {
                 business automation, and consumer AI. Our flagship platform,
                 MedQuePMS, leads our commercial expansion into healthcare.
               </p>
-              <p className="border-l border-cyan-200/30 pl-4 text-[14px] leading-[1.65] text-slate-400 md:text-[15px]">
+              <p className="border-l border-brand-200/30 pl-4 text-[14px] leading-[1.65] text-slate-400 md:text-[15px]">
                 A wider portfolio of production-ready products across adjacent
                 verticals proves the product depth behind the company.
               </p>
@@ -461,7 +461,7 @@ export default function Hero() {
                   className="flex items-start gap-2 text-[13px] leading-[1.5] text-slate-300"
                 >
                   <CheckCircle2
-                    className="mt-0.5 h-4 w-4 shrink-0 text-cyan-200"
+                    className="mt-0.5 h-4 w-4 shrink-0 text-brand-200"
                     strokeWidth={1.8}
                   />
                   <span>{note}</span>
@@ -472,7 +472,7 @@ export default function Hero() {
             <div className="mb-9 grid grid-cols-1 gap-3 sm:flex sm:flex-wrap">
               <a
                 href="#contact"
-                className="group flex min-w-0 items-center justify-center gap-2 rounded-md bg-white px-5 py-3.5 text-[14px] font-medium text-[#07111f] shadow-[0_18px_40px_-24px_rgba(255,255,255,0.7)] transition-colors hover:bg-cyan-100 sm:justify-start sm:px-6"
+                className="group flex min-w-0 items-center justify-center gap-2 rounded-md bg-brand-500 px-5 py-3.5 text-[14px] font-medium text-white shadow-[0_18px_40px_-24px_rgba(88,72,248,0.55)] transition-colors hover:bg-brand-400 sm:justify-start sm:px-6"
               >
                 <span>Book a demo</span>
                 <ArrowUpRight
@@ -516,7 +516,7 @@ export default function Hero() {
                     className="rounded-md border border-white/[0.08] bg-white/[0.025] p-3.5"
                   >
                     <Icon
-                      className="mb-2 h-4 w-4 text-cyan-300"
+                      className="mb-2 h-4 w-4 text-brand-300"
                       strokeWidth={1.7}
                     />
                     <div className="mb-1 text-[12px] font-medium text-white">

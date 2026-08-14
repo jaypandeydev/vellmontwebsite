@@ -23,6 +23,17 @@ module.exports = {
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       colors: {
+        // Vellmont brand indigo (from the logo #5848F8). Primary accent.
+        brand: {
+          50: '#f1eefe',
+          100: '#e2ddfe',
+          200: '#c8c1fd',
+          300: '#a99ffb',
+          400: '#8b84f8',
+          500: '#5848f8',
+          600: '#4a37e6',
+          700: '#3d2bc9',
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

@@ -40,7 +40,7 @@ export default function Nav() {
           />
           <span className="font-display font-medium text-[14px] text-white whitespace-nowrap">
             Vellmont
-            <span className="hidden sm:inline text-cyan-100">Services</span>
+            <span className="hidden sm:inline text-brand-100">Services</span>
           </span>
         </Link>
 
@@ -68,7 +68,7 @@ export default function Nav() {
           <a
             href="#contact"
             onClick={close}
-            className="ml-1 flex items-center gap-1.5 rounded-md bg-white px-3 py-1.5 text-[12.5px] font-medium text-[#07111f] transition-colors hover:bg-cyan-100 md:ml-3 md:px-3.5"
+            className="ml-1 flex items-center gap-1.5 rounded-md bg-brand-500 px-3 py-1.5 text-[12.5px] font-medium text-white transition-colors hover:bg-brand-400 md:ml-3 md:px-3.5"
           >
             <span>Book Demo</span>
             <span aria-hidden="true">→</span>
@@ -124,7 +124,7 @@ export default function Nav() {
               <a
                 href="#contact"
                 onClick={close}
-                className="mt-2 flex items-center justify-center gap-1.5 rounded-md bg-white px-4 py-3 text-[15px] font-medium text-[#07111f] transition-colors hover:bg-cyan-100"
+                className="mt-2 flex items-center justify-center gap-1.5 rounded-md bg-brand-500 px-4 py-3 text-[15px] font-medium text-white transition-colors hover:bg-brand-400"
               >
                 <span>Book Demo</span>
                 <span aria-hidden="true">→</span>

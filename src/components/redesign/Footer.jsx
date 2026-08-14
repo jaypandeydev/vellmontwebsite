@@ -97,7 +97,7 @@ export default function Footer() {
               <span className="px-2 py-1 bg-white/[0.04] ring-1 ring-white/[0.08] rounded-md">
                 UAE
               </span>
-              <span className="px-2 py-1 bg-white/[0.04] ring-1 ring-white/[0.08] rounded-md text-cyan-100">
+              <span className="px-2 py-1 bg-white/[0.04] ring-1 ring-white/[0.08] rounded-md text-brand-100">
                 Taking new projects
               </span>
             </div>

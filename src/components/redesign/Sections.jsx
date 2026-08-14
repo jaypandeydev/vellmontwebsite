@@ -8,7 +8,7 @@ export function Thesis() {
       id="thesis"
       className="relative px-5 md:px-10 lg:px-20 py-16 md:py-24"
     >
-      <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-cyan-200/80 mb-4">
+      <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-brand-200/80 mb-4">
         Why Vellmont Exists
       </div>
       <motion.div
@@ -110,7 +110,7 @@ export function Process() {
       >
         {processSteps.map((s) => (
           <div key={s.n} className="bg-[#080b16] p-5">
-            <div className="font-mono text-2xl font-medium mb-2 text-cyan-100">
+            <div className="font-mono text-2xl font-medium mb-2 text-brand-100">
               {s.n}
             </div>
             <div className="text-[13px] font-medium mb-1 text-white">
@@ -139,11 +139,11 @@ export function Endgame() {
         transition={{ duration: 0.5 }}
         className="relative bg-[#080b16] border border-white/10 rounded-xl p-8 md:p-12 overflow-hidden"
       >
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-200/35 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-200/35 to-transparent" />
 
         <div className="relative grid grid-cols-1 md:grid-cols-[1.1fr_1fr] gap-10 items-center">
           <div>
-            <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-cyan-200/80 mb-4">
+            <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-brand-200/80 mb-4">
               Let's Talk
             </div>
             <div className={`${typography.sectionHeading} mb-4 text-white max-w-[520px] leading-[1.1]`}>
@@ -158,7 +158,7 @@ export function Endgame() {
             <div className="flex flex-wrap gap-3">
               <a
                 href="#contact"
-                className="group bg-white text-[#07111f] px-5 py-3.5 rounded-md text-[14px] font-medium flex items-center gap-2 hover:bg-cyan-100 transition-colors whitespace-nowrap"
+                className="group bg-brand-500 text-white px-5 py-3.5 rounded-md text-[14px] font-medium flex items-center gap-2 hover:bg-brand-400 transition-colors whitespace-nowrap"
               >
                 <span>Book Discovery Call</span>
                 <span className="transition-transform group-hover:translate-x-0.5">→</span>
@@ -179,7 +179,7 @@ export function Endgame() {
             </div>
             <a
               href="mailto:support@vellmontservices.com"
-              className="block text-[18px] font-medium text-white hover:text-cyan-100 transition-colors mb-1"
+              className="block text-[18px] font-medium text-white hover:text-brand-100 transition-colors mb-1"
             >
               support@vellmontservices.com
             </a>

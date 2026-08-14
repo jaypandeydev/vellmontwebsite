@@ -32,7 +32,7 @@ export default function FeaturedShowcase() {
     <section className="relative px-5 md:px-10 lg:px-20 py-16 md:py-24 overflow-hidden">
       {/* Section ambience */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[600px] rounded-full bg-gradient-to-r from-violet-700/10 via-blue-600/10 to-cyan-500/10 blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[600px] rounded-full bg-gradient-to-r from-violet-700/10 via-blue-600/10 to-brand-500/10 blur-3xl" />
       </div>
 
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-8">
@@ -60,7 +60,7 @@ export default function FeaturedShowcase() {
       >
         {/* Inner glow */}
         <div className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-violet-500/20 via-fuchsia-500/10 to-transparent blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-cyan-500/15 to-transparent blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-brand-500/15 to-transparent blur-3xl pointer-events-none" />
 
         <div className="relative grid grid-cols-1 md:grid-cols-[1.05fr_1fr] gap-0">
           {/* LEFT — product copy */}
@@ -109,7 +109,7 @@ export default function FeaturedShowcase() {
                 href="https://medquepms.vellmontservices.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group bg-gradient-to-r from-violet-500 to-cyan-500 text-white px-5 py-3 rounded-lg text-[13px] font-medium flex items-center gap-2 hover:from-violet-400 hover:to-cyan-400 transition-all shadow-[0_8px_24px_-6px_rgba(124,58,237,0.55)]"
+                className="group bg-gradient-to-r from-violet-500 to-brand-500 text-white px-5 py-3 rounded-lg text-[13px] font-medium flex items-center gap-2 hover:from-violet-400 hover:to-brand-400 transition-all shadow-[0_8px_24px_-6px_rgba(124,58,237,0.55)]"
               >
                 <span>Visit Product</span>
                 <span className="transition-transform group-hover:translate-x-0.5">→</span>
