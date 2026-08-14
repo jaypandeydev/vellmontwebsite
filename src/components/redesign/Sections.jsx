@@ -157,10 +157,10 @@ export function Endgame() {
             </div>
             <div className="flex flex-wrap gap-3">
               <a
-                href="#contact"
+                href="https://calendly.com/finance-vellmontservices/" target="_blank" rel="noopener noreferrer"
                 className="group bg-brand-500 text-white px-5 py-3.5 rounded-md text-[14px] font-medium flex items-center gap-2 hover:bg-brand-400 transition-colors whitespace-nowrap"
               >
-                <span>Book Discovery Call</span>
+                <span>Book a demo</span>
                 <span className="transition-transform group-hover:translate-x-0.5">→</span>
               </a>
               <a

@@ -109,16 +109,16 @@ export default function FeaturedShowcase() {
                 href="https://medquepms.vellmontservices.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group bg-gradient-to-r from-violet-500 to-brand-500 text-white px-5 py-3 rounded-lg text-[13px] font-medium flex items-center gap-2 hover:from-violet-400 hover:to-brand-400 transition-all shadow-[0_8px_24px_-6px_rgba(124,58,237,0.55)]"
+                className="group bg-brand-500 text-white px-5 py-3 rounded-lg text-[13px] font-medium flex items-center gap-2 hover:bg-brand-400 transition-colors shadow-[0_8px_24px_-6px_rgba(88,72,248,0.5)]"
               >
-                <span>Visit Product</span>
-                <span className="transition-transform group-hover:translate-x-0.5">→</span>
+                <span>Visit MedQuePMS</span>
+                <span className="transition-transform group-hover:translate-x-0.5">↗</span>
               </a>
               <a
-                href="#contact"
+                href="https://calendly.com/finance-vellmontservices/" target="_blank" rel="noopener noreferrer"
                 className="group px-5 py-3 rounded-lg text-[13px] font-medium flex items-center gap-2 text-white border border-white/15 hover:border-white/30 hover:bg-white/[0.04] transition-colors"
               >
-                <span>Request Demo</span>
+                <span>Book a demo</span>
                 <span className="text-slate-400 transition-transform group-hover:translate-x-0.5">→</span>
               </a>
             </div>

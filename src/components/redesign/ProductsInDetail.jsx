@@ -406,17 +406,17 @@ function ProductStrip({ product, idx }) {
             rel="noopener noreferrer"
             className="group bg-brand-500 text-white px-5 py-3 rounded-md text-[13px] font-medium flex items-center gap-2 hover:bg-brand-400 transition-colors"
           >
-            <span>Visit Product</span>
+            <span>Visit {product.name}{product.suffix || ''}</span>
             <ArrowUpRight
               className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
               strokeWidth={2}
             />
           </a>
           <a
-            href="#contact"
+            href="https://calendly.com/finance-vellmontservices/" target="_blank" rel="noopener noreferrer"
             className="group px-5 py-3 rounded-md text-[13px] font-medium flex items-center gap-2 text-white border border-white/15 hover:border-white/30 hover:bg-white/[0.04] transition-colors"
           >
-            <span>Request Demo</span>
+            <span>Book a demo</span>
             <span className="text-slate-400 transition-transform group-hover:translate-x-0.5">
               →
             </span>

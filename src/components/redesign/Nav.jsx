@@ -66,11 +66,11 @@ export default function Nav() {
 
           {/* Primary CTA: now visible on mobile too */}
           <a
-            href="#contact"
+            href="https://calendly.com/finance-vellmontservices/" target="_blank" rel="noopener noreferrer"
             onClick={close}
             className="ml-1 flex items-center gap-1.5 rounded-md bg-brand-500 px-3 py-1.5 text-[12.5px] font-medium text-white transition-colors hover:bg-brand-400 md:ml-3 md:px-3.5"
           >
-            <span>Book Demo</span>
+            <span>Book a demo</span>
             <span aria-hidden="true">→</span>
           </a>
 
@@ -122,11 +122,11 @@ export default function Nav() {
                 Contact
               </Link>
               <a
-                href="#contact"
+                href="https://calendly.com/finance-vellmontservices/" target="_blank" rel="noopener noreferrer"
                 onClick={close}
                 className="mt-2 flex items-center justify-center gap-1.5 rounded-md bg-brand-500 px-4 py-3 text-[15px] font-medium text-white transition-colors hover:bg-brand-400"
               >
-                <span>Book Demo</span>
+                <span>Book a demo</span>
                 <span aria-hidden="true">→</span>
               </a>
             </div>

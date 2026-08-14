@@ -471,7 +471,7 @@ export default function Hero() {
 
             <div className="mb-9 grid grid-cols-1 gap-3 sm:flex sm:flex-wrap">
               <a
-                href="#contact"
+                href="https://calendly.com/finance-vellmontservices/" target="_blank" rel="noopener noreferrer"
                 className="group flex min-w-0 items-center justify-center gap-2 rounded-md bg-brand-500 px-5 py-3.5 text-[14px] font-medium text-white shadow-[0_18px_40px_-24px_rgba(88,72,248,0.55)] transition-colors hover:bg-brand-400 sm:justify-start sm:px-6"
               >
                 <span>Book a demo</span>
