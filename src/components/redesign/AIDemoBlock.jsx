@@ -35,14 +35,14 @@ const demos = {
           Compatibility: <span className="font-medium">28 / 36 guna</span> ·
           Strong match. Mangal dosha: neutral.{' '}
           <span className="opacity-60">
-            Want a detailed reading? Pandit Sharma is online — ₹299 / 15 min.
+            Want a detailed reading? Pandit Sharma is online. ₹299 / 15 min.
           </span>
         </div>
         <div className="flex gap-1.5">
-          <span className="bg-white/10 px-2.5 py-1 rounded text-[11px]">
+          <span className="bg-line px-2.5 py-1 rounded text-[11px]">
             Call
           </span>
-          <span className="bg-white/10 px-2.5 py-1 rounded text-[11px]">
+          <span className="bg-line px-2.5 py-1 rounded text-[11px]">
             Chat
           </span>
         </div>
@@ -60,7 +60,7 @@ const demos = {
         <div className="flex flex-col gap-1 text-[12px]">
           <div className="flex justify-between">
             <span>Hotel · Taj Rambagh</span>
-            <span className="text-emerald-400">confirmed</span>
+            <span className="text-emerald-600 dark:text-emerald-400">confirmed</span>
           </div>
           <div className="flex justify-between opacity-70">
             <span>Driver · Ramesh K.</span>
@@ -86,7 +86,7 @@ const demos = {
           parent → app
         </div>
         <div className="text-[13px] mb-3">
-          "Need a CBSE class XII physics tutor — Saturday evenings."
+          "Need a CBSE class XII physics tutor, Saturday evenings."
         </div>
         <div className="font-mono text-[10px] opacity-50 mb-1.5">
           tutora →
@@ -97,10 +97,10 @@ const demos = {
           <span className="opacity-60">Recording shared after class.</span>
         </div>
         <div className="flex gap-1.5">
-          <span className="bg-white/10 px-2.5 py-1 rounded text-[11px]">
+          <span className="bg-line px-2.5 py-1 rounded text-[11px]">
             Join class
           </span>
-          <span className="bg-white/10 px-2.5 py-1 rounded text-[11px]">
+          <span className="bg-line px-2.5 py-1 rounded text-[11px]">
             Reschedule
           </span>
         </div>
@@ -187,12 +187,12 @@ export default function AIDemoBlock() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-80px' }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="relative overflow-hidden rounded-xl border border-white/10 bg-[#080b16] p-5 text-white shadow-[0_24px_80px_-55px_rgba(0,0,0,0.95)] md:p-7"
+        className="relative overflow-hidden rounded-xl border border-line bg-surface p-5 text-ink shadow-[0_24px_80px_-55px_rgba(0,0,0,0.95)] md:p-7"
       >
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-200/40 to-transparent" />
         <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-4">
           <div>
-            <div className="font-mono text-[11px] mb-1.5 flex items-center gap-2 text-brand-200/80 uppercase tracking-[0.22em]">
+            <div className="font-mono text-[11px] mb-1.5 flex items-center gap-2 text-brand-600 dark:text-brand-400 uppercase tracking-[0.22em]">
               <span className="h-1.5 w-1.5 rounded-full bg-brand-200" />
               AI workflow console
             </div>
@@ -208,7 +208,7 @@ export default function AIDemoBlock() {
                 className={`rounded-md px-3 py-1 text-[11px] font-mono transition-all ${
                   active === key
                     ? 'bg-white text-[#07111f]'
-                    : 'bg-white/[0.025] text-white/55 ring-1 ring-white/10 hover:text-white/85 hover:ring-white/20'
+                    : 'bg-surface text-ink/55 ring-1 ring-line hover:text-ink/85 hover:ring-line-strong'
                 }`}
               >
                 {demos[key].label}
@@ -217,7 +217,7 @@ export default function AIDemoBlock() {
           </div>
         </div>
 
-        <div className="min-h-[128px] rounded-lg border border-white/[0.08] bg-white/[0.025] p-4">
+        <div className="min-h-[128px] rounded-lg border border-line bg-surface p-4">
           <AnimatePresence mode="wait">
             <motion.div
               key={active}
@@ -235,7 +235,7 @@ export default function AIDemoBlock() {
           {current.prompts.map((p) => (
             <span
               key={p}
-              className="cursor-pointer rounded border border-white/[0.08] bg-white/[0.025] px-2.5 py-1 text-[11px] text-slate-300 transition-colors hover:border-brand-200/30 hover:text-white"
+              className="cursor-pointer rounded border border-line bg-surface px-2.5 py-1 text-[11px] text-ink-2 transition-colors hover:border-brand-200/30 hover:text-ink"
             >
               {p}
             </span>

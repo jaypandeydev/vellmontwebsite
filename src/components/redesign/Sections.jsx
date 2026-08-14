@@ -8,7 +8,7 @@ export function Thesis() {
       id="thesis"
       className="relative px-5 md:px-10 lg:px-20 py-16 md:py-24"
     >
-      <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-brand-200/80 mb-4">
+      <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-brand-600 dark:text-brand-400 mb-4">
         Why Vellmont Exists
       </div>
       <motion.div
@@ -20,7 +20,7 @@ export function Thesis() {
       >
         <div>
           <h2
-            className={`${typography.sectionHeading} text-white mb-6 max-w-[680px]`}
+            className={`${typography.sectionHeading} text-ink mb-6 max-w-[680px]`}
           >
             We turn operational businesses into{' '}
             <span className={typography.italicAccent}>software-first</span>{' '}
@@ -51,12 +51,12 @@ export function Thesis() {
           ].map((row) => (
             <div
               key={row.k}
-              className="rounded-lg bg-white/[0.025] border border-white/[0.08] p-5"
+              className="rounded-lg bg-surface border border-line p-5"
             >
-              <div className="text-[15px] font-medium text-white mb-1">
+              <div className="text-[15px] font-medium text-ink mb-1">
                 {row.k}
               </div>
-              <div className="text-[14px] text-slate-400 leading-[1.55]">
+              <div className="text-[14px] text-ink-3 leading-[1.55]">
                 {row.v}
               </div>
             </div>
@@ -94,10 +94,10 @@ export function Process() {
   return (
     <section id="process" className="px-5 md:px-10 lg:px-20 py-8 md:py-12">
       <div className="flex justify-between items-baseline mb-5">
-        <div className="font-mono text-[11px] uppercase tracking-wider text-neutral-500">
+        <div className="font-mono text-[11px] uppercase tracking-wider text-ink-3">
           ── HOW WE WORK ────────────
         </div>
-        <div className="font-mono text-[11px] uppercase tracking-wider text-neutral-500">
+        <div className="font-mono text-[11px] uppercase tracking-wider text-ink-3">
           03/04 ──
         </div>
       </div>
@@ -106,17 +106,17 @@ export function Process() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 0.5 }}
-        className="grid grid-cols-1 md:grid-cols-4 gap-px bg-white/10 rounded-lg overflow-hidden border border-white/10"
+        className="grid grid-cols-1 md:grid-cols-4 gap-px bg-line rounded-lg overflow-hidden border border-line"
       >
         {processSteps.map((s) => (
-          <div key={s.n} className="bg-[#080b16] p-5">
-            <div className="font-mono text-2xl font-medium mb-2 text-brand-100">
+          <div key={s.n} className="bg-surface p-5">
+            <div className="font-mono text-2xl font-medium mb-2 text-brand-600 dark:text-brand-400">
               {s.n}
             </div>
-            <div className="text-[13px] font-medium mb-1 text-white">
+            <div className="text-[13px] font-medium mb-1 text-ink">
               {s.title}
             </div>
-            <div className="text-[12px] text-neutral-400 leading-[1.5]">
+            <div className="text-[12px] text-ink-3 leading-[1.5]">
               {s.body}
             </div>
           </div>
@@ -137,16 +137,16 @@ export function Endgame() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 0.5 }}
-        className="relative bg-[#080b16] border border-white/10 rounded-xl p-8 md:p-12 overflow-hidden"
+        className="relative bg-surface border border-line rounded-xl p-8 md:p-12 overflow-hidden"
       >
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-200/35 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-500/30 to-transparent" />
 
         <div className="relative grid grid-cols-1 md:grid-cols-[1.1fr_1fr] gap-10 items-center">
           <div>
-            <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-brand-200/80 mb-4">
+            <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-brand-600 dark:text-brand-400 mb-4">
               Let's Talk
             </div>
-            <div className={`${typography.sectionHeading} mb-4 text-white max-w-[520px] leading-[1.1]`}>
+            <div className={`${typography.sectionHeading} mb-4 text-ink max-w-[520px] leading-[1.1]`}>
               Build your next{' '}
               <span className={typography.italicAccent}>AI product</span> with Vellmont.
             </div>
@@ -158,58 +158,58 @@ export function Endgame() {
             <div className="flex flex-wrap gap-3">
               <a
                 href="https://calendly.com/finance-vellmontservices/" target="_blank" rel="noopener noreferrer"
-                className="group bg-brand-500 text-white px-5 py-3.5 rounded-md text-[14px] font-medium flex items-center gap-2 hover:bg-brand-400 transition-colors whitespace-nowrap"
+                className="group bg-brand-500 text-white px-5 py-3.5 rounded-md text-[14px] font-medium flex items-center gap-2 hover:bg-brand-600 transition-colors whitespace-nowrap"
               >
                 <span>Book a demo</span>
                 <span className="transition-transform group-hover:translate-x-0.5">→</span>
               </a>
               <a
                 href="mailto:support@vellmontservices.com"
-                className="group px-5 py-3.5 rounded-md text-[14px] font-medium flex items-center gap-2 text-white border border-white/15 hover:border-white/30 hover:bg-white/[0.04] transition-colors"
+                className="group px-5 py-3.5 rounded-md text-[14px] font-medium flex items-center gap-2 text-ink border border-line-strong hover:border-line-strong hover:bg-surface-2 transition-colors"
               >
                 <span>Contact Sales</span>
-                <span className="text-slate-400 transition-transform group-hover:translate-x-0.5">→</span>
+                <span className="text-ink-3 transition-transform group-hover:translate-x-0.5">→</span>
               </a>
             </div>
           </div>
 
-          <div className="rounded-lg bg-white/[0.025] border border-white/[0.08] p-6">
-            <div className="text-[11px] font-mono uppercase tracking-wider text-slate-500 mb-3">
+          <div className="rounded-lg bg-surface border border-line p-6">
+            <div className="text-[11px] font-mono uppercase tracking-wider text-ink-3 mb-3">
               Direct
             </div>
             <a
               href="mailto:support@vellmontservices.com"
-              className="block text-[18px] font-medium text-white hover:text-brand-100 transition-colors mb-1"
+              className="block text-[18px] font-medium text-ink hover:text-brand-600 dark:hover:text-brand-400 transition-colors mb-1"
             >
               support@vellmontservices.com
             </a>
-            <div className="text-[12px] font-mono text-slate-500 mb-6">
+            <div className="text-[12px] font-mono text-ink-3 mb-6">
               Replies within 1 business day
             </div>
             <div className="grid grid-cols-3 gap-3 text-[12px]">
               <div>
-                <div className="font-mono text-slate-500 uppercase tracking-wider mb-1">
+                <div className="font-mono text-ink-3 uppercase tracking-wider mb-1">
                   Hyderabad
                 </div>
-                <div className="text-slate-300 flex items-center gap-1.5">
+                <div className="text-ink-2 flex items-center gap-1.5">
                   <span aria-hidden="true">🇮🇳</span>
                   <span>+91 7702216501</span>
                 </div>
               </div>
               <div>
-                <div className="font-mono text-slate-500 uppercase tracking-wider mb-1">
+                <div className="font-mono text-ink-3 uppercase tracking-wider mb-1">
                   Dubai
                 </div>
-                <div className="text-slate-300 flex items-center gap-1.5">
+                <div className="text-ink-2 flex items-center gap-1.5">
                   <span aria-hidden="true">🇦🇪</span>
                   <span>+971 547594261</span>
                 </div>
               </div>
               <div>
-                <div className="font-mono text-slate-500 uppercase tracking-wider mb-1">
+                <div className="font-mono text-ink-3 uppercase tracking-wider mb-1">
                   USA
                 </div>
-                <div className="text-slate-300 flex items-center gap-1.5">
+                <div className="text-ink-2 flex items-center gap-1.5">
                   <span aria-hidden="true">🇺🇸</span>
                   <span>+1 (813) 203-8044</span>
                 </div>

@@ -9,13 +9,13 @@ import { products, colorCategories, typography } from './tokens';
  */
 
 const TONE_PILL = {
-  healthcare: 'bg-teal-500/15 text-teal-300 ring-teal-500/30',
-  astrology: 'bg-pink-500/15 text-pink-300 ring-pink-500/30',
-  travel: 'bg-blue-500/15 text-blue-300 ring-blue-500/30',
-  education: 'bg-emerald-500/15 text-emerald-300 ring-emerald-500/30',
-  social: 'bg-purple-500/15 text-purple-300 ring-purple-500/30',
-  finance: 'bg-amber-500/15 text-amber-300 ring-amber-500/30',
-  security: 'bg-brand-500/15 text-brand-300 ring-brand-500/30',
+  healthcare: 'bg-teal-500/15 text-teal-700 dark:text-teal-300 ring-teal-500/30',
+  astrology: 'bg-pink-500/15 text-pink-700 dark:text-pink-300 ring-pink-500/30',
+  travel: 'bg-blue-500/15 text-blue-700 dark:text-blue-300 ring-blue-500/30',
+  education: 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 ring-emerald-500/30',
+  social: 'bg-purple-500/15 text-purple-700 dark:text-purple-300 ring-purple-500/30',
+  finance: 'bg-amber-500/15 text-amber-700 dark:text-amber-300 ring-amber-500/30',
+  security: 'bg-brand-500/15 text-brand-600 dark:text-brand-400 ring-brand-500/30',
 };
 
 const AI_FLOWS = {
@@ -188,35 +188,36 @@ function CaseStudyMockup({ product, aiSpec }) {
       href={`https://${product.domain}`}
       target="_blank"
       rel="noopener noreferrer"
-      className="group block overflow-hidden rounded-xl border border-white/10 bg-[#080b16] shadow-[0_30px_90px_-45px_rgba(0,0,0,0.9)] transition-all hover:border-white/20"
+      className="group block overflow-hidden rounded-xl border border-line bg-surface shadow-[0_30px_90px_-45px_rgba(0,0,0,0.9)] transition-all hover:border-line-strong"
     >
-      <div className="flex items-center justify-between gap-3 border-b border-white/10 bg-white/[0.025] px-4 py-3">
+      <div className="flex items-center justify-between gap-3 border-b border-line bg-surface px-4 py-3">
         <div>
-          <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-slate-500">
-            Case study surface
+          <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-ink-3">
+            Product preview
           </div>
-          <div className="mt-1 text-[12px] text-slate-300">
+          <div className="mt-1 flex items-center gap-2 text-[12px] text-ink-2">
             {product.domain}
+            <span className="rounded border border-line bg-surface px-1.5 py-[1px] text-[9px] font-mono uppercase tracking-wider text-ink-3">sample data</span>
           </div>
         </div>
         <ArrowUpRight
-          className="h-4 w-4 text-slate-500 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand-100"
+          className="h-4 w-4 text-ink-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand-600 dark:group-hover:text-brand-400"
           strokeWidth={1.8}
         />
       </div>
 
       <div className="grid grid-cols-1 gap-3 p-3 sm:p-4 md:grid-cols-[1fr_190px]">
-        <div className="rounded-lg border border-white/10 bg-[#05070d] p-4">
+        <div className="rounded-lg border border-line bg-surface p-4">
           <div className="mb-5 flex items-start justify-between gap-4">
             <div>
-              <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-brand-100">
+              <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-brand-600 dark:text-brand-400">
                 {product.name}{product.suffix || ''} / {study.status}
               </div>
-              <div className="mt-2 max-w-[300px] text-[28px] font-medium leading-[1.05] tracking-[-0.02em] text-white">
+              <div className="mt-2 max-w-[300px] text-[28px] font-medium leading-[1.05] tracking-[-0.02em] text-ink">
                 {study.headline}
               </div>
             </div>
-            <div className="hidden rounded-md border border-brand-200/20 bg-brand-200/[0.05] px-2 py-1 text-[10px] font-mono uppercase tracking-wider text-brand-100 sm:block">
+            <div className="hidden rounded-md border border-brand-200/20 bg-brand-500/[0.06] px-2 py-1 text-[10px] font-mono uppercase tracking-wider text-brand-600 dark:text-brand-400 sm:block">
               {product.status || 'system'}
             </div>
           </div>
@@ -225,12 +226,12 @@ function CaseStudyMockup({ product, aiSpec }) {
             {study.metrics.map(([value, label]) => (
               <div
                 key={`${value}-${label}`}
-                className="rounded-md border border-white/[0.08] bg-white/[0.025] px-3 py-2.5"
+                className="rounded-md border border-line bg-surface px-3 py-2.5"
               >
-                <div className="font-display text-[20px] font-medium text-white">
+                <div className="font-display text-[20px] font-medium text-ink">
                   {value}
                 </div>
-                <div className="mt-0.5 truncate text-[9px] font-mono uppercase tracking-wider text-slate-500">
+                <div className="mt-0.5 truncate text-[9px] font-mono uppercase tracking-wider text-ink-3">
                   {label}
                 </div>
               </div>
@@ -241,20 +242,20 @@ function CaseStudyMockup({ product, aiSpec }) {
             {study.workflow.map(([label, body], idx) => (
               <div
                 key={`${label}-${body}`}
-                className="grid grid-cols-[30px_1fr_auto] items-center gap-3 rounded-md border border-white/[0.08] bg-white/[0.02] p-2.5"
+                className="grid grid-cols-[30px_1fr_auto] items-center gap-3 rounded-md border border-line bg-surface p-2.5"
               >
-                <div className="flex h-7 w-7 items-center justify-center rounded bg-brand-100/[0.08] ring-1 ring-brand-100/15">
-                  <Workflow className="h-3.5 w-3.5 text-brand-100" strokeWidth={1.8} />
+                <div className="flex h-7 w-7 items-center justify-center rounded bg-brand-500/[0.08] ring-1 ring-brand-100/15">
+                  <Workflow className="h-3.5 w-3.5 text-brand-600 dark:text-brand-400" strokeWidth={1.8} />
                 </div>
                 <div className="min-w-0">
-                  <div className="truncate text-[12px] font-medium text-white">
+                  <div className="truncate text-[12px] font-medium text-ink">
                     {label}
                   </div>
-                  <div className="truncate text-[11px] text-slate-500">
+                  <div className="truncate text-[11px] text-ink-3">
                     {body}
                   </div>
                 </div>
-                <div className="text-[10px] font-mono text-slate-500">
+                <div className="text-[10px] font-mono text-ink-3">
                   0{idx + 1}
                 </div>
               </div>
@@ -263,27 +264,27 @@ function CaseStudyMockup({ product, aiSpec }) {
         </div>
 
         <div className="grid grid-cols-1 gap-3">
-          <div className="rounded-lg border border-white/10 bg-white/[0.025] p-3">
-            <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-slate-500">
+          <div className="rounded-lg border border-line bg-surface p-3">
+            <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-3">
               Intelligence
             </div>
-            <div className="rounded-md border border-brand-100/15 bg-brand-100/[0.055] p-3">
-              <BrainCircuit className="mb-2 h-4 w-4 text-brand-100" strokeWidth={1.8} />
-              <div className="text-[12px] leading-[1.45] text-slate-200">
+            <div className="rounded-md border border-brand-100/15 bg-brand-500/[0.055] p-3">
+              <BrainCircuit className="mb-2 h-4 w-4 text-brand-600 dark:text-brand-400" strokeWidth={1.8} />
+              <div className="text-[12px] leading-[1.45] text-ink-2">
                 {study.intelligence}
               </div>
             </div>
           </div>
 
-          <div className="rounded-lg border border-white/10 bg-white/[0.025] p-3">
-            <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-slate-500">
+          <div className="rounded-lg border border-line bg-surface p-3">
+            <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-3">
               Product fabric
             </div>
             <div className="grid grid-cols-2 gap-2">
               {study.fabric.slice(0, 4).map((item) => (
                 <div
                   key={item}
-                  className="rounded border border-white/[0.07] bg-black/10 px-2 py-1.5 text-[11px] text-slate-300"
+                  className="rounded border border-line bg-black/10 px-2 py-1.5 text-[11px] text-ink-2"
                 >
                   {item}
                 </div>
@@ -299,7 +300,7 @@ function CaseStudyMockup({ product, aiSpec }) {
 function ProductStrip({ product, idx }) {
   const c = colorCategories[product.category];
   const tonePill =
-    TONE_PILL[product.category] || 'bg-white/[0.06] text-slate-300 ring-white/10';
+    TONE_PILL[product.category] || 'bg-surface text-ink-2 ring-line';
   const reverse = idx % 2 === 1;
   const aiSpec = AI_FLOWS[product.id] || {
     system: 'Vertical product system',
@@ -329,12 +330,12 @@ function ProductStrip({ product, idx }) {
             {c.label}
           </span>
           {product.status && (
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider ring-1 ring-inset bg-emerald-500/12 text-emerald-300 ring-emerald-500/30">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider ring-1 ring-inset bg-emerald-500/12 text-emerald-700 dark:text-emerald-300 ring-emerald-500/30">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.85)]" />
               {product.status}
             </span>
           )}
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-400/8 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider text-brand-200 ring-1 ring-inset ring-brand-400/20">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-400/8 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider text-brand-600 dark:text-brand-400 ring-1 ring-inset ring-brand-400/20">
             <BrainCircuit className="h-3 w-3" strokeWidth={1.8} />
             AI-native
           </span>
@@ -345,7 +346,7 @@ function ProductStrip({ product, idx }) {
             href={`https://${product.domain}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white no-underline hover:text-brand-100 transition-colors"
+            className="text-ink no-underline hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
           >
             {product.name}
             {product.suffix && (
@@ -358,21 +359,21 @@ function ProductStrip({ product, idx }) {
           href={`https://${product.domain}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block font-mono text-[12px] text-slate-500 mb-4 hover:text-brand-200 transition-colors"
+          className="inline-block font-mono text-[12px] text-ink-3 mb-4 hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
         >
-          {product.domain} <span className="text-slate-600">↗</span>
+          {product.domain} <span className="text-ink-3">↗</span>
         </a>
 
-        <div className="mb-5 rounded-lg border border-white/[0.08] bg-white/[0.025] p-4">
-          <div className="mb-1 font-mono text-[10px] uppercase tracking-[0.2em] text-brand-200">
+        <div className="mb-5 rounded-lg border border-line bg-surface p-4">
+          <div className="mb-1 font-mono text-[10px] uppercase tracking-[0.2em] text-brand-600 dark:text-brand-400">
             {aiSpec.system}
           </div>
-          <p className="text-[14px] leading-[1.6] text-slate-300">
+          <p className="text-[14px] leading-[1.6] text-ink-2">
             {aiSpec.outcome}
           </p>
         </div>
 
-        <p className="mb-6 max-w-[560px] text-[15px] leading-[1.65] text-slate-400 md:text-[16px]">
+        <p className="mb-6 max-w-[560px] text-[15px] leading-[1.65] text-ink-3 md:text-[16px]">
           {product.longDescription}
         </p>
 
@@ -380,9 +381,9 @@ function ProductStrip({ product, idx }) {
           {aiSpec.flows.slice(0, 4).map((flow) => (
             <div
               key={flow}
-              className="flex items-center gap-2 rounded-md border border-white/[0.08] bg-white/[0.025] px-3 py-2 text-[12px] text-slate-200"
+              className="flex items-center gap-2 rounded-md border border-line bg-surface px-3 py-2 text-[12px] text-ink-2"
             >
-              <Workflow className="h-3.5 w-3.5 shrink-0 text-brand-300" strokeWidth={1.7} />
+              <Workflow className="h-3.5 w-3.5 shrink-0 text-brand-600 dark:text-brand-400" strokeWidth={1.7} />
               <span>{flow}</span>
             </div>
           ))}
@@ -392,7 +393,7 @@ function ProductStrip({ product, idx }) {
           {(product.features || product.tags || []).slice(0, 10).map((f) => (
             <span
               key={f}
-              className="text-[11px] px-2.5 py-1 rounded bg-white/[0.03] ring-1 ring-white/[0.08] text-slate-400 font-mono"
+              className="text-[11px] px-2.5 py-1 rounded bg-surface ring-1 ring-line text-ink-3 font-mono"
             >
               {f}
             </span>
@@ -404,7 +405,7 @@ function ProductStrip({ product, idx }) {
             href={`https://${product.domain}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="group bg-brand-500 text-white px-5 py-3 rounded-md text-[13px] font-medium flex items-center gap-2 hover:bg-brand-400 transition-colors"
+            className="group bg-brand-500 text-white px-5 py-3 rounded-md text-[13px] font-medium flex items-center gap-2 hover:bg-brand-600 transition-colors"
           >
             <span>Visit {product.name}{product.suffix || ''}</span>
             <ArrowUpRight
@@ -414,10 +415,10 @@ function ProductStrip({ product, idx }) {
           </a>
           <a
             href="https://calendly.com/finance-vellmontservices/" target="_blank" rel="noopener noreferrer"
-            className="group px-5 py-3 rounded-md text-[13px] font-medium flex items-center gap-2 text-white border border-white/15 hover:border-white/30 hover:bg-white/[0.04] transition-colors"
+            className="group px-5 py-3 rounded-md text-[13px] font-medium flex items-center gap-2 text-ink border border-line hover:border-line-strong hover:bg-surface-2 transition-colors"
           >
             <span>Book a demo</span>
-            <span className="text-slate-400 transition-transform group-hover:translate-x-0.5">
+            <span className="text-ink-3 transition-transform group-hover:translate-x-0.5">
               →
             </span>
           </a>
@@ -428,7 +429,7 @@ function ProductStrip({ product, idx }) {
 }
 
 export default function ProductsInDetail() {
-  const withBanners = products;
+  const withBanners = products.filter((p) => p.id !== 'medquepms');
 
   if (!withBanners.length) return null;
 
@@ -442,17 +443,16 @@ export default function ProductsInDetail() {
       </div>
 
       <div className="mb-12 md:mb-16">
-        <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-brand-200/80 mb-3">
-          Product Portfolio
+        <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-brand-600 dark:text-brand-400 mb-3">
+          More products
         </div>
-        <h2 className={`${typography.sectionHeading} text-white max-w-[820px] mb-4`}>
-          A production-ready SaaS portfolio, led by MedQuePMS.
+        <h2 className={`${typography.sectionHeading} text-ink max-w-[820px] mb-4`}>
+          The rest of the Vellmont portfolio.
         </h2>
         <p className={`${typography.bodyLg} max-w-[760px]`}>
-          Our flagship healthcare platform anchors the company’s commercial
-          expansion, while the broader portfolio addresses logistics, finance,
-          business automation, visitor management, event management and
-          AI-driven consumer services.
+          Beyond the flagship, Vellmont ships production software for tour
+          operators, SMB finance, events, visitor access, education and
+          AI-driven consumer services, all built on the same foundation.
         </p>
       </div>
 
@@ -464,13 +464,13 @@ export default function ProductsInDetail() {
         ].map(([title, body]) => (
           <div
             key={title}
-            className="rounded-lg border border-white/[0.08] bg-white/[0.025] p-5"
+            className="rounded-lg border border-line bg-surface p-5"
           >
-            <CheckCircle2 className="mb-3 h-5 w-5 text-emerald-300" strokeWidth={1.7} />
-            <div className="mb-1.5 text-[15px] font-medium text-white">
+            <CheckCircle2 className="mb-3 h-5 w-5 text-emerald-700 dark:text-emerald-300" strokeWidth={1.7} />
+            <div className="mb-1.5 text-[15px] font-medium text-ink">
               {title}
             </div>
-            <div className="text-[13px] leading-[1.55] text-slate-400">
+            <div className="text-[13px] leading-[1.55] text-ink-3">
               {body}
             </div>
           </div>

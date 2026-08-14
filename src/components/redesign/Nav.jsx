@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 
 const links = [
   { label: 'Portfolio', href: '/#products-detail' },
@@ -9,10 +9,29 @@ const links = [
   { label: 'Security', href: '/#security' },
 ];
 
+const CALENDLY = 'https://calendly.com/finance-vellmontservices/';
+
+function useTheme() {
+  const [dark, setDark] = useState(
+    typeof document !== 'undefined' &&
+      document.documentElement.classList.contains('dark')
+  );
+  const toggle = () => {
+    const el = document.documentElement;
+    const next = !el.classList.contains('dark');
+    el.classList.toggle('dark', next);
+    try {
+      localStorage.setItem('theme', next ? 'dark' : 'light');
+    } catch (e) {}
+    setDark(next);
+  };
+  return { dark, toggle };
+}
+
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const { dark, toggle } = useTheme();
 
-  // Close on Escape and lock body scroll while the mobile menu is open.
   useEffect(() => {
     if (!open) return;
     const onKey = (e) => {
@@ -30,7 +49,7 @@ export default function Nav() {
   const close = () => setOpen(false);
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-white/[0.08] bg-[#05070d]/88 backdrop-blur-md">
+    <nav className="sticky top-0 z-50 border-b border-line bg-canvas/95 backdrop-blur-md">
       <div className="px-5 md:px-10 lg:px-20 py-3.5 flex justify-between items-center text-[13px]">
         <Link to="/" onClick={close} className="flex items-center gap-2.5 shrink-0">
           <img
@@ -38,37 +57,49 @@ export default function Nav() {
             alt="Vellmont"
             className="h-8 w-auto"
           />
-          <span className="font-display font-medium text-[14px] text-white whitespace-nowrap">
+          <span className="font-display font-semibold text-[14px] text-ink whitespace-nowrap">
             Vellmont
-            <span className="hidden sm:inline text-brand-100">Services</span>
+            <span className="hidden sm:inline text-brand-600 dark:text-brand-400">Services</span>
           </span>
         </Link>
 
-        <div className="flex items-center gap-1 md:gap-2 text-slate-400">
+        <div className="flex items-center gap-1 md:gap-2 text-ink-2">
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-1">
             {links.map((l) => (
               <a
                 key={l.label}
                 href={l.href}
-                className="px-3 py-1.5 rounded-md hover:text-white hover:bg-white/[0.04] transition-colors"
+                className="px-3 py-1.5 rounded-md hover:text-ink hover:bg-surface-2 transition-colors"
               >
                 {l.label}
               </a>
             ))}
             <Link
               to="/contact"
-              className="px-3 py-1.5 rounded-md hover:text-white hover:bg-white/[0.04] transition-colors"
+              className="px-3 py-1.5 rounded-md hover:text-ink hover:bg-surface-2 transition-colors"
             >
               Contact
             </Link>
           </div>
 
-          {/* Primary CTA: now visible on mobile too */}
+          {/* Theme toggle */}
+          <button
+            type="button"
+            onClick={toggle}
+            aria-label={dark ? 'Switch to light theme' : 'Switch to dark theme'}
+            className="inline-flex h-9 w-9 items-center justify-center rounded-md text-ink-2 hover:text-ink hover:bg-surface-2 transition-colors"
+          >
+            {dark ? <Sun size={17} /> : <Moon size={17} />}
+          </button>
+
+          {/* Primary CTA */}
           <a
-            href="https://calendly.com/finance-vellmontservices/" target="_blank" rel="noopener noreferrer"
+            href={CALENDLY}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={close}
-            className="ml-1 flex items-center gap-1.5 rounded-md bg-brand-500 px-3 py-1.5 text-[12.5px] font-medium text-white transition-colors hover:bg-brand-400 md:ml-3 md:px-3.5"
+            className="ml-1 flex items-center gap-1.5 rounded-md bg-brand-500 px-3 py-1.5 text-[12.5px] font-medium text-white transition-colors hover:bg-brand-600 md:ml-2 md:px-3.5"
           >
             <span>Book a demo</span>
             <span aria-hidden="true">→</span>
@@ -81,7 +112,7 @@ export default function Nav() {
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
             aria-controls="mobile-menu"
-            className="md:hidden ml-1 inline-flex h-9 w-9 items-center justify-center rounded-md text-slate-300 hover:text-white hover:bg-white/[0.06] transition-colors"
+            className="md:hidden ml-1 inline-flex h-9 w-9 items-center justify-center rounded-md text-ink-2 hover:text-ink hover:bg-surface-2 transition-colors"
           >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -91,17 +122,16 @@ export default function Nav() {
       {/* Mobile menu panel */}
       {open && (
         <>
-          {/* backdrop */}
           <button
             type="button"
             aria-hidden="true"
             tabIndex={-1}
             onClick={close}
-            className="md:hidden fixed inset-0 top-[57px] z-40 bg-black/40"
+            className="md:hidden fixed inset-0 top-[57px] z-40 bg-black/30"
           />
           <div
             id="mobile-menu"
-            className="md:hidden absolute inset-x-0 top-full z-50 border-b border-white/[0.08] bg-[#05070d] shadow-2xl shadow-black/60"
+            className="md:hidden absolute inset-x-0 top-full z-50 border-b border-line bg-canvas shadow-lg"
           >
             <div className="px-5 py-3 flex flex-col">
               {links.map((l) => (
@@ -109,7 +139,7 @@ export default function Nav() {
                   key={l.label}
                   href={l.href}
                   onClick={close}
-                  className="rounded-md px-3 py-3 text-[15px] text-slate-200 hover:text-white hover:bg-white/[0.05] transition-colors"
+                  className="rounded-md px-3 py-3 text-[15px] text-ink-2 hover:text-ink hover:bg-surface-2 transition-colors"
                 >
                   {l.label}
                 </a>
@@ -117,14 +147,16 @@ export default function Nav() {
               <Link
                 to="/contact"
                 onClick={close}
-                className="rounded-md px-3 py-3 text-[15px] text-slate-200 hover:text-white hover:bg-white/[0.05] transition-colors"
+                className="rounded-md px-3 py-3 text-[15px] text-ink-2 hover:text-ink hover:bg-surface-2 transition-colors"
               >
                 Contact
               </Link>
               <a
-                href="https://calendly.com/finance-vellmontservices/" target="_blank" rel="noopener noreferrer"
+                href={CALENDLY}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={close}
-                className="mt-2 flex items-center justify-center gap-1.5 rounded-md bg-brand-500 px-4 py-3 text-[15px] font-medium text-white transition-colors hover:bg-brand-400"
+                className="mt-2 flex items-center justify-center gap-1.5 rounded-md bg-brand-500 px-4 py-3 text-[15px] font-medium text-white transition-colors hover:bg-brand-600"
               >
                 <span>Book a demo</span>
                 <span aria-hidden="true">→</span>

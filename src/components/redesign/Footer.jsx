@@ -66,9 +66,9 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-white/[0.08] mt-12">
+    <footer className="relative border-t border-line mt-12">
       <div className="absolute inset-0 -z-10 pointer-events-none">
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-line to-transparent" />
       </div>
 
       <div className="px-5 md:px-10 lg:px-20 py-14">
@@ -81,30 +81,30 @@ export default function Footer() {
                 alt="Vellmont"
                 className="h-8 w-auto"
               />
-              <span className="font-display font-medium text-[15px] text-white">
+              <span className="font-display font-medium text-[15px] text-ink">
                 Vellmont Services
               </span>
             </Link>
-            <p className="text-[13px] text-slate-400 leading-[1.6] max-w-[320px] mb-5">
+            <p className="text-[13px] text-ink-3 leading-[1.6] max-w-[320px] mb-5">
               An AI-powered SaaS company building enterprise software across
               healthcare, logistics, finance, business automation and consumer
               AI. Hyderabad · Dubai.
             </p>
-            <div className="flex flex-wrap gap-2 text-[11px] font-mono text-slate-500">
-              <span className="px-2 py-1 bg-white/[0.04] ring-1 ring-white/[0.08] rounded-md">
+            <div className="flex flex-wrap gap-2 text-[11px] font-mono text-ink-3">
+              <span className="px-2 py-1 bg-surface-2 ring-1 ring-line rounded-md">
                 India
               </span>
-              <span className="px-2 py-1 bg-white/[0.04] ring-1 ring-white/[0.08] rounded-md">
+              <span className="px-2 py-1 bg-surface-2 ring-1 ring-line rounded-md">
                 UAE
               </span>
-              <span className="px-2 py-1 bg-white/[0.04] ring-1 ring-white/[0.08] rounded-md text-brand-100">
+              <span className="px-2 py-1 bg-surface-2 ring-1 ring-line rounded-md text-brand-600 dark:text-brand-400">
                 Taking new projects
               </span>
             </div>
 
             {/* Social */}
             <div className="mt-5">
-              <div className="text-[11px] font-mono uppercase tracking-wider text-slate-500 mb-3">
+              <div className="text-[11px] font-mono uppercase tracking-wider text-ink-3 mb-3">
                 Follow us
               </div>
               <div className="flex items-center gap-2">
@@ -121,7 +121,7 @@ export default function Footer() {
                         rel="noopener noreferrer"
                         aria-label={s.label}
                         title={s.label}
-                        className={`${base} bg-white/[0.04] ring-white/[0.08] text-slate-300 hover:text-white hover:bg-white/[0.08] hover:ring-white/20`}
+                        className={`${base} bg-surface-2 ring-line text-ink-2 hover:text-ink hover:bg-surface-2 hover:ring-line-strong`}
                       >
                         <Icon className="w-4 h-4" strokeWidth={1.6} />
                       </a>
@@ -130,16 +130,16 @@ export default function Footer() {
                   return (
                     <span
                       key={s.label}
-                      aria-label={`${s.label} — coming soon`}
-                      title={`${s.label} — coming soon`}
-                      className={`${base} bg-white/[0.02] ring-white/[0.05] text-slate-600 cursor-not-allowed`}
+                      aria-label={`${s.label}, coming soon`}
+                      title={`${s.label}, coming soon`}
+                      className={`${base} bg-surface ring-line text-ink-3 cursor-not-allowed`}
                     >
                       <Icon className="w-4 h-4" strokeWidth={1.6} />
                     </span>
                   );
                 })}
               </div>
-              <div className="text-[11px] font-mono text-slate-500 mt-2">
+              <div className="text-[11px] font-mono text-ink-3 mt-2">
                 X coming soon
               </div>
             </div>
@@ -147,7 +147,7 @@ export default function Footer() {
 
           {cols.map((col) => (
             <div key={col.heading}>
-              <div className="text-[11px] font-mono uppercase tracking-wider text-slate-500 mb-4">
+              <div className="text-[11px] font-mono uppercase tracking-wider text-ink-3 mb-4">
                 {col.heading}
               </div>
               <ul className="space-y-2.5">
@@ -156,7 +156,7 @@ export default function Footer() {
                     {l.to ? (
                       <Link
                         to={l.to}
-                        className="text-[13px] text-slate-300 hover:text-white transition-colors"
+                        className="text-[13px] text-ink-2 hover:text-ink transition-colors"
                       >
                         {l.label}
                       </Link>
@@ -165,7 +165,7 @@ export default function Footer() {
                         href={l.href}
                         target={l.ext ? '_blank' : undefined}
                         rel={l.ext ? 'noopener noreferrer' : undefined}
-                        className="text-[13px] text-slate-300 hover:text-white transition-colors"
+                        className="text-[13px] text-ink-2 hover:text-ink transition-colors"
                       >
                         {l.label}
                       </a>
@@ -177,7 +177,7 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 pt-6 border-t border-white/[0.06] text-[12px] text-slate-500">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 pt-6 border-t border-line text-[12px] text-ink-3">
           <div className="font-mono">
             © {year} Vellmont Services OPC PVT Ltd · VELLMONT IT SERVICES L.L.C
           </div>

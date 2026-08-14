@@ -23,14 +23,14 @@ import {
 } from 'lucide-react';
 import { typography } from './tokens';
 
-// Shared header — mono eyebrow + sectionHeading + optional kicker.
-function SectionHeader({ eyebrow, title, kicker, accentClass = 'text-brand-200/80' }) {
+// Shared header, mono eyebrow + sectionHeading + optional kicker.
+function SectionHeader({ eyebrow, title, kicker, accentClass = 'text-brand-600 dark:text-brand-400' }) {
   return (
     <div className="mb-10 md:mb-12">
       <div className={`font-mono text-[11px] uppercase tracking-[0.22em] mb-3 ${accentClass}`}>
         {eyebrow}
       </div>
-      <h2 className={`${typography.sectionHeading} text-white max-w-[760px] mb-4`}>
+      <h2 className={`${typography.sectionHeading} text-ink max-w-[760px] mb-4`}>
         {title}
       </h2>
       {kicker && (
@@ -71,12 +71,12 @@ const techGroups = [
 ];
 
 const TONE_CLASSES = {
-  violet: 'text-brand-100 bg-white/[0.035] ring-white/10',
-  cyan: 'text-brand-100 bg-white/[0.035] ring-white/10',
-  fuchsia: 'text-brand-100 bg-white/[0.035] ring-white/10',
-  blue: 'text-brand-100 bg-white/[0.035] ring-white/10',
-  emerald: 'text-brand-100 bg-white/[0.035] ring-white/10',
-  amber: 'text-brand-100 bg-white/[0.035] ring-white/10',
+  violet: 'text-brand-600 dark:text-brand-400 bg-white/[0.035] ring-line',
+  cyan: 'text-brand-600 dark:text-brand-400 bg-white/[0.035] ring-line',
+  fuchsia: 'text-brand-600 dark:text-brand-400 bg-white/[0.035] ring-line',
+  blue: 'text-brand-600 dark:text-brand-400 bg-white/[0.035] ring-line',
+  emerald: 'text-brand-600 dark:text-brand-400 bg-white/[0.035] ring-line',
+  amber: 'text-brand-600 dark:text-brand-400 bg-white/[0.035] ring-line',
 };
 
 export function TechStack() {
@@ -101,21 +101,21 @@ export function TechStack() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.4, delay: i * 0.06 }}
-              className="rounded-lg bg-white/[0.025] border border-white/[0.08] p-6 hover:bg-white/[0.045] hover:border-white/15 transition-colors"
+              className="rounded-lg bg-surface border border-line p-6 hover:bg-white/[0.045] hover:border-line-strong transition-colors"
             >
               <div
                 className={`w-10 h-10 rounded-lg ring-1 ring-inset flex items-center justify-center mb-4 ${TONE_CLASSES[g.tone]}`}
               >
                 <Icon className="w-5 h-5" strokeWidth={1.6} />
               </div>
-              <div className="text-[11px] font-mono uppercase tracking-wider text-slate-500 mb-2">
+              <div className="text-[11px] font-mono uppercase tracking-wider text-ink-3 mb-2">
                 {g.label}
               </div>
               <div className="flex flex-wrap gap-1.5">
                 {g.items.map((it) => (
                   <span
                     key={it}
-                    className="text-[12px] font-medium text-slate-200 bg-white/[0.04] ring-1 ring-white/[0.08] px-2.5 py-1 rounded-md"
+                    className="text-[12px] font-medium text-ink-2 bg-surface-2 ring-1 ring-line px-2.5 py-1 rounded-md"
                   >
                     {it}
                   </span>
@@ -135,10 +135,10 @@ export function TechStack() {
 const securityItems = [
   { icon: Lock, title: 'Encryption at rest + in transit', body: 'TLS 1.2+ everywhere. Sensitive fields encrypted at the column level.' },
   { icon: KeyRound, title: 'Role-based access control', body: 'Fine-grained permissions per role and clinic / tenant.' },
-  { icon: Activity, title: 'Audit logs', body: 'Every write traceable to a user, time, and IP — exportable.' },
+  { icon: Activity, title: 'Audit logs', body: 'Every write traceable to a user, time, and IP. Exportable.' },
   { icon: HardDriveDownload, title: 'Automated backups', body: 'Encrypted point-in-time backups with cross-region replication.' },
   { icon: ShieldCheck, title: 'Secure authentication', body: 'OAuth 2.0, OTP, magic-link, optional 2FA. Rotating refresh tokens.' },
-  { icon: FileCheck2, title: 'DPDP-ready architecture', body: 'India DPDP Act and UAE PDPL aligned by design — DSARs supported.' },
+  { icon: FileCheck2, title: 'DPDP-ready architecture', body: 'India DPDP Act and UAE PDPL aligned by design, with DSARs supported.' },
   { icon: ServerCog, title: 'HIPAA-oriented design', body: 'PHI isolation, access logging, and BAA-ready data handling.' },
   { icon: Globe, title: 'Hardened cloud infra', body: 'WAF + DDoS protection at the edge. Per-tenant network isolation.' },
 ];
@@ -149,13 +149,13 @@ export function Security() {
       id="security"
       className="relative px-5 md:px-10 lg:px-20 py-16 md:py-24"
     >
-      <div className="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-line to-transparent" />
 
       <SectionHeader
         eyebrow="Security & Compliance"
         title="Enterprise security, by default."
-        kicker="Encryption, audit trails, role-based access, and a compliance posture aligned with DPDP, PDPL, and HIPAA. Not a checkbox — a foundation."
-        accentClass="text-brand-300/70"
+        kicker="Encryption, audit trails, role-based access, and a compliance posture aligned with DPDP, PDPL, and HIPAA. Not a checkbox. A foundation."
+        accentClass="text-brand-600/70 dark:text-brand-400/70"
       />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
@@ -168,13 +168,13 @@ export function Security() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-30px' }}
               transition={{ duration: 0.4, delay: (i % 4) * 0.05 }}
-              className="rounded-lg bg-white/[0.025] border border-white/[0.08] p-5 hover:bg-white/[0.045] transition-colors"
+              className="rounded-lg bg-surface border border-line p-5 hover:bg-white/[0.045] transition-colors"
             >
-              <Icon className="w-5 h-5 text-brand-300 mb-3" strokeWidth={1.6} />
-              <div className="text-[14px] font-medium text-white mb-1.5">
+              <Icon className="w-5 h-5 text-brand-600 dark:text-brand-400 mb-3" strokeWidth={1.6} />
+              <div className="text-[14px] font-medium text-ink mb-1.5">
                 {s.title}
               </div>
-              <div className="text-[12px] text-slate-400 leading-[1.55]">
+              <div className="text-[12px] text-ink-3 leading-[1.55]">
                 {s.body}
               </div>
             </motion.div>
@@ -221,14 +221,14 @@ export function Roadmap() {
               transition={{ duration: 0.4, delay: i * 0.05 }}
               className="relative pl-8"
             >
-              <div className="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-[#050816] ring-2 ring-violet-400 shadow-[0_0_12px_rgba(167,139,250,0.6)]" />
-              <div className="text-[12px] font-mono text-violet-300 tracking-wider mb-1">
+              <div className="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-surface ring-2 ring-violet-400 shadow-[0_0_12px_rgba(167,139,250,0.6)]" />
+              <div className="text-[12px] font-mono text-violet-700 dark:text-violet-300 tracking-wider mb-1">
                 {r.year}
               </div>
-              <div className="text-[16px] font-medium text-white mb-1">
+              <div className="text-[16px] font-medium text-ink mb-1">
                 {r.title}
               </div>
-              <div className="text-[14px] text-slate-400 leading-[1.55] max-w-[640px]">
+              <div className="text-[14px] text-ink-3 leading-[1.55] max-w-[640px]">
                 {r.body}
               </div>
             </motion.div>
@@ -246,9 +246,9 @@ const whyCards = [
   { icon: Sparkles, title: 'AI-First Development', body: 'AI lives inside every workflow we build, not as a feature flag.' },
   { icon: Target, title: 'Product Thinking', body: 'We ship products, not slide decks. UX and outcomes over hours billed.' },
   { icon: Rocket, title: 'Rapid Execution', body: 'Working version in weeks. Iterate on real usage, not roadmaps.' },
-  { icon: Layers, title: 'Modern Technology', body: 'A stack built to scale — not the same .NET monolith from 2014.' },
+  { icon: Layers, title: 'Modern Technology', body: 'A stack built to scale, not the same .NET monolith from 2014.' },
   { icon: Users, title: 'Long-Term Partnership', body: 'Most engagements extend. We keep iterating after launch.' },
-  { icon: GraduationCap, title: 'Domain Expertise', body: 'Healthcare, tourism, education, finance — we know the verticals.' },
+  { icon: GraduationCap, title: 'Domain Expertise', body: 'Healthcare, tourism, education, finance. We know the verticals.' },
 ];
 
 export function WhyUs() {
@@ -260,7 +260,7 @@ export function WhyUs() {
       <SectionHeader
         eyebrow="Why Vellmont"
         title="A product company rhythm, applied to your vertical."
-        accentClass="text-brand-200/80"
+        accentClass="text-brand-600 dark:text-brand-400"
       />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -273,15 +273,15 @@ export function WhyUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-30px' }}
               transition={{ duration: 0.4, delay: (i % 3) * 0.06 }}
-              className="rounded-lg bg-white/[0.025] border border-white/[0.08] p-6 hover:bg-white/[0.045] hover:border-white/15 transition-colors"
+              className="rounded-lg bg-surface border border-line p-6 hover:bg-white/[0.045] hover:border-line-strong transition-colors"
             >
-              <div className="w-10 h-10 rounded-md bg-white/[0.035] ring-1 ring-white/10 flex items-center justify-center mb-4">
-                <Icon className="w-5 h-5 text-brand-100" strokeWidth={1.6} />
+              <div className="w-10 h-10 rounded-md bg-white/[0.035] ring-1 ring-line flex items-center justify-center mb-4">
+                <Icon className="w-5 h-5 text-brand-600 dark:text-brand-400" strokeWidth={1.6} />
               </div>
-              <div className="text-[16px] font-medium text-white mb-1.5">
+              <div className="text-[16px] font-medium text-ink mb-1.5">
                 {c.title}
               </div>
-              <div className="text-[13px] text-slate-400 leading-[1.55]">
+              <div className="text-[13px] text-ink-3 leading-[1.55]">
                 {c.body}
               </div>
             </motion.div>
@@ -293,7 +293,7 @@ export function WhyUs() {
 }
 
 // =============================================================================
-// TESTIMONIALS (placeholders — wired for real ones later)
+// TESTIMONIALS (placeholders, wired for real ones later)
 // =============================================================================
 const testimonials = [
   {
@@ -314,7 +314,7 @@ const testimonials = [
   },
   {
     quote:
-      "Vedjyotix's AI reports + the verified astrologer marketplace are a real combination — instant compatibility + real human depth on call.",
+      "Vedjyotix's AI reports + the verified astrologer marketplace are a real combination, instant compatibility + real human depth on call.",
     name: 'Marketplace Astrologer',
     role: 'Early partner · placeholder',
     initials: 'MA',
@@ -329,7 +329,7 @@ export function Testimonials() {
         eyebrow="What pilots say"
         title="Trusted by the operators who put real workloads on it."
         kicker="Replacing real testimonials as pilot data lands. Quotes below are illustrative."
-        accentClass="text-emerald-300/70"
+        accentClass="text-emerald-700/70 dark:text-emerald-300/70"
       />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -340,24 +340,24 @@ export function Testimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-30px' }}
             transition={{ duration: 0.4, delay: i * 0.06 }}
-            className="rounded-2xl bg-white/[0.03] border border-white/[0.08] p-6 flex flex-col"
+            className="rounded-2xl bg-surface border border-line p-6 flex flex-col"
           >
-            <div className="text-[15px] text-slate-200 leading-[1.6] mb-5 flex-1">
-              <span className="text-violet-300/60">“</span>
+            <div className="text-[15px] text-ink-2 leading-[1.6] mb-5 flex-1">
+              <span className="text-violet-700/60 dark:text-violet-300/60">“</span>
               {t.quote}
-              <span className="text-violet-300/60">”</span>
+              <span className="text-violet-700/60 dark:text-violet-300/60">”</span>
             </div>
-            <div className="flex items-center gap-3 pt-4 border-t border-white/[0.06]">
+            <div className="flex items-center gap-3 pt-4 border-t border-line">
               <div
                 className={`w-9 h-9 rounded-full ring-1 ring-inset flex items-center justify-center font-mono text-[12px] font-medium ${TONE_CLASSES[t.tone]}`}
               >
                 {t.initials}
               </div>
               <div>
-                <div className="text-[13px] font-medium text-white">
+                <div className="text-[13px] font-medium text-ink">
                   {t.name}
                 </div>
-                <div className="text-[11px] font-mono text-slate-500">
+                <div className="text-[11px] font-mono text-ink-3">
                   {t.role}
                 </div>
               </div>
@@ -396,7 +396,7 @@ const blogTeasers = [
   {
     cat: 'Product Engineering',
     tone: 'emerald',
-    title: 'Shipping a clinic OS to 6 sites in 6 weeks — what we cut.',
+    title: 'Shipping a clinic OS to 6 sites in 6 weeks, what we cut.',
     read: '6 min · soon',
   },
 ];
@@ -411,7 +411,7 @@ export function BlogTeaser() {
         eyebrow="From the studio"
         title="Notes from the build."
         kicker="Long-form writing on healthcare, tourism, automation and AI. Launching alongside the product roadmap."
-        accentClass="text-blue-300/70"
+        accentClass="text-blue-700/70 dark:text-blue-300/70"
       />
 
       {/* category pills */}
@@ -434,20 +434,20 @@ export function BlogTeaser() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-30px' }}
             transition={{ duration: 0.4, delay: i * 0.06 }}
-            className="group rounded-2xl bg-white/[0.03] border border-white/[0.08] p-6 hover:bg-white/[0.05] hover:border-white/15 transition-colors cursor-pointer"
+            className="group rounded-2xl bg-surface border border-line p-6 hover:bg-surface hover:border-line-strong transition-colors cursor-pointer"
           >
             <div
               className={`inline-block text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full ring-1 ring-inset mb-4 ${TONE_CLASSES[b.tone]}`}
             >
               {b.cat}
             </div>
-            <div className="text-[16px] font-medium text-white leading-[1.4] mb-3 max-w-[280px]">
+            <div className="text-[16px] font-medium text-ink leading-[1.4] mb-3 max-w-[280px]">
               {b.title}
             </div>
-            <div className="flex items-center justify-between text-[11px] font-mono text-slate-500">
+            <div className="flex items-center justify-between text-[11px] font-mono text-ink-3">
               <span>{b.read}</span>
               <ArrowUpRight
-                className="w-4 h-4 text-slate-500 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white"
+                className="w-4 h-4 text-ink-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-ink"
                 strokeWidth={1.6}
               />
             </div>

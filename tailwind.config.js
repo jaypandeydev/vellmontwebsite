@@ -23,6 +23,19 @@ module.exports = {
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       colors: {
+        // Light-first semantic tokens (mapped to CSS variables; re-theme via .dark)
+        canvas: 'var(--bg)',
+        'canvas-2': 'var(--bg-secondary)',
+        surface: 'var(--surface)',
+        'surface-2': 'var(--surface-muted)',
+        'surface-tint': 'var(--surface-tint)',
+        ink: 'var(--tp)',
+        'ink-2': 'var(--ts)',
+        'ink-3': 'var(--tt)',
+        line: 'var(--line)',
+        'line-strong': 'var(--line-strong)',
+        accent: 'var(--accent)',
+        'accent-soft': 'var(--accent-soft)',
         // Vellmont brand indigo (from the logo #5848F8). Primary accent.
         brand: {
           50: '#f1eefe',

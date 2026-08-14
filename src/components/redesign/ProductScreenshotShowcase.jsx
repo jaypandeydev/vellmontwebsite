@@ -24,9 +24,9 @@ function ImageWithFallback({ src, alt, className }) {
   if (!src || failed) {
     return (
       <div
-        className={`${className} flex items-center justify-center bg-gradient-to-br from-violet-900/30 via-[#0a0a1e] to-brand-900/20`}
+        className={`${className} flex items-center justify-center bg-gradient-to-br from-violet-900/30 via-surface to-brand-900/20`}
       >
-        <div className="text-[10px] font-mono uppercase tracking-wider text-slate-500">
+        <div className="text-[10px] font-mono uppercase tracking-wider text-ink-3">
           screenshot pending
         </div>
       </div>
@@ -89,15 +89,15 @@ export default function ProductScreenshotShowcase({
         viewport={{ once: true, margin: '-60px' }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
         style={{ transform: 'perspective(1400px) rotateY(-3deg) rotateX(2deg)' }}
-        className="relative rounded-xl bg-[#080814] border border-white/[0.1] overflow-hidden shadow-[0_40px_100px_-30px_rgba(0,0,0,0.85),0_0_0_1px_rgba(255,255,255,0.04)]"
+        className="relative rounded-xl bg-surface border border-line overflow-hidden shadow-[0_40px_100px_-30px_rgba(0,0,0,0.85),0_0_0_1px_rgba(255,255,255,0.04)]"
       >
         {/* chrome */}
-        <div className="px-3 py-2.5 border-b border-white/[0.06] flex items-center gap-2 bg-[#0a0a18]">
+        <div className="px-3 py-2.5 border-b border-line flex items-center gap-2 bg-surface">
           <span className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
           <span className="w-2.5 h-2.5 rounded-full bg-amber-500/60" />
           <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/60" />
-          <div className="ml-3 flex-1 min-w-0 max-w-[460px] rounded-md bg-white/[0.04] ring-1 ring-white/[0.06] px-3 py-1 text-[10.5px] font-mono text-slate-400 truncate flex items-center gap-2">
-            <span className="text-slate-500">🔒</span>
+          <div className="ml-3 flex-1 min-w-0 max-w-[460px] rounded-md bg-surface ring-1 ring-line px-3 py-1 text-[10.5px] font-mono text-ink-3 truncate flex items-center gap-2">
+            <span className="text-ink-3">🔒</span>
             {urlbar}
           </div>
           <div className="ml-2 inline-flex items-center gap-1 text-[10px] font-mono text-emerald-300">
@@ -107,7 +107,7 @@ export default function ProductScreenshotShowcase({
         </div>
 
         {/* desktop screenshot */}
-        <div className="relative aspect-[16/9.5] bg-[#0a0a1e] overflow-hidden">
+        <div className="relative aspect-[16/9.5] bg-surface overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentDesktop || 'empty-d'}
@@ -138,8 +138,8 @@ export default function ProductScreenshotShowcase({
         className="absolute -bottom-2 right-0 sm:-right-3 md:-right-6 w-[120px] sm:w-[140px] md:w-[170px]"
         style={{ transform: 'perspective(1400px) rotateY(4deg) rotateX(-1deg)' }}
       >
-        <div className="rounded-[28px] bg-black border border-white/15 p-1.5 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.9)]">
-          <div className="relative rounded-[22px] overflow-hidden aspect-[9/19.5] bg-[#0a0a1e]">
+        <div className="rounded-[28px] bg-black border border-line p-1.5 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.9)]">
+          <div className="relative rounded-[22px] overflow-hidden aspect-[9/19.5] bg-surface">
             {/* notch */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[42%] h-[6%] bg-black rounded-b-2xl z-10" />
             <AnimatePresence mode="wait">
@@ -171,7 +171,7 @@ export default function ProductScreenshotShowcase({
               className={`h-1 rounded-full transition-all ${
                 i === dIdx
                   ? 'w-4 bg-violet-300'
-                  : 'w-1 bg-white/15'
+                  : 'w-1 bg-line'
               }`}
             />
           ))}

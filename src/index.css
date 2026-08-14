@@ -2,6 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===== Vellmont light-first semantic tokens (light default, dark via .dark) ===== */
+:root {
+  --bg: #ffffff;
+  --bg-secondary: #f6f7fb;
+  --surface: #ffffff;
+  --surface-muted: #f1f3f9;
+  --surface-tint: #f4f3ff;
+  --tp: #10121f;   /* text primary */
+  --ts: #4b5162;   /* text secondary */
+  --tt: #8b90a1;   /* text tertiary */
+  --line: #e7e9f1;
+  --line-strong: #d2d6e2;
+  --accent: #f59e0b;
+  --accent-soft: #fef4e2;
+}
+html.dark {
+  --bg: #0b0d14;
+  --bg-secondary: #0f121b;
+  --surface: #12141d;
+  --surface-muted: #141720;
+  --surface-tint: #16162e;
+  --tp: #f4f6fb;
+  --ts: #aab0c2;
+  --tt: #737a8c;
+  --line: rgba(255,255,255,.10);
+  --line-strong: rgba(255,255,255,.18);
+  --accent: #fbbf24;
+  --accent-soft: rgba(251,191,36,.13);
+}
+
 :root {
   /* Deep Space Blue Theme Attempt */
   --background-start-rgb: 10, 10, 30; /* Very Dark Navy/Midnight Blue */

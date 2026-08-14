@@ -3,6 +3,7 @@ import Nav from '@/components/redesign/Nav';
 import Hero from '@/components/redesign/Hero';
 import AIDemoBlock from '@/components/redesign/AIDemoBlock';
 import ProductsInDetail from '@/components/redesign/ProductsInDetail';
+import FeaturedShowcase from '@/components/redesign/FeaturedShowcase';
 import { Thesis, Process, Endgame } from '@/components/redesign/Sections';
 import {
   TechStack,
@@ -14,7 +15,7 @@ import Seo from '@/components/redesign/Seo';
 
 const LandingPage = () => {
   return (
-    <main className="min-h-screen bg-[#05070d] text-neutral-100 font-sans antialiased">
+    <main className="min-h-screen bg-canvas text-ink font-sans antialiased">
       <Seo
         title="Vellmont Services — AI Product Lab For Vertical SaaS"
         description="Vellmont Services is an AI-powered SaaS company building enterprise software across healthcare, logistics, finance, business automation and consumer AI."
@@ -23,9 +24,10 @@ const LandingPage = () => {
       />
       <Nav />
       <Hero />
+      <Thesis />
+      <FeaturedShowcase />
       <ProductsInDetail />
       <AIDemoBlock />
-      <Thesis />
       <TechStack />
       <Security />
       <Process />

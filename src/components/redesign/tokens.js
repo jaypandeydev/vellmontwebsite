@@ -8,58 +8,58 @@ export const colorCategories = {
   healthcare: {
     label: "HEALTHCARE",
     bg: "bg-teal-500/10",
-    text: "text-teal-200",
+    text: "text-teal-700 dark:text-teal-300",
     pillBg: "bg-teal-500/15 ring-1 ring-inset ring-teal-500/30",
-    pillText: "text-teal-300",
-    accent: "text-teal-400",
+    pillText: "text-teal-700 dark:text-teal-300",
+    accent: "text-teal-600 dark:text-teal-400",
   },
   astrology: {
     label: "ASTROLOGY",
     bg: "bg-pink-500/10",
-    text: "text-pink-200",
+    text: "text-pink-700 dark:text-pink-300",
     pillBg: "bg-pink-500/15 ring-1 ring-inset ring-pink-500/30",
-    pillText: "text-pink-300",
-    accent: "text-pink-400",
+    pillText: "text-pink-700 dark:text-pink-300",
+    accent: "text-pink-600 dark:text-pink-400",
   },
   travel: {
     label: "TRAVEL",
     bg: "bg-blue-500/10",
-    text: "text-blue-200",
+    text: "text-blue-700 dark:text-blue-300",
     pillBg: "bg-blue-500/15 ring-1 ring-inset ring-blue-500/30",
-    pillText: "text-blue-300",
-    accent: "text-blue-400",
+    pillText: "text-blue-700 dark:text-blue-300",
+    accent: "text-blue-600 dark:text-blue-400",
   },
   education: {
     label: "EDUCATION",
     bg: "bg-emerald-500/10",
-    text: "text-emerald-200",
+    text: "text-emerald-700 dark:text-emerald-300",
     pillBg: "bg-emerald-500/15 ring-1 ring-inset ring-emerald-500/30",
-    pillText: "text-emerald-300",
-    accent: "text-emerald-400",
+    pillText: "text-emerald-700 dark:text-emerald-300",
+    accent: "text-emerald-600 dark:text-emerald-400",
   },
   social: {
     label: "SOCIAL",
     bg: "bg-purple-500/10",
-    text: "text-purple-200",
+    text: "text-purple-700 dark:text-purple-300",
     pillBg: "bg-purple-500/15 ring-1 ring-inset ring-purple-500/30",
-    pillText: "text-purple-300",
-    accent: "text-purple-400",
+    pillText: "text-purple-700 dark:text-purple-300",
+    accent: "text-purple-600 dark:text-purple-400",
   },
   finance: {
     label: "FINANCE",
     bg: "bg-amber-500/10",
-    text: "text-amber-200",
+    text: "text-amber-700 dark:text-amber-300",
     pillBg: "bg-amber-500/15 ring-1 ring-inset ring-amber-500/30",
-    pillText: "text-amber-300",
-    accent: "text-amber-400",
+    pillText: "text-amber-700 dark:text-amber-300",
+    accent: "text-amber-600 dark:text-amber-400",
   },
   security: {
     label: "FACILITY OPS",
     bg: "bg-cyan-500/10",
-    text: "text-cyan-200",
+    text: "text-cyan-700 dark:text-cyan-300",
     pillBg: "bg-cyan-500/15 ring-1 ring-inset ring-cyan-500/30",
-    pillText: "text-cyan-300",
-    accent: "text-cyan-400",
+    pillText: "text-cyan-700 dark:text-cyan-300",
+    accent: "text-cyan-600 dark:text-cyan-400",
   },
 };
 
@@ -75,9 +75,7 @@ export const products = [
     status: "Production Ready",
     screenshots: {
       desktops: [
-        "/screenshots/medquepms/desktop-overview.png",
         "/screenshots/medquepms/desktop-patients.png",
-        "/screenshots/medquepms/desktop-ai-assist.png",
       ],
       mobiles: [
         "/screenshots/medquepms/mobile-staff-signin.png",
@@ -85,7 +83,7 @@ export const products = [
         "/screenshots/medquepms/mobile-queue-email.png",
       ],
     },
-    oneLiner: "AI Clinic Operating System — queue to billing on one screen.",
+    oneLiner: "AI Clinic Operating System, queue to billing on one screen.",
     longDescription:
       "Cloud-based clinic OS unifying live token queue, doctor consultation workspace, AI Clinical Pre-Read, pharmacy POS, cashless/TPA workflow, billing, and a native patient app. Patients book via WhatsApp, missed-call, IVR, or AI chat; the doctor walks in already knowing them.",
     tags: [
@@ -128,9 +126,9 @@ export const products = [
     banner: "/banners/vellroute.png",
     category: "travel",
     status: "Live",
-    oneLiner: "Tour Operator Operating System — leads, vendors, bookings, payments.",
+    oneLiner: "Tour Operator Operating System, leads, vendors, bookings, payments.",
     longDescription:
-      "End-to-end operator OS that replaces the six WhatsApp groups and spreadsheets a tour business runs on. Leads, packages, bookings, vendors, payments, and a customer portal — coordinated in one screen.",
+      "End-to-end operator OS that replaces the six WhatsApp groups and spreadsheets a tour business runs on. Leads, packages, bookings, vendors, payments, and a customer portal, coordinated in one screen.",
     tags: [
       "Tour Booking",
       "CRM",
@@ -166,7 +164,7 @@ export const products = [
     status: "Live",
     oneLiner: "AI Astrology Platform with a verified astrologer marketplace.",
     longDescription:
-      "Kundli, numerology, gun milan, love calculator and AI-generated reports — plus a marketplace where verified astrologers take chat and video consultations. Multilingual.",
+      "Kundli, numerology, gun milan, love calculator and AI-generated reports, plus a marketplace where verified astrologers take chat and video consultations. Multilingual.",
     tags: ["Kundli", "Gun Milan", "Marketplace", "AI Reports", "Multilingual"],
     features: [
       "Kundli",
@@ -187,7 +185,7 @@ export const products = [
     domain: "tutorra.vellmontservices.com",
     category: "education",
     status: "Beta",
-    oneLiner: "Tutor Marketplace — teachers, students, video sessions, payments.",
+    oneLiner: "Tutor Marketplace, teachers, students, video sessions, payments.",
     longDescription:
       "A global tutor marketplace. Teachers list profiles and availability, students book, video sessions run inside the app, and payments settle through global rails. Ratings and scheduling baked in.",
     tags: [
@@ -217,9 +215,9 @@ export const products = [
     banner: "/banners/invitesync.png",
     category: "social",
     status: "Live",
-    oneLiner: "Invitation Management — every invite tracked, never missed.",
+    oneLiner: "Invitation Management, every invite tracked, never missed.",
     longDescription:
-      "Track every invitation — wedding, birthday, corporate — across web and mobile. Smart reminders, RSVP tracking, calendar sync, push notifications, and family sharing.",
+      "Track every invitation for weddings, birthdays and corporate events across web and mobile. Smart reminders, RSVP tracking, calendar sync, push notifications, and family sharing.",
     tags: [
       "Tracking",
       "Smart Reminders",
@@ -248,7 +246,7 @@ export const products = [
     banner: "/banners/vellbill.png",
     category: "finance",
     status: "Live",
-    oneLiner: "Smart Invoicing — GST, quotations, expenses, recurring billing.",
+    oneLiner: "Smart Invoicing, GST, quotations, expenses, recurring billing.",
     longDescription:
       "GST-compliant invoicing and expense management for Indian SMBs and freelancers. Quotations, recurring billing, customer management, payment tracking, and tax-ready reports.",
     tags: [
@@ -277,7 +275,7 @@ export const products = [
     domain: "vellpass.vellmontservices.com",
     category: "security",
     status: "Live",
-    oneLiner: "Visitor & Gatepass Management — secure entry workflows for facilities.",
+    oneLiner: "Visitor & Gatepass Management, secure entry workflows for facilities.",
     longDescription:
       "Visitor and gatepass management system for apartments, offices, campuses and controlled facilities. Pre-approve visits, capture visitor details, issue digital gatepasses, notify hosts, track check-in/out, and keep a searchable audit trail for security teams.",
     tags: [
@@ -312,18 +310,18 @@ export const flagshipProduct = products.find((p) => p.size === "flagship");
 export const mediumProducts = products.filter((p) => p.size === "medium");
 export const smallProducts = products.filter((p) => p.size === "small");
 
-// Premium SaaS type scale — Geist for display, Inter for body.
+// Premium SaaS type scale, Geist for display, Inter for body.
 export const typography = {
   displayHeadline:
     "font-display font-medium tracking-[-0.04em] leading-[1.05] text-5xl md:text-6xl lg:text-[72px]",
-  // Used for emphasised words inline in headings — gradient text in the brand
+  // Used for emphasised words inline in headings, gradient text in the brand
   // primary→secondary range, no longer a serif italic.
   italicAccent:
-    "bg-gradient-to-r from-white via-slate-200 to-brand-300 bg-clip-text text-transparent",
+    "bg-gradient-to-r from-brand-600 to-violet-600 bg-clip-text text-transparent",
   monoLabel:
-    "font-mono text-[11px] uppercase tracking-wider text-slate-400",
+    "font-mono text-[11px] uppercase tracking-wider text-ink-3",
   sectionHeading:
     "font-display font-medium tracking-[-0.025em] text-3xl md:text-4xl lg:text-[40px]",
   bodyLg:
-    "text-[17px] md:text-[18px] leading-[1.6] text-slate-300",
+    "text-[17px] md:text-[18px] leading-[1.6] text-ink-2",
 };
