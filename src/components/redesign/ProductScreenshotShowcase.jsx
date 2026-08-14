@@ -24,7 +24,7 @@ function ImageWithFallback({ src, alt, className }) {
   if (!src || failed) {
     return (
       <div
-        className={`${className} flex items-center justify-center bg-gradient-to-br from-violet-900/30 via-[#0a0a1e] to-cyan-900/20`}
+        className={`${className} flex items-center justify-center bg-gradient-to-br from-violet-900/30 via-[#0a0a1e] to-brand-900/20`}
       >
         <div className="text-[10px] font-mono uppercase tracking-wider text-slate-500">
           screenshot pending
@@ -79,7 +79,7 @@ export default function ProductScreenshotShowcase({
     <div className="relative w-full pr-2 pb-10 md:pb-14">
       {/* Spotlight glow behind the device frames */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] rounded-full bg-gradient-to-br from-violet-500/15 via-blue-500/10 to-cyan-500/15 blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] rounded-full bg-gradient-to-br from-violet-500/15 via-blue-500/10 to-brand-500/15 blur-3xl" />
       </div>
 
       {/* Browser frame */}

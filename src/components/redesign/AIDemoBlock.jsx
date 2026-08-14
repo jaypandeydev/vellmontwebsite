@@ -189,11 +189,11 @@ export default function AIDemoBlock() {
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className="relative overflow-hidden rounded-xl border border-white/10 bg-[#080b16] p-5 text-white shadow-[0_24px_80px_-55px_rgba(0,0,0,0.95)] md:p-7"
       >
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-200/40 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-200/40 to-transparent" />
         <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-4">
           <div>
-            <div className="font-mono text-[11px] mb-1.5 flex items-center gap-2 text-cyan-200/80 uppercase tracking-[0.22em]">
-              <span className="h-1.5 w-1.5 rounded-full bg-cyan-200" />
+            <div className="font-mono text-[11px] mb-1.5 flex items-center gap-2 text-brand-200/80 uppercase tracking-[0.22em]">
+              <span className="h-1.5 w-1.5 rounded-full bg-brand-200" />
               AI workflow console
             </div>
             <div className="max-w-[680px] text-[20px] font-medium leading-[1.35] md:text-[24px]">
@@ -235,7 +235,7 @@ export default function AIDemoBlock() {
           {current.prompts.map((p) => (
             <span
               key={p}
-              className="cursor-pointer rounded border border-white/[0.08] bg-white/[0.025] px-2.5 py-1 text-[11px] text-slate-300 transition-colors hover:border-cyan-200/30 hover:text-white"
+              className="cursor-pointer rounded border border-white/[0.08] bg-white/[0.025] px-2.5 py-1 text-[11px] text-slate-300 transition-colors hover:border-brand-200/30 hover:text-white"
             >
               {p}
             </span>

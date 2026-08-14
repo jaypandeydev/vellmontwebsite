@@ -24,7 +24,7 @@ import {
 import { typography } from './tokens';
 
 // Shared header — mono eyebrow + sectionHeading + optional kicker.
-function SectionHeader({ eyebrow, title, kicker, accentClass = 'text-cyan-200/80' }) {
+function SectionHeader({ eyebrow, title, kicker, accentClass = 'text-brand-200/80' }) {
   return (
     <div className="mb-10 md:mb-12">
       <div className={`font-mono text-[11px] uppercase tracking-[0.22em] mb-3 ${accentClass}`}>
@@ -71,12 +71,12 @@ const techGroups = [
 ];
 
 const TONE_CLASSES = {
-  violet: 'text-cyan-100 bg-white/[0.035] ring-white/10',
-  cyan: 'text-cyan-100 bg-white/[0.035] ring-white/10',
-  fuchsia: 'text-cyan-100 bg-white/[0.035] ring-white/10',
-  blue: 'text-cyan-100 bg-white/[0.035] ring-white/10',
-  emerald: 'text-cyan-100 bg-white/[0.035] ring-white/10',
-  amber: 'text-cyan-100 bg-white/[0.035] ring-white/10',
+  violet: 'text-brand-100 bg-white/[0.035] ring-white/10',
+  cyan: 'text-brand-100 bg-white/[0.035] ring-white/10',
+  fuchsia: 'text-brand-100 bg-white/[0.035] ring-white/10',
+  blue: 'text-brand-100 bg-white/[0.035] ring-white/10',
+  emerald: 'text-brand-100 bg-white/[0.035] ring-white/10',
+  amber: 'text-brand-100 bg-white/[0.035] ring-white/10',
 };
 
 export function TechStack() {
@@ -155,7 +155,7 @@ export function Security() {
         eyebrow="Security & Compliance"
         title="Enterprise security, by default."
         kicker="Encryption, audit trails, role-based access, and a compliance posture aligned with DPDP, PDPL, and HIPAA. Not a checkbox — a foundation."
-        accentClass="text-cyan-300/70"
+        accentClass="text-brand-300/70"
       />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
@@ -170,7 +170,7 @@ export function Security() {
               transition={{ duration: 0.4, delay: (i % 4) * 0.05 }}
               className="rounded-lg bg-white/[0.025] border border-white/[0.08] p-5 hover:bg-white/[0.045] transition-colors"
             >
-              <Icon className="w-5 h-5 text-cyan-300 mb-3" strokeWidth={1.6} />
+              <Icon className="w-5 h-5 text-brand-300 mb-3" strokeWidth={1.6} />
               <div className="text-[14px] font-medium text-white mb-1.5">
                 {s.title}
               </div>
@@ -210,7 +210,7 @@ export function Roadmap() {
 
       <div className="relative">
         {/* vertical line */}
-        <div className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-violet-500/40 via-blue-500/40 to-cyan-500/40" />
+        <div className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-violet-500/40 via-blue-500/40 to-brand-500/40" />
         <div className="space-y-7">
           {roadmap.map((r, i) => (
             <motion.div
@@ -260,7 +260,7 @@ export function WhyUs() {
       <SectionHeader
         eyebrow="Why Vellmont"
         title="A product company rhythm, applied to your vertical."
-        accentClass="text-cyan-200/80"
+        accentClass="text-brand-200/80"
       />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -276,7 +276,7 @@ export function WhyUs() {
               className="rounded-lg bg-white/[0.025] border border-white/[0.08] p-6 hover:bg-white/[0.045] hover:border-white/15 transition-colors"
             >
               <div className="w-10 h-10 rounded-md bg-white/[0.035] ring-1 ring-white/10 flex items-center justify-center mb-4">
-                <Icon className="w-5 h-5 text-cyan-100" strokeWidth={1.6} />
+                <Icon className="w-5 h-5 text-brand-100" strokeWidth={1.6} />
               </div>
               <div className="text-[16px] font-medium text-white mb-1.5">
                 {c.title}
