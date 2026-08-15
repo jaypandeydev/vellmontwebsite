@@ -187,12 +187,12 @@ export default function AIDemoBlock() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-80px' }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="relative overflow-hidden rounded-xl border border-line bg-surface p-5 text-ink shadow-[0_24px_80px_-55px_rgba(0,0,0,0.95)] md:p-7"
+        className="relative overflow-hidden rounded-xl border border-white/10 bg-[#0e1122] p-5 text-white shadow-[0_40px_100px_-45px_rgba(20,18,60,0.5)] md:p-7"
       >
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-200/40 to-transparent" />
         <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-4">
           <div>
-            <div className="font-mono text-[11px] mb-1.5 flex items-center gap-2 text-brand-600 dark:text-brand-400 uppercase tracking-[0.22em]">
+            <div className="font-mono text-[11px] mb-1.5 flex items-center gap-2 text-brand-300 uppercase tracking-[0.22em]">
               <span className="h-1.5 w-1.5 rounded-full bg-brand-200" />
               AI workflow console
             </div>
@@ -208,7 +208,7 @@ export default function AIDemoBlock() {
                 className={`rounded-md px-3 py-1 text-[11px] font-mono transition-all ${
                   active === key
                     ? 'bg-white text-[#07111f]'
-                    : 'bg-surface text-ink/55 ring-1 ring-line hover:text-ink/85 hover:ring-line-strong'
+                    : 'bg-white/[0.035] text-white/55 ring-1 ring-white/10 hover:text-white/85 hover:ring-white/10-strong'
                 }`}
               >
                 {demos[key].label}
@@ -217,7 +217,7 @@ export default function AIDemoBlock() {
           </div>
         </div>
 
-        <div className="min-h-[128px] rounded-lg border border-line bg-surface p-4">
+        <div className="min-h-[128px] rounded-lg border border-white/10 bg-white/[0.035] p-4">
           <AnimatePresence mode="wait">
             <motion.div
               key={active}
@@ -235,7 +235,7 @@ export default function AIDemoBlock() {
           {current.prompts.map((p) => (
             <span
               key={p}
-              className="cursor-pointer rounded border border-line bg-surface px-2.5 py-1 text-[11px] text-ink-2 transition-colors hover:border-brand-200/30 hover:text-ink"
+              className="cursor-pointer rounded border border-white/10 bg-white/[0.035] px-2.5 py-1 text-[11px] text-slate-300 transition-colors hover:border-brand-200/30 hover:text-white"
             >
               {p}
             </span>

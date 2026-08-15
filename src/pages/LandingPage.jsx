@@ -25,13 +25,21 @@ const LandingPage = () => {
       <Nav />
       <Hero />
       <Thesis />
-      <FeaturedShowcase />
+      {/* Tinted band lifts the flagship off the page */}
+      <div className="bg-gradient-to-b from-canvas-2 to-canvas border-y border-line">
+        <FeaturedShowcase />
+      </div>
       <ProductsInDetail />
       <AIDemoBlock />
       <TechStack />
-      <Security />
+      {/* Tinted band groups the trust + process story */}
+      <div className="bg-canvas-2 border-y border-line">
+        <Security />
+      </div>
       <Process />
-      <WhyUs />
+      <div className="bg-gradient-to-b from-canvas to-canvas-2 border-t border-line">
+        <WhyUs />
+      </div>
       <Endgame />
       <Footer />
     </main>

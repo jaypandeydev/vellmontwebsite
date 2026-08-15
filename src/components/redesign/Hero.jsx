@@ -212,30 +212,30 @@ function ProductShowcase() {
 
   return (
     <div className="mobile-viewport-lock relative w-full max-w-[720px] sm:max-w-[720px]">
-      <div className="relative overflow-hidden rounded-xl border border-line bg-surface shadow-[0_34px_90px_-45px_rgba(0,0,0,0.95)]">
-        <div className="flex items-center justify-between border-b border-line bg-surface px-4 py-3">
+      <div className="relative overflow-hidden rounded-xl border border-white/10 bg-[#0e1122] shadow-[0_40px_100px_-40px_rgba(20,18,60,0.55)] ring-1 ring-black/5">
+        <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.02] px-4 py-3">
           <div className="min-w-0">
-            <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-ink-3">
+            <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-slate-400">
               Vellmont lab console
             </div>
-            <div className="mt-1 truncate text-[12px] text-ink-2">
+            <div className="mt-1 truncate text-[12px] text-slate-300">
               Portfolio intelligence across live product systems
-              <span className="text-ink-3"> · sample data</span>
+              <span className="text-slate-400"> · sample data</span>
             </div>
           </div>
-          <div className="hidden items-center gap-2 rounded-md border border-brand-200/20 bg-brand-500/[0.06] px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider text-brand-600 dark:text-brand-400 sm:inline-flex">
+          <div className="hidden items-center gap-2 rounded-md border border-brand-200/20 bg-brand-500/[0.06] px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider text-brand-300 sm:inline-flex">
             <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
             {liveCount} live brands
           </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[190px_1fr]">
-          <div className="border-b border-line bg-surface p-3 lg:border-b-0 lg:border-r">
+          <div className="border-b border-white/10 bg-white/[0.035] p-3 lg:border-b-0 lg:border-r">
             <div className="mb-3 flex items-center justify-between">
-              <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-3">
+              <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-slate-400">
                 Product lines
               </div>
-              <Sparkles className="h-3.5 w-3.5 text-brand-600 dark:text-brand-400" strokeWidth={1.8} />
+              <Sparkles className="h-3.5 w-3.5 text-brand-300" strokeWidth={1.8} />
             </div>
 
             <div className="grid grid-cols-2 gap-2 lg:grid-cols-1">
@@ -250,15 +250,15 @@ function ProductShowcase() {
                     className={`w-full rounded-md border p-2.5 text-left transition-colors ${
                       isActive
                         ? 'border-brand-200/25 bg-brand-200/[0.055]'
-                        : 'border-line bg-surface hover:border-line-strong hover:bg-surface-2'
+                        : 'border-white/10 bg-white/[0.035] hover:border-white/20 hover:bg-white/[0.06]'
                     }`}
                   >
                     <div className="mb-2 flex items-center justify-between gap-2">
                       <div className="flex min-w-0 items-center gap-2">
-                        <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded bg-surface ring-1 ring-line">
-                          <Icon className="h-3.5 w-3.5 text-brand-600 dark:text-brand-400" strokeWidth={1.8} />
+                        <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded bg-white/[0.035] ring-1 ring-white/10">
+                          <Icon className="h-3.5 w-3.5 text-brand-300" strokeWidth={1.8} />
                         </div>
-                        <div className="min-w-0 truncate text-[12px] font-medium text-ink">
+                        <div className="min-w-0 truncate text-[12px] font-medium text-white">
                           {product.name}
                         </div>
                       </div>
@@ -267,8 +267,8 @@ function ProductShowcase() {
                       )}
                     </div>
                     <div className="flex items-center justify-between gap-2 text-[10px] font-mono uppercase tracking-wider">
-                      <span className="truncate text-ink-3">{product.domain}</span>
-                      <span className="text-ink-3">{product.metric}</span>
+                      <span className="truncate text-slate-400">{product.domain}</span>
+                      <span className="text-slate-400">{product.metric}</span>
                     </div>
                   </button>
                 );
@@ -278,17 +278,17 @@ function ProductShowcase() {
 
           <div className="p-3 sm:p-4">
             <div className="grid grid-cols-1 gap-3 md:grid-cols-[1fr_180px]">
-              <div className="rounded-lg border border-line bg-surface p-4">
+              <div className="rounded-lg border border-white/10 bg-white/[0.035] p-4">
                 <div className="mb-4 flex items-start justify-between gap-4">
                   <div>
-                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-600 dark:text-brand-400">
+                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-300">
                       {activeProduct.name} / {activeProduct.context}
                     </div>
-                    <div className="mt-1 text-[22px] font-medium leading-none text-ink">
+                    <div className="mt-1 text-[22px] font-medium leading-none text-white">
                       {activeProduct.title}
                     </div>
                   </div>
-                  <div className="rounded-md border border-emerald-300/20 bg-emerald-300/[0.055] px-2 py-1 text-[10px] font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-300">
+                  <div className="rounded-md border border-emerald-300/20 bg-emerald-300/[0.055] px-2 py-1 text-[10px] font-mono uppercase tracking-wider text-emerald-300">
                     {activeProduct.badge}
                   </div>
                 </div>
@@ -297,12 +297,12 @@ function ProductShowcase() {
                   {activeProduct.metrics.map(([value, label]) => (
                     <div
                       key={label}
-                      className="rounded-md border border-line bg-surface px-3 py-2.5"
+                      className="rounded-md border border-white/10 bg-white/[0.035] px-3 py-2.5"
                     >
-                      <div className="font-display text-[20px] font-medium text-ink">
+                      <div className="font-display text-[20px] font-medium text-white">
                         {value}
                       </div>
-                      <div className="mt-0.5 text-[9px] font-mono uppercase tracking-wider text-ink-3">
+                      <div className="mt-0.5 text-[9px] font-mono uppercase tracking-wider text-slate-400">
                         {label}
                       </div>
                     </div>
@@ -314,20 +314,20 @@ function ProductShowcase() {
                     return (
                       <div
                         key={label}
-                        className="grid grid-cols-[28px_1fr_auto] items-center gap-3 rounded-md border border-line bg-surface p-2.5"
+                        className="grid grid-cols-[28px_1fr_auto] items-center gap-3 rounded-md border border-white/10 bg-white/[0.035] p-2.5"
                       >
                         <div className="flex h-7 w-7 items-center justify-center rounded bg-brand-500/[0.08] ring-1 ring-brand-100/15">
-                          <Icon className="h-3.5 w-3.5 text-brand-600 dark:text-brand-400" strokeWidth={1.8} />
+                          <Icon className="h-3.5 w-3.5 text-brand-300" strokeWidth={1.8} />
                         </div>
                         <div className="min-w-0">
-                          <div className="truncate text-[12px] font-medium text-ink">
+                          <div className="truncate text-[12px] font-medium text-white">
                             {label}
                           </div>
-                          <div className="truncate text-[11px] text-ink-3">
+                          <div className="truncate text-[11px] text-slate-400">
                             {value}
                           </div>
                         </div>
-                        <div className="text-[10px] font-mono text-ink-3">
+                        <div className="text-[10px] font-mono text-slate-400">
                           0{idx + 1}
                         </div>
                       </div>
@@ -337,38 +337,38 @@ function ProductShowcase() {
               </div>
 
               <div className="grid grid-cols-2 gap-3 md:grid-cols-1">
-                <div className="rounded-lg border border-line bg-surface p-3">
-                  <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-ink-3">
+                <div className="rounded-lg border border-white/10 bg-white/[0.035] p-3">
+                  <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-slate-400">
                     AI pre-read
                   </div>
                   <div className="mb-3 rounded-md border border-brand-100/15 bg-brand-500/[0.055] p-3">
-                    <BrainCircuit className="mb-2 h-4 w-4 text-brand-600 dark:text-brand-400" strokeWidth={1.8} />
-                    <div className="text-[12px] leading-[1.45] text-ink-2">
+                    <BrainCircuit className="mb-2 h-4 w-4 text-brand-300" strokeWidth={1.8} />
+                    <div className="text-[12px] leading-[1.45] text-slate-300">
                       {activeProduct.insight}
                     </div>
                   </div>
-                  <div className="space-y-1.5 text-[10px] font-mono uppercase tracking-wider text-ink-3">
+                  <div className="space-y-1.5 text-[10px] font-mono uppercase tracking-wider text-slate-400">
                     {activeProduct.sideStats.map(([label, value]) => (
                       <div key={label} className="flex justify-between">
                         <span>{label}</span>
-                        <span className="text-brand-600 dark:text-brand-400">{value}</span>
+                        <span className="text-brand-300">{value}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="rounded-lg border border-line bg-surface p-3">
-                  <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-ink-3">
+                <div className="rounded-lg border border-white/10 bg-white/[0.035] p-3">
+                  <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-slate-400">
                     Portfolio fabric
                   </div>
                   <div className="space-y-2">
                     {activeProduct.fabric.map(([key, value]) => (
                       <div
                         key={key}
-                        className="flex items-center justify-between rounded border border-line bg-black/10 px-2 py-1.5 text-[11px]"
+                        className="flex items-center justify-between rounded border border-white/10 bg-black/10 px-2 py-1.5 text-[11px]"
                       >
-                        <span className="font-mono text-brand-600 dark:text-brand-400">{key}</span>
-                        <span className="text-ink-3">{value}</span>
+                        <span className="font-mono text-brand-300">{key}</span>
+                        <span className="text-slate-400">{value}</span>
                       </div>
                     ))}
                   </div>
@@ -384,10 +384,10 @@ function ProductShowcase() {
               ].map(([title, body]) => (
                 <div
                   key={title}
-                  className="rounded-md border border-line bg-surface px-3 py-2"
+                  className="rounded-md border border-white/10 bg-white/[0.035] px-3 py-2"
                 >
-                  <div className="text-[11px] font-medium text-ink">{title}</div>
-                  <div className="mt-0.5 truncate text-[10px] text-ink-3">{body}</div>
+                  <div className="text-[11px] font-medium text-white">{title}</div>
+                  <div className="mt-0.5 truncate text-[10px] text-slate-400">{body}</div>
                 </div>
               ))}
             </div>
@@ -404,7 +404,7 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-canvas px-5 pb-14 pt-12 md:px-10 md:pb-20 md:pt-20 lg:px-20">
       <div className="absolute inset-0 -z-10 pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_85%_0%,rgba(88,72,248,0.08),transparent_60%),radial-gradient(50%_50%_at_0%_10%,rgba(245,158,11,0.05),transparent_55%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(55%_55%_at_82%_-5%,rgba(88,72,248,0.16),transparent_60%),radial-gradient(45%_50%_at_98%_35%,rgba(217,70,239,0.10),transparent_60%),radial-gradient(50%_45%_at_-5%_8%,rgba(245,158,11,0.08),transparent_58%),radial-gradient(40%_40%_at_60%_75%,rgba(59,130,246,0.06),transparent_60%)] dark:opacity-60" />
         <div className="absolute inset-x-0 bottom-0 h-px bg-line" />
       </div>
 
