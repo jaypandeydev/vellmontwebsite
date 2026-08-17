@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Linkedin, Youtube, Twitter } from 'lucide-react';
+import Flag from './Flag';
 
 const socials = [
   {
@@ -92,10 +93,10 @@ export default function Footer() {
             </p>
             <div className="flex flex-wrap gap-2 text-[11px] font-mono text-ink-3">
               <span className="px-2 py-1 bg-surface-2 ring-1 ring-line rounded-md">
-                India
+                <Flag code="in" label="India" size="text-[12px]" />
               </span>
               <span className="px-2 py-1 bg-surface-2 ring-1 ring-line rounded-md">
-                UAE
+                <Flag code="ae" label="UAE" size="text-[12px]" />
               </span>
               <span className="px-2 py-1 bg-surface-2 ring-1 ring-line rounded-md text-brand-600 dark:text-brand-400">
                 Taking new projects
@@ -181,8 +182,12 @@ export default function Footer() {
           <div className="font-mono">
             © {year} Vellmont Services OPC PVT Ltd · VELLMONT IT SERVICES L.L.C
           </div>
-          <div className="font-mono">
-            Built in Hyderabad + Dubai · Bootstrapped
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono">
+            <span>Built in</span>
+            <Flag code="in" label="Hyderabad" size="text-[12px]" />
+            <span>+</span>
+            <Flag code="ae" label="Dubai" size="text-[12px]" />
+            <span>· Bootstrapped</span>
           </div>
         </div>
       </div>

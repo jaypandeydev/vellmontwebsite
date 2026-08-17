@@ -22,6 +22,18 @@ import {
   ArrowUpRight,
 } from 'lucide-react';
 import { typography } from './tokens';
+import { Spotlight } from './interactions';
+
+// Rotating colour palette for icon tiles, so repeated card grids get life
+// instead of reading as one uniform block. Icons inherit currentColor.
+export const TILE_ACCENTS = [
+  'bg-brand-500/12 ring-brand-500/20 text-brand-600 dark:text-brand-300',
+  'bg-teal-500/12 ring-teal-500/25 text-teal-600 dark:text-teal-300',
+  'bg-amber-500/12 ring-amber-500/25 text-amber-600 dark:text-amber-300',
+  'bg-fuchsia-500/12 ring-fuchsia-500/25 text-fuchsia-600 dark:text-fuchsia-300',
+  'bg-blue-500/12 ring-blue-500/25 text-blue-600 dark:text-blue-300',
+  'bg-emerald-500/12 ring-emerald-500/25 text-emerald-600 dark:text-emerald-300',
+];
 
 // Shared header, mono eyebrow + sectionHeading + optional kicker.
 function SectionHeader({ eyebrow, title, kicker, accentClass = 'text-brand-600 dark:text-brand-400' }) {
@@ -48,24 +60,28 @@ const techGroups = [
     label: 'Frontend',
     icon: Code2,
     tone: 'violet',
+    blurb: 'Web and native app surfaces built from one component system.',
     items: ['Next.js', 'React', 'Flutter', 'Tailwind'],
   },
   {
     label: 'Backend',
     icon: Database,
     tone: 'cyan',
+    blurb: 'Transactional services, queues and reporting built to stay online.',
     items: ['.NET', 'PostgreSQL', 'Redis', 'Node.js'],
   },
   {
     label: 'AI',
     icon: Sparkles,
     tone: 'fuchsia',
+    blurb: 'Retrieval and agents wired into the workflow, not bolted beside it.',
     items: ['OpenAI', 'Gemini', 'RAG', 'AI Agents'],
   },
   {
     label: 'Infrastructure',
     icon: Cloud,
     tone: 'blue',
+    blurb: 'Containerised deploys behind a hardened edge, per-tenant isolation.',
     items: ['AWS', 'Docker', 'Cloudflare', 'Caddy'],
   },
 ];
@@ -91,35 +107,43 @@ export function TechStack() {
         kicker="The same stack the best product teams ship on. Cloud-native, AI-ready, type-safe end-to-end."
       />
 
+      {/* Continuously scrolling stack strip: motion that says "always running". */}
+      <div className="u-marquee relative mb-8 overflow-hidden rounded-lg border border-line bg-surface py-3">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-surface to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-surface to-transparent" />
+        <div className="u-marquee-track flex w-max items-center">
+          {[0, 1].map((dup) => (
+            <div key={dup} className="flex shrink-0 items-center gap-3 pr-3" aria-hidden={dup === 1}>
+              {techGroups.flatMap((g) => g.items).map((it) => (
+                <span
+                  key={`${dup}-${it}`}
+                  className="whitespace-nowrap rounded-md bg-surface-2 px-3 py-1.5 text-[12px] font-medium text-ink-2 ring-1 ring-line"
+                >
+                  {it}
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         {techGroups.map((g, i) => {
           const Icon = g.icon;
           return (
-            <motion.div
-              key={g.label}
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.4, delay: i * 0.06 }}
-              className="rounded-lg bg-surface border border-line p-6 hover:bg-white/[0.045] hover:border-line-strong transition-colors"
+            <motion.div key={g.label}
+              data-anim className="u-hover u-spotlight rounded-lg bg-surface border border-line p-6"
             >
               <div
-                className={`w-10 h-10 rounded-lg ring-1 ring-inset flex items-center justify-center mb-4 ${TONE_CLASSES[g.tone]}`}
+                className={`u-tile w-10 h-10 rounded-lg ring-1 ring-inset flex items-center justify-center mb-4 ${TONE_CLASSES[g.tone]}`}
               >
                 <Icon className="w-5 h-5" strokeWidth={1.6} />
               </div>
-              <div className="text-[11px] font-mono uppercase tracking-wider text-ink-3 mb-2">
+              <div className="text-[11px] font-mono uppercase tracking-wider text-ink-3 mb-1.5">
                 {g.label}
               </div>
-              <div className="flex flex-wrap gap-1.5">
-                {g.items.map((it) => (
-                  <span
-                    key={it}
-                    className="text-[12px] font-medium text-ink-2 bg-surface-2 ring-1 ring-line px-2.5 py-1 rounded-md"
-                  >
-                    {it}
-                  </span>
-                ))}
+              <div className="text-[13px] leading-[1.5] text-ink-2">
+                {g.blurb}
               </div>
             </motion.div>
           );
@@ -162,15 +186,12 @@ export function Security() {
         {securityItems.map((s, i) => {
           const Icon = s.icon;
           return (
-            <motion.div
-              key={s.title}
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-30px' }}
-              transition={{ duration: 0.4, delay: (i % 4) * 0.05 }}
-              className="rounded-lg bg-surface border border-line p-5 hover:bg-white/[0.045] transition-colors"
+            <motion.div key={s.title}
+              data-anim className="u-hover u-spotlight rounded-lg bg-surface border border-line p-5"
             >
-              <Icon className="w-5 h-5 text-brand-600 dark:text-brand-400 mb-3" strokeWidth={1.6} />
+              <div className={`u-tile mb-3 inline-flex h-10 w-10 items-center justify-center rounded-lg ring-1 ${TILE_ACCENTS[i % TILE_ACCENTS.length]}`}>
+                <Icon className="w-5 h-5" strokeWidth={1.7} />
+              </div>
               <div className="text-[14px] font-medium text-ink mb-1.5">
                 {s.title}
               </div>
@@ -213,13 +234,8 @@ export function Roadmap() {
         <div className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-violet-500/40 via-blue-500/40 to-brand-500/40" />
         <div className="space-y-7">
           {roadmap.map((r, i) => (
-            <motion.div
-              key={`${r.year}-${r.title}`}
-              initial={{ opacity: 0, x: -10 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-30px' }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
-              className="relative pl-8"
+            <motion.div key={`${r.year}-${r.title}`}
+              data-anim className="relative pl-8"
             >
               <div className="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-surface ring-2 ring-violet-400 shadow-[0_0_12px_rgba(167,139,250,0.6)]" />
               <div className="text-[12px] font-mono text-violet-700 dark:text-violet-300 tracking-wider mb-1">
@@ -267,16 +283,11 @@ export function WhyUs() {
         {whyCards.map((c, i) => {
           const Icon = c.icon;
           return (
-            <motion.div
-              key={c.title}
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-30px' }}
-              transition={{ duration: 0.4, delay: (i % 3) * 0.06 }}
-              className="rounded-lg bg-surface border border-line p-6 hover:bg-white/[0.045] hover:border-line-strong transition-colors"
+            <motion.div key={c.title}
+              data-anim className="u-hover u-spotlight rounded-lg bg-surface border border-line p-6"
             >
-              <div className="w-10 h-10 rounded-md bg-white/[0.035] ring-1 ring-line flex items-center justify-center mb-4">
-                <Icon className="w-5 h-5 text-brand-600 dark:text-brand-400" strokeWidth={1.6} />
+              <div className={`u-tile mb-4 flex h-10 w-10 items-center justify-center rounded-md ring-1 ${TILE_ACCENTS[i % TILE_ACCENTS.length]}`}>
+                <Icon className="w-5 h-5" strokeWidth={1.7} />
               </div>
               <div className="text-[16px] font-medium text-ink mb-1.5">
                 {c.title}
@@ -334,13 +345,8 @@ export function Testimonials() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         {testimonials.map((t, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-30px' }}
-            transition={{ duration: 0.4, delay: i * 0.06 }}
-            className="rounded-2xl bg-surface border border-line p-6 flex flex-col"
+          <motion.div key={i}
+            data-anim className="rounded-2xl bg-surface border border-line p-6 flex flex-col"
           >
             <div className="text-[15px] text-ink-2 leading-[1.6] mb-5 flex-1">
               <span className="text-violet-700/60 dark:text-violet-300/60">“</span>
@@ -428,13 +434,8 @@ export function BlogTeaser() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         {blogTeasers.map((b, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-30px' }}
-            transition={{ duration: 0.4, delay: i * 0.06 }}
-            className="group rounded-2xl bg-surface border border-line p-6 hover:bg-surface hover:border-line-strong transition-colors cursor-pointer"
+          <motion.div key={i}
+            data-anim className="group rounded-2xl bg-surface border border-line p-6 hover:bg-surface hover:border-line-strong transition-colors cursor-pointer"
           >
             <div
               className={`inline-block text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full ring-1 ring-inset mb-4 ${TONE_CLASSES[b.tone]}`}

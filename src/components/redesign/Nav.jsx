@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, Sun, Moon } from 'lucide-react';
+import { useActiveSection, useAutoHideHeader } from './interactions';
 
 const links = [
   { label: 'Portfolio', href: '/#products-detail' },
@@ -28,9 +29,15 @@ function useTheme() {
   return { dark, toggle };
 }
 
+const SECTION_IDS = ['products-detail', 'ai-flows', 'tech', 'security'];
+
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const { dark, toggle } = useTheme();
+  const activeSection = useActiveSection(SECTION_IDS);
+  const navRef = useRef(null);
+  // Hide on scroll down, reveal on scroll up. Stays put while the menu is open.
+  useAutoHideHeader(navRef, open);
 
   useEffect(() => {
     if (!open) return;
@@ -49,7 +56,10 @@ export default function Nav() {
   const close = () => setOpen(false);
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-line bg-canvas/95 backdrop-blur-md">
+    <nav
+      ref={navRef}
+      className="sticky top-0 z-50 border-b border-line bg-canvas/95 backdrop-blur-md will-change-transform"
+    >
       <div className="px-5 md:px-10 lg:px-20 py-3.5 flex justify-between items-center text-[13px]">
         <Link to="/" onClick={close} className="flex items-center gap-2.5 shrink-0">
           <img
@@ -70,9 +80,17 @@ export default function Nav() {
               <a
                 key={l.label}
                 href={l.href}
-                className="px-3 py-1.5 rounded-md hover:text-ink hover:bg-surface-2 transition-colors"
+                aria-current={activeSection && l.href.endsWith(activeSection) ? 'true' : undefined}
+                className={`relative px-3 py-1.5 rounded-md transition-colors ${
+                  activeSection && l.href.endsWith(activeSection)
+                    ? 'text-ink'
+                    : 'hover:text-ink hover:bg-surface-2'
+                }`}
               >
                 {l.label}
+                {activeSection && l.href.endsWith(activeSection) && (
+                  <span className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-brand-500" />
+                )}
               </a>
             ))}
             <Link
@@ -99,7 +117,7 @@ export default function Nav() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={close}
-            className="ml-1 flex items-center gap-1.5 rounded-md bg-brand-500 px-3 py-1.5 text-[12.5px] font-medium text-white transition-colors hover:bg-brand-600 md:ml-2 md:px-3.5"
+            className="u-press ml-1 hidden sm:flex items-center gap-1.5 whitespace-nowrap rounded-md bg-brand-500 px-3 py-1.5 text-[12.5px] font-medium text-white transition-colors hover:bg-brand-600 md:ml-2 md:px-3.5"
           >
             <span>Book a demo</span>
             <span aria-hidden="true">→</span>

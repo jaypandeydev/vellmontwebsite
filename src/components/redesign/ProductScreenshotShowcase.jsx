@@ -76,7 +76,7 @@ export default function ProductScreenshotShowcase({
   const currentMobile = mobiles[mIdx] || null;
 
   return (
-    <div className="relative w-full pr-2 pb-10 md:pb-14">
+    <div className="relative flex w-full items-end gap-3 md:gap-4">
       {/* Spotlight glow behind the device frames */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] rounded-full bg-gradient-to-br from-violet-500/15 via-blue-500/10 to-brand-500/15 blur-3xl" />
@@ -89,7 +89,7 @@ export default function ProductScreenshotShowcase({
         viewport={{ once: true, margin: '-60px' }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
         style={{ transform: 'perspective(1400px) rotateY(-3deg) rotateX(2deg)' }}
-        className="relative rounded-xl bg-surface border border-line overflow-hidden shadow-[0_40px_100px_-30px_rgba(0,0,0,0.85),0_0_0_1px_rgba(255,255,255,0.04)]"
+        className="relative min-w-0 flex-1 rounded-xl bg-surface border border-line overflow-hidden shadow-[0_30px_70px_-30px_rgba(16,18,40,0.45)]"
       >
         {/* chrome */}
         <div className="px-3 py-2.5 border-b border-line flex items-center gap-2 bg-surface">
@@ -125,7 +125,7 @@ export default function ProductScreenshotShowcase({
             </motion.div>
           </AnimatePresence>
           {/* Inner top vignette for that 'screen' feeling */}
-          <div className="absolute inset-x-0 top-0 h-[18%] bg-gradient-to-b from-black/30 to-transparent pointer-events-none" />
+
         </div>
       </motion.div>
 
@@ -135,10 +135,10 @@ export default function ProductScreenshotShowcase({
         whileInView={{ opacity: 1, y: 0, x: 0 }}
         viewport={{ once: true, margin: '-60px' }}
         transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
-        className="absolute -bottom-2 right-0 sm:-right-3 md:-right-6 w-[120px] sm:w-[140px] md:w-[170px]"
+        className="hidden sm:block w-[104px] md:w-[124px] lg:w-[140px] shrink-0"
         style={{ transform: 'perspective(1400px) rotateY(4deg) rotateX(-1deg)' }}
       >
-        <div className="rounded-[28px] bg-black border border-line p-1.5 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.9)]">
+        <div className="rounded-[28px] bg-black border border-line p-1.5 shadow-[0_24px_48px_-20px_rgba(16,18,40,0.55)]">
           <div className="relative rounded-[22px] overflow-hidden aspect-[9/19.5] bg-surface">
             {/* notch */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[42%] h-[6%] bg-black rounded-b-2xl z-10" />
@@ -164,7 +164,7 @@ export default function ProductScreenshotShowcase({
 
       {/* Pagination dots */}
       {(desktops.length > 1 || mobiles.length > 1) && (
-        <div className="absolute bottom-1 left-1/2 -translate-x-1/2 flex gap-1.5">
+        <div className="pointer-events-none absolute -bottom-4 left-0 right-0 flex justify-center gap-1.5">
           {desktops.map((_, i) => (
             <span
               key={`d-${i}`}

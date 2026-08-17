@@ -1,6 +1,6 @@
 import React from 'react';
 import Nav from '@/components/redesign/Nav';
-import Hero from '@/components/redesign/Hero';
+import Hero, { HeroProofStrip } from '@/components/redesign/Hero';
 import AIDemoBlock from '@/components/redesign/AIDemoBlock';
 import ProductsInDetail from '@/components/redesign/ProductsInDetail';
 import FeaturedShowcase from '@/components/redesign/FeaturedShowcase';
@@ -12,6 +12,14 @@ import {
 } from '@/components/redesign/MoreSections';
 import Footer from '@/components/redesign/Footer';
 import Seo from '@/components/redesign/Seo';
+import {
+  ScrollProgress,
+  BackToTop,
+  GlobalSpotlight,
+  GsapReveals,
+  ClickSpark,
+  EdgeOrbs,
+} from '@/components/redesign/interactions';
 
 const LandingPage = () => {
   return (
@@ -22,8 +30,14 @@ const LandingPage = () => {
         canonical="https://vellmontservices.com/"
         image="https://res.cloudinary.com/dzdaksuzp/image/upload/v1750354259/Vellmont_final_logo_Png_isk7ol.png"
       />
+      <ScrollProgress />
+      <GlobalSpotlight />
+      <GsapReveals />
+      <ClickSpark />
+      <EdgeOrbs />
       <Nav />
       <Hero />
+      <HeroProofStrip />
       <Thesis />
       {/* Tinted band lifts the flagship off the page */}
       <div className="bg-gradient-to-b from-canvas-2 to-canvas border-y border-line">
@@ -42,6 +56,7 @@ const LandingPage = () => {
       </div>
       <Endgame />
       <Footer />
+      <BackToTop />
     </main>
   );
 };

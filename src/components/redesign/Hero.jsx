@@ -17,12 +17,15 @@ import {
 import {
   products,
 } from './tokens';
+import { CountUp, Spotlight, useHeroTimeline } from './interactions';
+import Flag from './Flag';
+import AmbientField from './AmbientField';
 
 const metrics = [
   { value: '7', label: 'Vertical products' },
   { value: '6', label: 'Live brands' },
   { value: '28+', label: 'Core workflows' },
-  { value: 'IN + UAE', label: 'Markets' },
+  { value: 'IN + UAE', label: 'Markets', flags: ['in', 'ae'] },
 ];
 
 const proofPoints = [
@@ -202,16 +205,49 @@ const labProducts = [
   },
 ];
 
+const CYCLE_MS = 5000;
+
 function ProductShowcase() {
   const liveCount = products.filter((p) =>
     ['Live', 'Production Ready'].includes(p.status)
   ).length;
   const [activeId, setActiveId] = useState('medquepms');
+  const [paused, setPaused] = useState(false);
   const activeProduct =
     labProducts.find((product) => product.id === activeId) || labProducts[0];
 
+  // The console walks itself through the portfolio so a visitor who never
+  // clicks still sees all five product lines. Pauses on hover/focus, and
+  // stays put entirely for reduced-motion users.
+  React.useEffect(() => {
+    if (paused) return undefined;
+    if (
+      typeof window !== 'undefined' &&
+      window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      return undefined;
+    }
+    const t = setInterval(() => {
+      setActiveId((cur) => {
+        const i = labProducts.findIndex((p) => p.id === cur);
+        return labProducts[(i + 1) % labProducts.length].id;
+      });
+    }, CYCLE_MS);
+    return () => clearInterval(t);
+  }, [paused]);
+
+  const pause = () => setPaused(true);
+  const resume = () => setPaused(false);
+
   return (
-    <div className="mobile-viewport-lock relative w-full max-w-[720px] sm:max-w-[720px]">
+    <div
+      className="mobile-viewport-lock relative w-full max-w-[720px] sm:max-w-[720px] lg:max-w-none lg:w-full xl:max-w-[1000px]"
+      onMouseEnter={pause}
+      onMouseLeave={resume}
+      onFocusCapture={pause}
+      onBlurCapture={resume}
+    >
       <div className="relative overflow-hidden rounded-xl border border-white/10 bg-[#0e1122] shadow-[0_40px_100px_-40px_rgba(20,18,60,0.55)] ring-1 ring-black/5">
         <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.02] px-4 py-3">
           <div className="min-w-0">
@@ -224,9 +260,22 @@ function ProductShowcase() {
             </div>
           </div>
           <div className="hidden items-center gap-2 rounded-md border border-brand-200/20 bg-brand-500/[0.06] px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider text-brand-300 sm:inline-flex">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
+            <span className="u-pulse h-1.5 w-1.5 rounded-full bg-brand-400 shadow-[0_0_8px_rgba(139,132,248,0.9)]" />
             {liveCount} live brands
           </div>
+        </div>
+
+        {/* Auto-cycle progress; restarts on each product change. */}
+        <div className="h-px w-full bg-white/5">
+          <div
+            key={activeId + String(paused)}
+            className="h-full bg-gradient-to-r from-brand-500 to-violet-400"
+            style={{
+              animation: paused
+                ? 'none'
+                : `u-cycle ${CYCLE_MS}ms linear forwards`,
+            }}
+          />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[190px_1fr]">
@@ -400,11 +449,67 @@ function ProductShowcase() {
   );
 }
 
-export default function Hero() {
+
+// Stats + proof points live directly under the hero as their own full-width
+// band, so the hero itself stays short enough to keep the CTA above the fold.
+export function HeroProofStrip() {
   return (
-    <section className="relative overflow-hidden bg-canvas px-5 pb-14 pt-12 md:px-10 md:pb-20 md:pt-20 lg:px-20">
+    <section className="relative border-t border-line bg-canvas-2/60 px-5 py-10 md:px-10 md:py-12 lg:px-20">
+      <div className="mb-8 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-line bg-line md:grid-cols-4">
+        {metrics.map((m) => (
+          <div key={m.label} className="bg-surface px-4 py-5 md:px-6">
+            <div className="flex items-center gap-2 font-display text-[22px] font-semibold tracking-tight text-ink md:text-[26px]">
+              {m.flags ? (
+                <span className="flex items-center gap-1.5">
+                  {m.flags.map((c) => (
+                    <Flag key={c} code={c} size="text-[20px] md:text-[24px]" />
+                  ))}
+                </span>
+              ) : (
+                <CountUp value={m.value} />
+              )}
+            </div>
+            <div className="mt-0.5 font-mono text-[11px] uppercase tracking-wider text-ink-3">
+              {m.label}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+        {proofPoints.map((point) => {
+          const Icon = point.icon;
+          return (
+            <Spotlight
+              key={point.title}
+              className="u-hover rounded-lg border border-line bg-surface p-5"
+            >
+              <div className="u-tile mb-3 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brand-500/12 text-brand-600 ring-1 ring-brand-500/20 dark:text-brand-300">
+                <Icon className="h-4.5 w-4.5" strokeWidth={1.7} />
+              </div>
+              <div className="mb-1 text-[14px] font-medium text-ink">
+                {point.title}
+              </div>
+              <div className="text-[12.5px] leading-[1.5] text-ink-3">
+                {point.body}
+              </div>
+            </Spotlight>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+export default function Hero() {
+  const heroRef = React.useRef(null);
+  useHeroTimeline(heroRef);
+
+  return (
+    <section ref={heroRef} className="relative overflow-hidden bg-canvas px-5 pb-14 pt-12 md:px-10 md:pb-20 md:pt-20 lg:px-20">
       <div className="absolute inset-0 -z-10 pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(55%_55%_at_82%_-5%,rgba(88,72,248,0.16),transparent_60%),radial-gradient(45%_50%_at_98%_35%,rgba(217,70,239,0.10),transparent_60%),radial-gradient(50%_45%_at_-5%_8%,rgba(245,158,11,0.08),transparent_58%),radial-gradient(40%_40%_at_60%_75%,rgba(59,130,246,0.06),transparent_60%)] dark:opacity-60" />
+        <div className="u-drift absolute inset-0 bg-[radial-gradient(55%_55%_at_82%_-5%,rgba(88,72,248,0.16),transparent_60%),radial-gradient(45%_50%_at_98%_35%,rgba(217,70,239,0.10),transparent_60%),radial-gradient(50%_45%_at_-5%_8%,rgba(245,158,11,0.08),transparent_58%),radial-gradient(40%_40%_at_60%_75%,rgba(59,130,246,0.06),transparent_60%)] dark:opacity-60" />
+        <AmbientField />
         <div className="absolute inset-x-0 bottom-0 h-px bg-line" />
       </div>
 
@@ -413,39 +518,37 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
-        <div className="mb-6 flex max-w-full flex-wrap items-center gap-x-2 gap-y-1 overflow-hidden rounded-md border border-line bg-surface-tint px-3 py-1.5 text-[11px] font-mono uppercase tracking-wider text-ink-2 sm:inline-flex sm:text-[12px]">
+        <div data-hero="1" className="mb-6 flex max-w-full flex-wrap items-center gap-x-2 gap-y-1 overflow-hidden rounded-md border border-line bg-surface-tint px-3 py-1.5 text-[11px] font-mono uppercase tracking-wider text-ink-2 sm:inline-flex sm:text-[12px]">
           <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
           <span className="text-brand-600 dark:text-brand-400">Premium product lab</span>
           <span className="hidden text-ink-3 sm:inline">/</span>
           <span className="hidden sm:inline">AI-native vertical SaaS</span>
           <span className="hidden text-ink-3 sm:inline">·</span>
-          <span className="hidden sm:inline">Hyderabad + Dubai</span>
+          <span className="hidden items-center gap-2 sm:inline-flex">
+            <Flag code="in" label="Hyderabad" size="text-[13px]" />
+            <span className="text-ink-3">+</span>
+            <Flag code="ae" label="Dubai" size="text-[13px]" />
+          </span>
         </div>
 
-        <div className="grid min-w-0 grid-cols-1 items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
+        <div className="grid min-w-0 grid-cols-1 items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12 xl:gap-14">
           <div className="min-w-0">
             <h1
-              className="mb-6 max-w-[760px] font-display text-[40px] font-semibold leading-[1.04] tracking-[-0.025em] text-ink sm:text-5xl md:text-6xl lg:text-[70px]"
+              data-hero="2"
+              className="mb-5 max-w-[760px] font-display text-[38px] font-semibold leading-[1.06] tracking-[-0.025em] text-ink sm:text-[44px] md:text-[52px] lg:text-[38px] xl:text-[42px] 2xl:text-[46px] min-[1800px]:text-[54px]"
             >
-              <span className="block sm:inline">AI software for </span>
-              <span className="block sm:inline">clinics, tour operators </span>
-              <span className="block sm:inline">and small businesses.</span>
+              <span className="block">AI software for clinics,</span>
+              <span className="block">tour operators and</span>
+              <span className="block">small businesses.</span>
             </h1>
 
-            <div className="mb-7 max-w-[320px] space-y-3 sm:max-w-[620px]">
-              <p className="text-[17px] leading-[1.65] text-ink-2 md:text-[18px]">
-                Vellmont Services is an AI-powered SaaS company building
-                enterprise software across healthcare, logistics, finance,
-                business automation, and consumer AI. Our flagship platform,
-                MedQuePMS, leads our commercial expansion into healthcare.
-              </p>
-              <p className="border-l-2 border-brand-500/40 pl-4 text-[14px] leading-[1.65] text-ink-3 md:text-[15px]">
-                A wider portfolio of production-ready products across adjacent
-                verticals proves the product depth behind the company.
-              </p>
-            </div>
+            <p data-hero="3" className="mb-7 max-w-[560px] text-[16px] leading-[1.6] text-ink-2 md:text-[17px]">
+              We build production-grade SaaS for operational businesses, with AI
+              inside the workflow rather than bolted on. Our flagship platform,
+              MedQuePMS, runs live clinics today.
+            </p>
 
-            <div className="mb-8 space-y-2">
+            <div data-hero="4" className="mb-7 space-y-2">
               {labNotes.map((note) => (
                 <div
                   key={note}
@@ -460,7 +563,7 @@ export default function Hero() {
               ))}
             </div>
 
-            <div className="mb-9 grid grid-cols-1 gap-3 sm:flex sm:flex-wrap">
+            <div data-hero="5" className="grid grid-cols-1 gap-3 sm:flex sm:flex-wrap">
               <a
                 href="https://calendly.com/finance-vellmontservices/" target="_blank" rel="noopener noreferrer"
                 className="group flex min-w-0 items-center justify-center gap-2 rounded-md bg-brand-500 px-5 py-3.5 text-[14px] font-medium text-white shadow-[0_18px_40px_-24px_rgba(88,72,248,0.55)] transition-colors hover:bg-brand-600 sm:justify-start sm:px-6"
@@ -482,48 +585,19 @@ export default function Hero() {
               </a>
             </div>
 
-            <div className="mb-5 hidden max-w-[680px] grid-cols-2 gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid md:grid-cols-4">
-              {metrics.map((m) => (
-                <div
-                  key={m.label}
-                  className="bg-surface px-4 py-4"
-                >
-                  <div className="text-[18px] md:text-[20px] font-display font-semibold text-ink tracking-tight">
-                    {m.value}
-                  </div>
-                  <div className="text-[11px] font-mono uppercase tracking-wider text-ink-3 mt-0.5">
-                    {m.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="hidden max-w-[700px] grid-cols-1 gap-2 sm:grid sm:grid-cols-3">
-              {proofPoints.map((point) => {
-                const Icon = point.icon;
-                return (
-                  <div
-                    key={point.title}
-                    className="rounded-md border border-line bg-surface p-3.5 shadow-[0_1px_2px_rgba(16,18,34,0.05)]"
-                  >
-                    <Icon
-                      className="mb-2 h-4 w-4 text-brand-500"
-                      strokeWidth={1.7}
-                    />
-                    <div className="mb-1 text-[12px] font-medium text-ink">
-                      {point.title}
-                    </div>
-                    <div className="text-[11px] leading-[1.45] text-ink-3">
-                      {point.body}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
           </div>
 
-          <div className="min-w-0 flex justify-center lg:justify-end">
+          <div data-hero-visual className="flex min-w-0 flex-col items-center gap-4">
             <ProductShowcase />
+            <div className="flex w-full max-w-[720px] flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-[11px] font-mono uppercase tracking-wider text-ink-3 lg:max-w-none xl:max-w-[1000px]">
+              <span className="inline-flex items-center gap-1.5">
+                <span className="u-pulse h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                Live sample data
+              </span>
+              <span className="hidden sm:inline text-ink-3/80">
+                MedQuePMS · Vellroute · Vellbill · +4 more
+              </span>
+            </div>
           </div>
         </div>
       </motion.div>

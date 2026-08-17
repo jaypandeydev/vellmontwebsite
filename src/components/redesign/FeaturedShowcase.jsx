@@ -2,6 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { typography, products } from './tokens';
 import ProductScreenshotShowcase from './ProductScreenshotShowcase';
+import { CountUp } from './interactions';
+import Flag from './Flag';
 
 const flagship = products.find((p) => p.id === 'medquepms');
 
@@ -51,18 +53,13 @@ export default function FeaturedShowcase() {
         </div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-80px' }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="relative rounded-3xl bg-surface border border-line backdrop-blur-sm overflow-hidden"
+      <motion.div data-anim className="relative rounded-3xl bg-surface border border-line backdrop-blur-sm overflow-hidden"
       >
         {/* Inner glow */}
         <div className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-violet-500/20 via-fuchsia-500/10 to-transparent blur-3xl pointer-events-none" />
         <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-brand-500/15 to-transparent blur-3xl pointer-events-none" />
 
-        <div className="relative grid grid-cols-1 md:grid-cols-[1.05fr_1fr] gap-0">
+        <div className="relative grid grid-cols-1 md:grid-cols-[1fr_1.05fr] gap-0">
           {/* LEFT, product copy */}
           <div className="p-8 md:p-10 lg:p-12">
             <div className="flex items-center gap-2.5 mb-5">
@@ -77,8 +74,9 @@ export default function FeaturedShowcase() {
                 <div className="text-[20px] font-display font-medium text-ink tracking-tight leading-none">
                   MedQue<span className="text-teal-600 dark:text-teal-400">PMS</span>
                 </div>
-                <div className="text-[11px] font-mono text-ink-3 mt-1">
-                  AI Clinic OS · India
+                <div className="mt-1 flex items-center gap-1.5 font-mono text-[11px] text-ink-3">
+                  <span>AI Clinic OS ·</span>
+                  <Flag code="in" label="India" size="text-[12px]" />
                 </div>
               </div>
               <div className="ml-auto inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/12 ring-1 ring-emerald-500/30 text-emerald-700 dark:text-emerald-300 text-[10px] font-mono uppercase tracking-wider">
@@ -94,7 +92,7 @@ export default function FeaturedShowcase() {
             </p>
 
             <div className="flex flex-wrap gap-1.5 mb-7 max-w-[540px]">
-              {FEATURES.slice(0, 8).map((f) => (
+              {FEATURES.slice(0, 6).map((f) => (
                 <span
                   key={f}
                   className="text-[11px] px-2.5 py-1 rounded-md bg-surface ring-1 ring-line text-ink-2 font-mono"
@@ -108,7 +106,7 @@ export default function FeaturedShowcase() {
                 rel="noopener noreferrer"
                 className="text-[11px] px-2.5 py-1 rounded-md bg-brand-500/10 ring-1 ring-brand-500/25 text-brand-600 dark:text-brand-400 font-mono hover:bg-brand-500/20 transition-colors"
               >
-                +{FEATURES.length - 8} more
+                +{FEATURES.length - 6} more
               </a>
             </div>
 
@@ -117,7 +115,7 @@ export default function FeaturedShowcase() {
                 href="https://medquepms.vellmontservices.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group bg-brand-500 text-white px-5 py-3 rounded-lg text-[13px] font-medium flex items-center gap-2 hover:bg-brand-600 transition-colors shadow-[0_8px_24px_-6px_rgba(88,72,248,0.5)]"
+                className="u-press group bg-brand-500 text-white px-5 py-3 rounded-lg text-[13px] font-medium flex items-center gap-2 hover:bg-brand-600 transition-colors shadow-[0_8px_24px_-6px_rgba(88,72,248,0.5)]"
               >
                 <span>Visit MedQuePMS</span>
                 <span className="transition-transform group-hover:translate-x-0.5">↗</span>
@@ -130,37 +128,40 @@ export default function FeaturedShowcase() {
                 <span className="text-ink-3 transition-transform group-hover:translate-x-0.5">→</span>
               </a>
             </div>
+
+            {/* Outcomes sit with the pitch, not orphaned under the screenshot. */}
+            <div className="mt-8 border-t border-line pt-6">
+              <div className="mb-3 font-mono text-[11px] uppercase tracking-wider text-ink-3">
+                Measured across pilot clinics
+              </div>
+              <div className="grid grid-cols-3 gap-3">
+                {[
+                  { v: '37%', l: 'avg wait drop' },
+                  { v: '4.6×', l: 'missed-call recovery' },
+                  { v: '<60s', l: 'patient registration' },
+                ].map((m) => (
+                  <div key={m.l}>
+                    <div className="font-display text-[22px] md:text-[26px] font-semibold tracking-tight text-ink">
+                      <CountUp value={m.v} />
+                    </div>
+                    <div className="mt-0.5 text-[11px] font-mono leading-[1.4] text-ink-3">
+                      {m.l}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
-          {/* RIGHT, real product screenshots, auto-cycling */}
-          <div className="relative bg-gradient-to-br from-surface to-canvas p-6 md:p-8 lg:p-10 border-t md:border-t-0 md:border-l border-line">
+          {/* RIGHT, real product screenshots on a tinted panel so the imagery
+              reads as a screen rather than floating in white. */}
+          <div className="relative flex items-center border-t border-line bg-gradient-to-br from-canvas-2 via-surface-tint to-canvas-2 p-6 md:border-l md:border-t-0 md:p-8 lg:p-10 dark:from-[#0e1122] dark:via-[#12142a] dark:to-[#0e1122]">
             <ProductScreenshotShowcase
               desktops={flagship?.screenshots?.desktops || []}
               mobiles={flagship?.screenshots?.mobiles || []}
               urlbar="app.medquepms.com / Today's Clinic"
               interval={5500}
             />
-
-            {/* footer metrics, kept under the device frames */}
-            <div className="grid grid-cols-3 gap-2 mt-6 md:mt-8">
-              {[
-                { v: '37%', l: 'avg wait drop' },
-                { v: '4.6×', l: 'missed-call recovery' },
-                { v: '< 60s', l: 'patient registration' },
-              ].map((m) => (
-                <div
-                  key={m.l}
-                  className="rounded-md bg-surface ring-1 ring-line px-3 py-2.5"
-                >
-                  <div className="text-[14px] font-display font-medium text-ink tracking-tight">
-                    {m.v}
-                  </div>
-                  <div className="text-[10px] font-mono text-ink-3">
-                    {m.l}
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </motion.div>

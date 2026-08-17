@@ -188,36 +188,36 @@ function CaseStudyMockup({ product, aiSpec }) {
       href={`https://${product.domain}`}
       target="_blank"
       rel="noopener noreferrer"
-      className="group block overflow-hidden rounded-xl border border-line bg-surface shadow-[0_30px_90px_-45px_rgba(0,0,0,0.9)] transition-all hover:border-line-strong"
+      className="u-hover group block overflow-hidden rounded-xl border border-white/10 bg-[#0e1122] shadow-[0_40px_100px_-45px_rgba(20,18,60,0.5)] transition-all hover:border-white/20"
     >
-      <div className="flex items-center justify-between gap-3 border-b border-line bg-surface px-4 py-3">
+      <div className="flex items-center justify-between gap-3 border-b border-white/10 bg-white/[0.02] px-4 py-3">
         <div>
-          <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-ink-3">
+          <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-slate-400">
             Product preview
           </div>
-          <div className="mt-1 flex items-center gap-2 text-[12px] text-ink-2">
+          <div className="mt-1 flex items-center gap-2 text-[12px] text-slate-300">
             {product.domain}
-            <span className="rounded border border-line bg-surface px-1.5 py-[1px] text-[9px] font-mono uppercase tracking-wider text-ink-3">sample data</span>
+            <span className="rounded border border-white/10 bg-white/[0.04] px-1.5 py-[1px] text-[9px] font-mono uppercase tracking-wider text-slate-400">sample data</span>
           </div>
         </div>
         <ArrowUpRight
-          className="h-4 w-4 text-ink-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand-600 dark:group-hover:text-brand-400"
+          className="h-4 w-4 text-slate-400 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand-300 dark:group-hover:text-brand-400"
           strokeWidth={1.8}
         />
       </div>
 
       <div className="grid grid-cols-1 gap-3 p-3 sm:p-4 md:grid-cols-[1fr_190px]">
-        <div className="rounded-lg border border-line bg-surface p-4">
+        <div className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
           <div className="mb-5 flex items-start justify-between gap-4">
             <div>
-              <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-brand-600 dark:text-brand-400">
+              <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-brand-300">
                 {product.name}{product.suffix || ''} / {study.status}
               </div>
-              <div className="mt-2 max-w-[300px] text-[28px] font-medium leading-[1.05] tracking-[-0.02em] text-ink">
+              <div className="mt-2 max-w-[300px] text-[28px] font-medium leading-[1.05] tracking-[-0.02em] text-white">
                 {study.headline}
               </div>
             </div>
-            <div className="hidden rounded-md border border-brand-200/20 bg-brand-500/[0.06] px-2 py-1 text-[10px] font-mono uppercase tracking-wider text-brand-600 dark:text-brand-400 sm:block">
+            <div className="hidden rounded-md border border-brand-200/20 bg-brand-500/[0.06] px-2 py-1 text-[10px] font-mono uppercase tracking-wider text-brand-300 sm:block">
               {product.status || 'system'}
             </div>
           </div>
@@ -226,12 +226,12 @@ function CaseStudyMockup({ product, aiSpec }) {
             {study.metrics.map(([value, label]) => (
               <div
                 key={`${value}-${label}`}
-                className="rounded-md border border-line bg-surface px-3 py-2.5"
+                className="rounded-md border border-white/10 bg-white/[0.04] px-3 py-2.5"
               >
-                <div className="font-display text-[20px] font-medium text-ink">
+                <div className="font-display text-[20px] font-medium text-white">
                   {value}
                 </div>
-                <div className="mt-0.5 truncate text-[9px] font-mono uppercase tracking-wider text-ink-3">
+                <div className="mt-0.5 truncate text-[9px] font-mono uppercase tracking-wider text-slate-400">
                   {label}
                 </div>
               </div>
@@ -242,20 +242,20 @@ function CaseStudyMockup({ product, aiSpec }) {
             {study.workflow.map(([label, body], idx) => (
               <div
                 key={`${label}-${body}`}
-                className="grid grid-cols-[30px_1fr_auto] items-center gap-3 rounded-md border border-line bg-surface p-2.5"
+                className="grid grid-cols-[30px_1fr_auto] items-center gap-3 rounded-md border border-white/10 bg-white/[0.04] p-2.5"
               >
                 <div className="flex h-7 w-7 items-center justify-center rounded bg-brand-500/[0.08] ring-1 ring-brand-100/15">
-                  <Workflow className="h-3.5 w-3.5 text-brand-600 dark:text-brand-400" strokeWidth={1.8} />
+                  <Workflow className="h-3.5 w-3.5 text-brand-300" strokeWidth={1.8} />
                 </div>
                 <div className="min-w-0">
-                  <div className="truncate text-[12px] font-medium text-ink">
+                  <div className="truncate text-[12px] font-medium text-white">
                     {label}
                   </div>
-                  <div className="truncate text-[11px] text-ink-3">
+                  <div className="truncate text-[11px] text-slate-400">
                     {body}
                   </div>
                 </div>
-                <div className="text-[10px] font-mono text-ink-3">
+                <div className="text-[10px] font-mono text-slate-400">
                   0{idx + 1}
                 </div>
               </div>
@@ -264,27 +264,27 @@ function CaseStudyMockup({ product, aiSpec }) {
         </div>
 
         <div className="grid grid-cols-1 gap-3">
-          <div className="rounded-lg border border-line bg-surface p-3">
-            <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-3">
+          <div className="rounded-lg border border-white/10 bg-white/[0.04] p-3">
+            <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-slate-400">
               Intelligence
             </div>
             <div className="rounded-md border border-brand-100/15 bg-brand-500/[0.055] p-3">
-              <BrainCircuit className="mb-2 h-4 w-4 text-brand-600 dark:text-brand-400" strokeWidth={1.8} />
-              <div className="text-[12px] leading-[1.45] text-ink-2">
+              <BrainCircuit className="mb-2 h-4 w-4 text-brand-300" strokeWidth={1.8} />
+              <div className="text-[12px] leading-[1.45] text-slate-300">
                 {study.intelligence}
               </div>
             </div>
           </div>
 
-          <div className="rounded-lg border border-line bg-surface p-3">
-            <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-3">
+          <div className="rounded-lg border border-white/10 bg-white/[0.04] p-3">
+            <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-slate-400">
               Product fabric
             </div>
             <div className="grid grid-cols-2 gap-2">
               {study.fabric.slice(0, 4).map((item) => (
                 <div
                   key={item}
-                  className="rounded border border-line bg-black/10 px-2 py-1.5 text-[11px] text-ink-2"
+                  className="rounded border border-white/10 bg-white/[0.06] px-2 py-1.5 text-[11px] text-slate-300"
                 >
                   {item}
                 </div>
@@ -309,12 +309,7 @@ function ProductStrip({ product, idx }) {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      className={`relative grid grid-cols-1 lg:grid-cols-[1.08fr_0.92fr] gap-7 md:gap-10 lg:gap-16 items-center ${
+    <motion.div data-anim className={`relative grid grid-cols-1 lg:grid-cols-[1.08fr_0.92fr] gap-7 md:gap-10 lg:gap-16 items-center ${
         reverse ? 'md:[&>*:first-child]:order-2' : ''
       }`}
     >
@@ -405,7 +400,7 @@ function ProductStrip({ product, idx }) {
             href={`https://${product.domain}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="group bg-brand-500 text-white px-5 py-3 rounded-md text-[13px] font-medium flex items-center gap-2 hover:bg-brand-600 transition-colors"
+            className="u-press group bg-brand-500 text-white px-5 py-3 rounded-md text-[13px] font-medium flex items-center gap-2 hover:bg-brand-600 transition-colors"
           >
             <span>Visit {product.name}{product.suffix || ''}</span>
             <ArrowUpRight
@@ -464,7 +459,7 @@ export default function ProductsInDetail() {
         ].map(([title, body]) => (
           <div
             key={title}
-            className="rounded-lg border border-line bg-surface p-5"
+            className="u-hover rounded-lg border border-line bg-surface p-5"
           >
             <CheckCircle2 className="mb-3 h-5 w-5 text-emerald-700 dark:text-emerald-300" strokeWidth={1.7} />
             <div className="mb-1.5 text-[15px] font-medium text-ink">
@@ -477,9 +472,14 @@ export default function ProductsInDetail() {
         ))}
       </div>
 
-      <div className="space-y-20 md:space-y-28">
+      <div className="space-y-16 md:space-y-24">
         {withBanners.map((p, i) => (
-          <ProductStrip key={p.id} product={p} idx={i} />
+          <React.Fragment key={p.id}>
+            {i > 0 && (
+              <div className="h-px w-full bg-gradient-to-r from-transparent via-line-strong to-transparent" />
+            )}
+            <ProductStrip product={p} idx={i} />
+          </React.Fragment>
         ))}
       </div>
     </section>

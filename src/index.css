@@ -2,6 +2,174 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===== Global interaction + animation layer (reusable across components) ===== */
+@layer components {
+  /* Hover lift for any card/surface. Add class="u-hover" to the element. */
+  .u-hover {
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.28s ease, border-color 0.28s ease, background-color 0.2s ease;
+    will-change: transform;
+  }
+  .u-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 48px -28px rgba(16, 18, 40, 0.32);
+    border-color: var(--line-strong);
+  }
+  html.dark .u-hover:hover {
+    box-shadow: 0 24px 48px -24px rgba(0, 0, 0, 0.6);
+  }
+  /* Press feedback for buttons/links. */
+  .u-press {
+    transition: transform 0.18s ease, box-shadow 0.2s ease,
+      background-color 0.2s ease;
+  }
+  .u-press:hover {
+    transform: translateY(-2px);
+  }
+  .u-press:active {
+    transform: translateY(0);
+  }
+  /* Icon tile that reacts to its parent card's hover. */
+  .u-hover .u-tile {
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 0.28s ease;
+  }
+  .u-hover:hover .u-tile {
+    transform: scale(1.08) rotate(-3deg);
+  }
+  /* Cursor-following glow. Pair with the <Spotlight> component. */
+  .u-spotlight::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(
+      260px circle at var(--mx, 50%) var(--my, 50%),
+      rgba(88, 72, 248, 0.1),
+      transparent 65%
+    );
+  }
+  .u-spotlight:hover::before {
+    opacity: 1;
+  }
+  html.dark .u-spotlight::before {
+    background: radial-gradient(
+      260px circle at var(--mx, 50%) var(--my, 50%),
+      rgba(139, 132, 248, 0.16),
+      transparent 65%
+    );
+  }
+  .u-spotlight > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Underline sweep for links. */
+  .u-link {
+    position: relative;
+  }
+  .u-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 1.5px;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    background: currentColor;
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .u-link:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+/* Two identical groups, each carrying its own trailing gap, so -50% lands
+   exactly one group over: the loop is seamless with no hitch. */
+@keyframes u-spark {
+  0%   { transform: translate(-50%, -50%) scale(0.2); opacity: 0.55; }
+  70%  { opacity: 0.18; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+}
+/* Translate only. Scaling a soft shape forces the browser to re-paint it at a
+   new size on every single frame, which is one of the most expensive things a
+   page can ask for. Moving it is free: the layer is painted once and the GPU
+   just slides it around. */
+@keyframes u-orb-drift {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(3rem, -2rem, 0); }
+}
+@keyframes u-marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+@keyframes u-cycle {
+  from { transform: scaleX(0); transform-origin: left center; }
+  to   { transform: scaleX(1); transform-origin: left center; }
+}
+/* Same rule as the orbs: slide, never scale. A scaling gradient wash the size
+   of a whole section repaints an enormous area 60 times a second. */
+@keyframes u-drift {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  33%      { transform: translate3d(2%, -1.5%, 0); }
+  66%      { transform: translate3d(-1.5%, 1%, 0); }
+}
+@keyframes u-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes u-pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+.u-float { animation: u-float 6s ease-in-out infinite; }
+.u-drift { animation: u-drift 24s ease-in-out infinite; will-change: transform; }
+.u-marquee-track { animation: u-marquee 38s linear infinite; will-change: transform; }
+.u-marquee:hover .u-marquee-track { animation-play-state: paused; }
+.u-pulse { animation: u-pulse-glow 2.4s ease-in-out infinite; }
+.u-orb { animation: u-orb-drift 26s ease-in-out infinite; will-change: transform; }
+
+/* Click bloom. Appended to <body>, removes itself when the animation ends. */
+.u-spark {
+  position: fixed;
+  z-index: 70;
+  pointer-events: none;
+  width: 130px;
+  height: 130px;
+  margin: 0;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(88, 72, 248, 0.65);
+  animation: u-spark 620ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+html.dark .u-spark { border-color: rgba(139, 132, 248, 0.7); }
+
+@media (prefers-reduced-motion: reduce) {
+  .u-hover, .u-press, .u-tile, .u-link::after, .u-float, .u-pulse, .u-drift, .u-marquee-track, .u-orb, .u-spark {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+  .u-spotlight::before { display: none !important; }
+  html { scroll-behavior: auto !important; }
+}
+
+/* Smooth anchor jumps for in-page nav links. */
+html { scroll-behavior: smooth; }
+
+/* Accessible keyboard focus for all interactive elements. */
+@layer base {
+  :where(a, button, [role="button"], input, select, textarea, [tabindex]):focus-visible {
+    outline: 2px solid #5848f8;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
 /* ===== Vellmont light-first semantic tokens (light default, dark via .dark) ===== */
 :root {
   --bg: #ffffff;
@@ -11,7 +179,7 @@
   --surface-tint: #f4f3ff;
   --tp: #10121f;   /* text primary */
   --ts: #4b5162;   /* text secondary */
-  --tt: #8b90a1;   /* text tertiary */
+  --tt: #6b7180;   /* text tertiary (nudged darker for AA contrast) */
   --line: #e7e9f1;
   --line-strong: #d2d6e2;
   --accent: #f59e0b;
@@ -68,7 +236,11 @@ body {
   font-family: var(--font-sans);
   margin: 0;
   padding: 0;
+  /* `clip` still prevents sideways scroll but, unlike `hidden`, does NOT turn
+     this into a scroll container, so `position: sticky` keeps working for the
+     header. Falls back to hidden on older browsers. */
   overflow-x: hidden;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

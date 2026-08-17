@@ -182,12 +182,7 @@ export default function AIDemoBlock() {
 
   return (
     <section id="ai-flows" className="px-5 md:px-10 lg:px-20 py-8 md:py-12">
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-80px' }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="relative overflow-hidden rounded-xl border border-white/10 bg-[#0e1122] p-5 text-white shadow-[0_40px_100px_-45px_rgba(20,18,60,0.5)] md:p-7"
+      <motion.div data-anim className="relative overflow-hidden rounded-xl border border-white/10 bg-[#0e1122] p-5 text-white shadow-[0_40px_100px_-45px_rgba(20,18,60,0.5)] md:p-7"
       >
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-200/40 to-transparent" />
         <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-4">
