@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
+const CALENDLY_URL = 'https://calendly.com/finance-vellmontservices/';
+
 const links = [
-  { label: 'Portfolio', href: '/#products-detail' },
-  { label: 'AI Flows', href: '/#ai-flows' },
-  { label: 'Technology', href: '/#tech' },
-  { label: 'Security', href: '/#security' },
+  { label: 'Our products', href: '/#portfolio' },
+  { label: 'Services', href: '/#services' },
+  { label: 'How we work', href: '/#how-we-work' },
 ];
 
 export default function Nav() {
@@ -30,48 +31,54 @@ export default function Nav() {
   const close = () => setOpen(false);
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-white/[0.08] bg-[#05070d]/88 backdrop-blur-md">
-      <div className="px-5 md:px-10 lg:px-20 py-3.5 flex justify-between items-center text-[13px]">
-        <Link to="/" onClick={close} className="flex items-center gap-2.5 shrink-0">
+    <nav className="sticky top-0 z-50 bg-[#F5EFE7]/85 backdrop-blur-md border-b border-[rgba(30,26,61,0.06)]">
+      <div className="mx-auto max-w-[1320px] px-5 md:px-10 lg:px-14 py-4 flex items-center justify-between">
+        <Link
+          to="/"
+          onClick={close}
+          className="flex items-center gap-2.5 shrink-0"
+          aria-label="Vellmont Services home"
+        >
           <img
             src="https://res.cloudinary.com/dzdaksuzp/image/upload/v1750354259/Vellmont_final_logo_Png_isk7ol.png"
-            alt="Vellmont"
-            className="h-8 w-auto"
+            alt="Vellmont Services"
+            className="h-9 w-auto"
           />
-          <span className="font-display font-medium text-[14px] text-white whitespace-nowrap">
-            Vellmont
-            <span className="hidden sm:inline text-brand-100">Services</span>
+          <span className="hidden sm:inline font-display font-semibold text-[18px] text-[#1E1A3D] tracking-tight">
+            Vellmont<span className="text-[#5848F8]">.</span>
           </span>
         </Link>
 
-        <div className="flex items-center gap-1 md:gap-2 text-slate-400">
+        <div className="flex items-center gap-1 md:gap-2">
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden md:flex items-center gap-1 text-[14px] text-[#4B4762]">
             {links.map((l) => (
               <a
                 key={l.label}
                 href={l.href}
-                className="px-3 py-1.5 rounded-md hover:text-white hover:bg-white/[0.04] transition-colors"
+                className="px-3.5 py-2 rounded-full hover:text-[#1E1A3D] hover:bg-[rgba(30,26,61,0.05)] transition-colors"
               >
                 {l.label}
               </a>
             ))}
             <Link
               to="/contact"
-              className="px-3 py-1.5 rounded-md hover:text-white hover:bg-white/[0.04] transition-colors"
+              className="px-3.5 py-2 rounded-full hover:text-[#1E1A3D] hover:bg-[rgba(30,26,61,0.05)] transition-colors"
             >
               Contact
             </Link>
           </div>
 
-          {/* Primary CTA: now visible on mobile too */}
+          {/* Primary CTA — visible on mobile too, wired to Calendly */}
           <a
-            href="https://calendly.com/finance-vellmontservices/" target="_blank" rel="noopener noreferrer"
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={close}
-            className="ml-1 flex items-center gap-1.5 rounded-md bg-brand-500 px-3 py-1.5 text-[12.5px] font-medium text-white transition-colors hover:bg-brand-400 md:ml-3 md:px-3.5"
+            className="ml-1 md:ml-3 group inline-flex items-center gap-1.5 rounded-full bg-[#1E1A3D] text-white text-[13px] md:text-[13.5px] font-medium px-4 md:px-5 py-2.5 hover:bg-[#2A2452] transition-colors"
           >
             <span>Book a demo</span>
-            <span aria-hidden="true">→</span>
+            <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">→</span>
           </a>
 
           {/* Mobile menu toggle */}
@@ -81,7 +88,7 @@ export default function Nav() {
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
             aria-controls="mobile-menu"
-            className="md:hidden ml-1 inline-flex h-9 w-9 items-center justify-center rounded-md text-slate-300 hover:text-white hover:bg-white/[0.06] transition-colors"
+            className="md:hidden ml-1 inline-flex h-9 w-9 items-center justify-center rounded-full text-[#4B4762] hover:text-[#1E1A3D] hover:bg-[rgba(30,26,61,0.06)] transition-colors"
           >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -91,25 +98,24 @@ export default function Nav() {
       {/* Mobile menu panel */}
       {open && (
         <>
-          {/* backdrop */}
           <button
             type="button"
             aria-hidden="true"
             tabIndex={-1}
             onClick={close}
-            className="md:hidden fixed inset-0 top-[57px] z-40 bg-black/40"
+            className="md:hidden fixed inset-0 top-[65px] z-40 bg-[#1E1A3D]/25"
           />
           <div
             id="mobile-menu"
-            className="md:hidden absolute inset-x-0 top-full z-50 border-b border-white/[0.08] bg-[#05070d] shadow-2xl shadow-black/60"
+            className="md:hidden absolute inset-x-0 top-full z-50 border-b border-[rgba(30,26,61,0.08)] bg-[#F5EFE7] shadow-xl shadow-[#1E1A3D]/10"
           >
-            <div className="px-5 py-3 flex flex-col">
+            <div className="px-5 py-4 flex flex-col">
               {links.map((l) => (
                 <a
                   key={l.label}
                   href={l.href}
                   onClick={close}
-                  className="rounded-md px-3 py-3 text-[15px] text-slate-200 hover:text-white hover:bg-white/[0.05] transition-colors"
+                  className="rounded-md px-3 py-3 text-[15px] text-[#1E1A3D] hover:bg-[rgba(30,26,61,0.05)] transition-colors"
                 >
                   {l.label}
                 </a>
@@ -117,14 +123,16 @@ export default function Nav() {
               <Link
                 to="/contact"
                 onClick={close}
-                className="rounded-md px-3 py-3 text-[15px] text-slate-200 hover:text-white hover:bg-white/[0.05] transition-colors"
+                className="rounded-md px-3 py-3 text-[15px] text-[#1E1A3D] hover:bg-[rgba(30,26,61,0.05)] transition-colors"
               >
                 Contact
               </Link>
               <a
-                href="https://calendly.com/finance-vellmontservices/" target="_blank" rel="noopener noreferrer"
+                href={CALENDLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={close}
-                className="mt-2 flex items-center justify-center gap-1.5 rounded-md bg-brand-500 px-4 py-3 text-[15px] font-medium text-white transition-colors hover:bg-brand-400"
+                className="mt-2 flex items-center justify-center gap-1.5 rounded-full bg-[#1E1A3D] text-white text-[15px] font-medium px-5 py-3 hover:bg-[#2A2452] transition-colors"
               >
                 <span>Book a demo</span>
                 <span aria-hidden="true">→</span>

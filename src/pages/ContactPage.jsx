@@ -6,6 +6,8 @@ import Footer from '@/components/redesign/Footer';
 import Seo from '@/components/redesign/Seo';
 import { typography } from '@/components/redesign/tokens';
 
+const CALENDLY_URL = 'https://calendly.com/finance-vellmontservices/';
+
 const offices = [
   {
     company: 'VELLMONT IT SERVICES L.L.C',
@@ -41,23 +43,10 @@ const phones = [
 ];
 
 const cardBase =
-  'rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm transition-colors hover:bg-white/[0.05] hover:border-white/20';
+  'rounded-2xl bg-white border border-[rgba(30,26,61,0.1)] hover:border-[rgba(30,26,61,0.2)] transition-colors shadow-[0_1px_2px_rgba(30,26,61,0.04)]';
 
 const inputBase =
-  'bg-white/[0.04] border border-white/10 rounded-lg px-3 py-2.5 text-[14px] text-neutral-100 placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/50 transition-colors';
-
-function SectionLabel({ left, right }) {
-  return (
-    <div className="flex justify-between items-baseline mb-5">
-      <div className="font-mono text-[11px] uppercase tracking-wider text-neutral-500">
-        {left}
-      </div>
-      <div className="font-mono text-[11px] uppercase tracking-wider text-neutral-500">
-        {right}
-      </div>
-    </div>
-  );
-}
+  'w-full bg-[#F5EFE7] border border-[rgba(30,26,61,0.12)] rounded-lg px-3.5 py-2.5 text-[14px] text-[#1E1A3D] placeholder:text-[#8F8AA0] focus:outline-none focus:border-[#5848F8] focus:ring-2 focus:ring-[#5848F8]/15 transition-colors';
 
 const ContactPage = () => {
   const { toast } = useToast();
@@ -86,73 +75,63 @@ const ContactPage = () => {
   };
 
   return (
-    <main className="min-h-screen bg-[#050816] text-neutral-100 font-sans antialiased">
+    <main className="min-h-screen bg-[#F5EFE7] text-[#1E1A3D] font-sans antialiased">
       <Seo
-        title="Contact Vellmont Services — Hyderabad & Dubai offices"
-        description="Reach Vellmont Services for software builds, product partnerships, or support. Offices in Hyderabad (India) and Dubai (UAE). Email support@vellmontservices.com or call +91 7702216501 / +971 547594261 / +1 (813) 203-8044."
+        title="Contact Vellmont Services — Hyderabad · Dubai · USA"
+        description="Reach Vellmont Services for software builds, product partnerships, or support. Offices in Hyderabad (India), Dubai (UAE), and a US line. Email support@vellmontservices.com or call +91 7702216501 / +971 547594261 / +1 (813) 203-8044."
         canonical="https://vellmontservices.com/contact"
         image="https://res.cloudinary.com/dzdaksuzp/image/upload/v1750354259/Vellmont_final_logo_Png_isk7ol.png"
       />
       <Nav />
 
-      <section className="relative px-5 md:px-10 lg:px-20 pt-10 md:pt-14 pb-8 overflow-hidden">
-        {/* Atmospheric brand glow */}
-        <div className="absolute inset-0 -z-10 pointer-events-none">
-          <div className="absolute -top-32 -right-32 w-[680px] h-[680px] rounded-full bg-gradient-to-br from-indigo-600/20 via-violet-600/12 to-transparent blur-3xl" />
-          <div className="absolute top-1/3 -left-32 w-[420px] h-[420px] rounded-full bg-gradient-to-tr from-emerald-500/12 to-transparent blur-3xl" />
+      <section className="mx-auto max-w-[1220px] px-5 md:px-10 lg:px-14 pt-10 md:pt-16 pb-10">
+        <div className="flex items-center gap-2 mb-5">
+          <span className="w-6 h-px bg-[#5848F8]" />
+          <span className={typography.eyebrow}>Contact</span>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-        >
-          <div className="flex flex-wrap gap-x-6 gap-y-2 mb-6 font-mono text-[11px] uppercase tracking-wider text-neutral-400">
-            <span>CONTACT</span>
-            <span>DUBAI · HYDERABAD</span>
-            <span className="text-emerald-400 flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-              REPLIES WITHIN 1 BUSINESS DAY
-            </span>
-          </div>
-
-          <h1
-            className={`${typography.displayHeadline} max-w-[640px] mb-5 text-white`}
+        <h1 className={`${typography.sectionHeading} text-[#1E1A3D] max-w-[760px]`}>
+          Tell us what you&rsquo;re{' '}
+          <span className={typography.italicAccent}>building</span>
+          <span className="text-[#1E1A3D]">.</span>
+        </h1>
+        <p className={`${typography.bodyLg} mt-6 max-w-[620px]`}>
+          Send a real brief, a half-formed Notion doc, or a one-line idea. We read
+          every message and reply with either a real plan or an honest
+          &ldquo;we&rsquo;re not the right team.&rdquo;
+        </p>
+        <div className="mt-8">
+          <a
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-[#5848F8] text-white text-[14px] font-medium px-6 py-3.5 hover:bg-[#4736E4] transition-colors shadow-[0_10px_30px_-12px_rgba(88,72,248,0.55)]"
           >
-            Tell us what you're{' '}
-            <span className={`${typography.italicAccent}`}>
-              building
-            </span>
-            .
-          </h1>
-
-          <p className="text-[15px] leading-[1.6] text-neutral-400 max-w-[620px]">
-            Send a real brief, a half-formed Notion doc, or a one-line idea.
-            We read every message and reply with either a real plan or an honest
-            "we're not the right team."
-          </p>
-        </motion.div>
+            Book a demo <span aria-hidden="true">→</span>
+          </a>
+        </div>
       </section>
 
-      <section className="px-5 md:px-10 lg:px-20 pb-8">
-        <SectionLabel left="── OUR OFFICES ────────────" right="01/03 ──" />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <section className="mx-auto max-w-[1220px] px-5 md:px-10 lg:px-14 pb-6">
+        <div className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#8F8AA0] mb-4">
+          Our offices
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {offices.map((o) => (
             <motion.div
               key={o.company}
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.5 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.4 }}
               className={`${cardBase} p-6 md:p-7`}
             >
-              <div className="font-mono text-[10px] text-neutral-500 mb-2 uppercase tracking-wider">
+              <div className="font-mono text-[10px] text-[#8F8AA0] mb-2 uppercase tracking-[0.18em]">
                 {o.locationLabel}
               </div>
-              <div className="font-medium text-[17px] tracking-[-0.01em] mb-2 text-white">
+              <div className="font-display text-[19px] tracking-tight mb-2 text-[#1E1A3D]">
                 {o.company}
               </div>
-              <div className="text-[13px] text-neutral-400 leading-[1.6] space-y-0.5 mb-4">
+              <div className="text-[13.5px] text-[#4B4762] leading-[1.6] space-y-0.5 mb-4">
                 {o.lines.map((line) => (
                   <div key={line}>{line}</div>
                 ))}
@@ -161,26 +140,22 @@ const ContactPage = () => {
                 href={o.mapUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-mono text-[12px] text-indigo-300 underline underline-offset-4 hover:text-indigo-200 transition-colors"
+                className="text-[13px] font-medium text-[#5848F8] hover:text-[#3B2AD6] transition-colors inline-flex items-center gap-1.5"
               >
-                view on map →
+                view on map <span aria-hidden="true">→</span>
               </a>
             </motion.div>
           ))}
         </div>
       </section>
 
-      <section className="px-5 md:px-10 lg:px-20 pb-8">
-        <SectionLabel left="── REACH US ───────────────" right="02/03 ──" />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-30px' }}
-            transition={{ duration: 0.5 }}
-            className={`${cardBase} p-5`}
-          >
-            <div className="font-mono text-[10px] text-neutral-500 mb-2 uppercase tracking-wider">
+      <section className="mx-auto max-w-[1220px] px-5 md:px-10 lg:px-14 pb-6">
+        <div className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#8F8AA0] mb-4">
+          Reach us
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className={`${cardBase} p-5`}>
+            <div className="font-mono text-[10px] text-[#8F8AA0] mb-3 uppercase tracking-[0.18em]">
               Email
             </div>
             <div className="flex flex-col gap-2">
@@ -188,26 +163,18 @@ const ContactPage = () => {
                 <div key={e.addr}>
                   <a
                     href={`mailto:${e.addr}`}
-                    className="text-[14px] font-medium text-white hover:text-indigo-300 transition-colors block"
+                    className="text-[14px] font-medium text-[#1E1A3D] hover:text-[#5848F8] transition-colors block"
                   >
                     {e.addr}
                   </a>
-                  <div className="font-mono text-[11px] text-neutral-500">
-                    {e.label}
-                  </div>
+                  <div className="font-mono text-[11px] text-[#8F8AA0]">{e.label}</div>
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-30px' }}
-            transition={{ duration: 0.5, delay: 0.05 }}
-            className={`${cardBase} p-5`}
-          >
-            <div className="font-mono text-[10px] text-neutral-500 mb-2 uppercase tracking-wider">
+          <div className={`${cardBase} p-5`}>
+            <div className="font-mono text-[10px] text-[#8F8AA0] mb-3 uppercase tracking-[0.18em]">
               Phone
             </div>
             <div className="flex flex-col gap-2">
@@ -215,63 +182,49 @@ const ContactPage = () => {
                 <div key={p.number}>
                   <a
                     href={`tel:${p.number.replace(/[^\d+]/g, '')}`}
-                    className="text-[14px] font-medium text-white hover:text-indigo-300 transition-colors flex items-center gap-2"
+                    className="text-[14px] font-medium text-[#1E1A3D] hover:text-[#5848F8] transition-colors flex items-center gap-2"
                   >
                     <span className="text-[15px] leading-none" aria-hidden="true">{p.flag}</span>
                     <span>{p.number}</span>
                   </a>
-                  <div className="font-mono text-[11px] text-neutral-500">
-                    {p.label}
-                  </div>
+                  <div className="font-mono text-[11px] text-[#8F8AA0]">{p.label}</div>
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-30px' }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className={`${cardBase} p-5`}
-          >
-            <div className="font-mono text-[10px] text-neutral-500 mb-2 uppercase tracking-wider">
+          <div className={`${cardBase} p-5`}>
+            <div className="font-mono text-[10px] text-[#8F8AA0] mb-3 uppercase tracking-[0.18em]">
               Hours
             </div>
             <div className="flex flex-col gap-2">
               <div>
-                <div className="text-[14px] font-medium text-white">
-                  Mon – Fri
-                </div>
-                <div className="font-mono text-[11px] text-neutral-500">
-                  9 AM – 6 PM IST
-                </div>
+                <div className="text-[14px] font-medium text-[#1E1A3D]">Mon – Fri</div>
+                <div className="font-mono text-[11px] text-[#8F8AA0]">9 AM – 6 PM IST</div>
               </div>
               <div>
-                <div className="text-[14px] font-medium text-white">
-                  Sat – Sun
-                </div>
-                <div className="font-mono text-[11px] text-neutral-500">
-                  closed
-                </div>
+                <div className="text-[14px] font-medium text-[#1E1A3D]">Sat – Sun</div>
+                <div className="font-mono text-[11px] text-[#8F8AA0]">closed</div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      <section className="px-5 md:px-10 lg:px-20 pb-12">
-        <SectionLabel left="── SEND A MESSAGE ─────────" right="03/03 ──" />
+      <section className="mx-auto max-w-[1220px] px-5 md:px-10 lg:px-14 pb-16">
+        <div className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#8F8AA0] mb-4">
+          Send a message
+        </div>
         <motion.form
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.4 }}
           onSubmit={handleSubmit}
           className={`${cardBase} p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[820px]`}
         >
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="name" className="font-mono text-[10px] uppercase tracking-wider text-neutral-500">
+            <label htmlFor="name" className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#8F8AA0]">
               Name
             </label>
             <input
@@ -286,7 +239,7 @@ const ContactPage = () => {
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="email" className="font-mono text-[10px] uppercase tracking-wider text-neutral-500">
+            <label htmlFor="email" className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#8F8AA0]">
               Email
             </label>
             <input
@@ -301,7 +254,7 @@ const ContactPage = () => {
           </div>
 
           <div className="flex flex-col gap-1.5 md:col-span-2">
-            <label htmlFor="subject" className="font-mono text-[10px] uppercase tracking-wider text-neutral-500">
+            <label htmlFor="subject" className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#8F8AA0]">
               Subject
             </label>
             <input
@@ -316,7 +269,7 @@ const ContactPage = () => {
           </div>
 
           <div className="flex flex-col gap-1.5 md:col-span-2">
-            <label htmlFor="message" className="font-mono text-[10px] uppercase tracking-wider text-neutral-500">
+            <label htmlFor="message" className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#8F8AA0]">
               Message
             </label>
             <textarea
@@ -331,14 +284,14 @@ const ContactPage = () => {
           </div>
 
           <div className="md:col-span-2 flex flex-col md:flex-row md:items-center md:justify-between gap-3 pt-2">
-            <p className="text-[12px] text-neutral-500 font-mono">
+            <p className="text-[12px] text-[#8F8AA0] font-mono">
               we read every message · reply within 1 business day
             </p>
             <button
               type="submit"
-              className="bg-gradient-to-r from-indigo-500 to-violet-600 text-white px-5 py-3 rounded-lg text-[13px] font-medium hover:from-indigo-400 hover:to-violet-500 transition-colors whitespace-nowrap shadow-[0_8px_24px_-6px_rgba(99,102,241,0.55)]"
+              className="inline-flex items-center gap-2 rounded-full bg-[#5848F8] text-white text-[14px] font-medium px-5 py-3 hover:bg-[#4736E4] transition-colors whitespace-nowrap shadow-[0_10px_30px_-12px_rgba(88,72,248,0.55)]"
             >
-              Send message →
+              Send message <span aria-hidden="true">→</span>
             </button>
           </div>
         </motion.form>

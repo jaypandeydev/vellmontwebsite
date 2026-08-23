@@ -10,10 +10,10 @@ const LAST_UPDATED = 'May 2026';
 function SectionLabel({ left, right }) {
   return (
     <div className="flex justify-between items-baseline mb-4">
-      <div className="font-mono text-[11px] uppercase tracking-wider text-neutral-500">
+      <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#8F8AA0]">
         {left}
       </div>
-      <div className="font-mono text-[11px] uppercase tracking-wider text-neutral-500">
+      <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#8F8AA0]">
         {right}
       </div>
     </div>
@@ -31,19 +31,21 @@ function Section({ id, label, count, title, children }) {
       className="px-5 md:px-10 lg:px-20 pb-8"
     >
       <SectionLabel left={label} right={count} />
-      <h2 className={`${typography.sectionHeading} mb-3 text-white`}>
+      <h2 className={`${typography.sectionHeading} mb-3 text-[#1E1A3D]`}>
         {title}
       </h2>
-      <div className="max-w-[760px] text-[14px] leading-[1.7] text-neutral-300 space-y-3">
+      <div className="max-w-[760px] text-[14px] leading-[1.7] text-[#4B4762] space-y-3">
         {children}
       </div>
     </motion.section>
   );
 }
 
+const linkClass = 'underline underline-offset-4 text-[#5848F8] hover:text-[#3B2AD6] transition-colors';
+
 const PrivacyPolicyPage = () => {
   return (
-    <main className="min-h-screen bg-[#050816] text-neutral-100 font-sans antialiased">
+    <main className="min-h-screen bg-[#F5EFE7] text-[#1E1A3D] font-sans antialiased">
       <Seo
         title="Privacy Policy — Vellmont Services"
         description="How Vellmont Services collects, uses, and protects information from visitors and customers across our website and products."
@@ -53,18 +55,16 @@ const PrivacyPolicyPage = () => {
       <Nav />
 
       <section className="px-5 md:px-10 lg:px-20 pt-8 md:pt-12 pb-6">
-        <div className="flex flex-wrap gap-x-6 gap-y-2 mb-5 font-mono text-[11px] uppercase tracking-wider text-neutral-400">
+        <div className="flex flex-wrap gap-x-6 gap-y-2 mb-5 font-mono text-[11px] uppercase tracking-[0.18em] text-[#6B667E]">
           <span>PRIVACY POLICY</span>
           <span>LAST UPDATED · {LAST_UPDATED}</span>
         </div>
-        <h1 className={`${typography.displayHeadline} max-w-[640px] mb-5 text-white`}>
+        <h1 className={`${typography.displayHeadline} max-w-[640px] mb-5 text-[#1E1A3D]`}>
           How we handle your{' '}
-          <span className={`${typography.italicAccent}`}>
-            data
-          </span>
-          .
+          <span className={typography.italicAccent}>data</span>
+          <span className="text-[#1E1A3D]">.</span>
         </h1>
-        <p className="text-[15px] leading-[1.6] text-neutral-400 max-w-[680px]">
+        <p className="text-[15px] leading-[1.6] text-[#4B4762] max-w-[680px]">
           This policy explains what information Vellmont Services collects, how
           we use it, who we share it with, and what control you have over it.
           It applies to vellmontservices.com and the products listed on the
@@ -77,7 +77,7 @@ const PrivacyPolicyPage = () => {
           Vellmont Services is operated by <strong>Vellmont Services OPC PVT
           Ltd</strong> (registered in India) and <strong>VELLMONT IT SERVICES
           L.L.C</strong> (registered in the UAE). When this policy refers to
-          "we", "us", or "our", it refers to both entities collectively.
+          &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;, it refers to both entities collectively.
           Contact details are at the bottom of this page.
         </p>
       </Section>
@@ -118,9 +118,10 @@ const PrivacyPolicyPage = () => {
           cookies or log requests under their own terms:
         </p>
         <ul className="list-disc pl-5 space-y-1.5">
-          <li>Google Fonts — for typography (Inter, Instrument Serif, JetBrains Mono).</li>
+          <li>Google Fonts — for typography (Fraunces, Inter, JetBrains Mono).</li>
           <li>Cloudinary — for hosting our logo and images.</li>
           <li>Caddy / our VPS host — for serving the site.</li>
+          <li>Calendly — when you book a demo through our site.</li>
         </ul>
         <p>
           We do not sell your personal information to third parties.
@@ -139,7 +140,7 @@ const PrivacyPolicyPage = () => {
 
       <Section id="rights" label="── 06 · YOUR RIGHTS ───────" count="06/08 ──" title="Your rights">
         <p>
-          Subject to applicable law (including India's Digital Personal Data
+          Subject to applicable law (including India&rsquo;s Digital Personal Data
           Protection Act and the UAE PDPL, and where relevant the EU GDPR),
           you have the right to:
         </p>
@@ -152,7 +153,7 @@ const PrivacyPolicyPage = () => {
         </ul>
         <p>
           To exercise any of these rights, email{' '}
-          <a href="mailto:support@vellmontservices.com" className="underline underline-offset-4 text-indigo-300 hover:text-indigo-200 transition-colors">support@vellmontservices.com</a>.
+          <a href="mailto:support@vellmontservices.com" className={linkClass}>support@vellmontservices.com</a>.
         </p>
       </Section>
 
@@ -167,7 +168,7 @@ const PrivacyPolicyPage = () => {
 
       <Section id="changes-and-contact" label="── 08 · CHANGES & CONTACT ─" count="08/08 ──" title="Changes to this policy & contact">
         <p>
-          We may update this policy from time to time. The "Last updated"
+          We may update this policy from time to time. The &ldquo;Last updated&rdquo;
           date at the top of the page reflects the most recent revision.
         </p>
         <p>
@@ -176,7 +177,7 @@ const PrivacyPolicyPage = () => {
         <ul className="list-disc pl-5 space-y-1">
           <li>
             Email:{' '}
-            <a href="mailto:support@vellmontservices.com" className="underline underline-offset-4 text-indigo-300 hover:text-indigo-200 transition-colors">support@vellmontservices.com</a>
+            <a href="mailto:support@vellmontservices.com" className={linkClass}>support@vellmontservices.com</a>
           </li>
           <li>India office: WeWork Rajapushpa Summit, Financial District, Hyderabad, Telangana 500032</li>
           <li>UAE office: No. 3001-586, Artco Marlin Investment LLC, Al Muraqqabat, Deira, Dubai</li>

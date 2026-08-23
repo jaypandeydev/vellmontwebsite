@@ -2,6 +2,40 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Linkedin, Youtube, Twitter } from 'lucide-react';
 
+const CALENDLY_URL = 'https://calendly.com/finance-vellmontservices/';
+
+const cols = [
+  {
+    heading: 'Products',
+    links: [
+      { label: 'MedQuePMS', href: 'https://medquepms.vellmontservices.com', ext: true },
+      { label: 'Vellroute', href: 'https://vellroute.com', ext: true },
+      { label: 'Vedjyotix', href: 'https://vedjyotix.com', ext: true },
+      { label: 'InviteSync', href: 'https://invitesync.com', ext: true },
+      { label: 'Vellbill', href: 'https://vellbill.com', ext: true },
+      { label: 'Tutora', href: 'https://tutorra.vellmontservices.com', ext: true },
+      { label: 'Vellpass', href: 'https://vellpass.vellmontservices.com', ext: true },
+    ],
+  },
+  {
+    heading: 'Company',
+    links: [
+      { label: 'Our products', href: '/#portfolio' },
+      { label: 'Services', href: '/#services' },
+      { label: 'How we work', href: '/#how-we-work' },
+      { label: 'Book a demo', href: CALENDLY_URL, ext: true },
+      { label: 'Contact', to: '/contact' },
+    ],
+  },
+  {
+    heading: 'Legal',
+    links: [
+      { label: 'Privacy Policy', to: '/privacy-policy' },
+      { label: 'Terms of Service', to: '/terms' },
+    ],
+  },
+];
+
 const socials = [
   {
     label: 'LinkedIn',
@@ -30,88 +64,57 @@ const socials = [
   { label: 'X', href: null, icon: Twitter, live: false },
 ];
 
-const cols = [
-  {
-    heading: 'Products',
-    links: [
-      { label: 'MedQuePMS', href: 'https://medquepms.vellmontservices.com', ext: true },
-      { label: 'Vellroute', href: 'https://vellroute.com', ext: true },
-      { label: 'InviteSync', href: 'https://invitesync.com', ext: true },
-      { label: 'Vedjyotix', href: 'https://vedjyotix.com', ext: true },
-      { label: 'Vellbill', href: 'https://vellbill.com', ext: true },
-      { label: 'Tutora', href: 'https://tutorra.vellmontservices.com', ext: true },
-      { label: 'Vellpass', href: 'https://vellpass.vellmontservices.com', ext: true },
-    ],
-  },
-  {
-    heading: 'Company',
-    links: [
-      { label: 'About', href: '/#thesis' },
-      { label: 'Portfolio', href: '/#products-detail' },
-      { label: 'AI Flows', href: '/#ai-flows' },
-      { label: 'Contact', to: '/contact' },
-    ],
-  },
-  {
-    heading: 'Legal',
-    links: [
-      { label: 'Privacy Policy', to: '/privacy-policy' },
-      { label: 'Terms of Service', to: '/terms' },
-      { label: 'Security', href: '/#security' },
-    ],
-  },
-];
-
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-white/[0.08] mt-12">
-      <div className="absolute inset-0 -z-10 pointer-events-none">
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      </div>
-
-      <div className="px-5 md:px-10 lg:px-20 py-14">
+    <footer className="border-t border-[rgba(30,26,61,0.1)] bg-[#F5EFE7]">
+      <div className="mx-auto max-w-[1320px] px-5 md:px-10 lg:px-14 py-14 md:py-16">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
           {/* Brand col */}
           <div className="col-span-2">
-            <Link to="/" className="inline-flex items-center gap-2.5 mb-4">
+            <Link to="/" className="inline-flex items-center gap-2.5 mb-4" aria-label="Vellmont Services home">
               <img
                 src="https://res.cloudinary.com/dzdaksuzp/image/upload/v1750354259/Vellmont_final_logo_Png_isk7ol.png"
-                alt="Vellmont"
-                className="h-8 w-auto"
+                alt="Vellmont Services"
+                className="h-9 w-auto"
               />
-              <span className="font-display font-medium text-[15px] text-white">
+              <span className="font-display font-semibold text-[17px] text-[#1E1A3D] tracking-tight">
                 Vellmont Services
               </span>
             </Link>
-            <p className="text-[13px] text-slate-400 leading-[1.6] max-w-[320px] mb-5">
-              An AI-powered SaaS company building enterprise software across
-              healthcare, logistics, finance, business automation and consumer
-              AI. Hyderabad · Dubai.
+            <p className="text-[13px] leading-[1.55] text-[#4B4762] max-w-[320px] mb-6">
+              Focused, production-ready software for the people keeping healthcare,
+              travel, finance, education, and everyday business moving.
             </p>
-            <div className="flex flex-wrap gap-2 text-[11px] font-mono text-slate-500">
-              <span className="px-2 py-1 bg-white/[0.04] ring-1 ring-white/[0.08] rounded-md">
+
+            {/* Region + status pills */}
+            <div className="flex flex-wrap gap-2 text-[11px] font-mono text-[#6B667E] mb-6">
+              <span className="px-2 py-1 rounded-md border border-[rgba(30,26,61,0.1)]">
                 India
               </span>
-              <span className="px-2 py-1 bg-white/[0.04] ring-1 ring-white/[0.08] rounded-md">
+              <span className="px-2 py-1 rounded-md border border-[rgba(30,26,61,0.1)]">
                 UAE
               </span>
-              <span className="px-2 py-1 bg-white/[0.04] ring-1 ring-white/[0.08] rounded-md text-brand-100">
+              <span className="px-2 py-1 rounded-md border border-[rgba(30,26,61,0.1)]">
+                USA
+              </span>
+              <span className="px-2 py-1 rounded-md border border-[#3B7A4E]/30 bg-[#D8E8DA] text-[#1F3B26] inline-flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#3B7A4E]" />
                 Taking new projects
               </span>
             </div>
 
             {/* Social */}
-            <div className="mt-5">
-              <div className="text-[11px] font-mono uppercase tracking-wider text-slate-500 mb-3">
+            <div>
+              <div className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#8F8AA0] mb-3">
                 Follow us
               </div>
               <div className="flex items-center gap-2">
                 {socials.map((s) => {
                   const Icon = s.icon;
                   const base =
-                    'w-9 h-9 rounded-md ring-1 flex items-center justify-center transition-colors';
+                    'w-9 h-9 rounded-full grid place-items-center border transition-colors';
                   if (s.live) {
                     return (
                       <a
@@ -121,7 +124,7 @@ export default function Footer() {
                         rel="noopener noreferrer"
                         aria-label={s.label}
                         title={s.label}
-                        className={`${base} bg-white/[0.04] ring-white/[0.08] text-slate-300 hover:text-white hover:bg-white/[0.08] hover:ring-white/20`}
+                        className={`${base} bg-white border-[rgba(30,26,61,0.12)] text-[#4B4762] hover:text-[#1E1A3D] hover:border-[rgba(30,26,61,0.28)]`}
                       >
                         <Icon className="w-4 h-4" strokeWidth={1.6} />
                       </a>
@@ -132,22 +135,19 @@ export default function Footer() {
                       key={s.label}
                       aria-label={`${s.label} — coming soon`}
                       title={`${s.label} — coming soon`}
-                      className={`${base} bg-white/[0.02] ring-white/[0.05] text-slate-600 cursor-not-allowed`}
+                      className={`${base} bg-transparent border-[rgba(30,26,61,0.08)] text-[#B7B4C2] cursor-not-allowed`}
                     >
                       <Icon className="w-4 h-4" strokeWidth={1.6} />
                     </span>
                   );
                 })}
               </div>
-              <div className="text-[11px] font-mono text-slate-500 mt-2">
-                X coming soon
-              </div>
             </div>
           </div>
 
           {cols.map((col) => (
             <div key={col.heading}>
-              <div className="text-[11px] font-mono uppercase tracking-wider text-slate-500 mb-4">
+              <div className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#8F8AA0] mb-4">
                 {col.heading}
               </div>
               <ul className="space-y-2.5">
@@ -156,7 +156,7 @@ export default function Footer() {
                     {l.to ? (
                       <Link
                         to={l.to}
-                        className="text-[13px] text-slate-300 hover:text-white transition-colors"
+                        className="text-[13.5px] text-[#4B4762] hover:text-[#1E1A3D] transition-colors"
                       >
                         {l.label}
                       </Link>
@@ -165,7 +165,7 @@ export default function Footer() {
                         href={l.href}
                         target={l.ext ? '_blank' : undefined}
                         rel={l.ext ? 'noopener noreferrer' : undefined}
-                        className="text-[13px] text-slate-300 hover:text-white transition-colors"
+                        className="text-[13.5px] text-[#4B4762] hover:text-[#1E1A3D] transition-colors"
                       >
                         {l.label}
                       </a>
@@ -177,12 +177,13 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 pt-6 border-t border-white/[0.06] text-[12px] text-slate-500">
-          <div className="font-mono">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 pt-6 border-t border-[rgba(30,26,61,0.08)] text-[12px] text-[#8F8AA0]">
+          <div>
             © {year} Vellmont Services OPC PVT Ltd · VELLMONT IT SERVICES L.L.C
           </div>
-          <div className="font-mono">
-            Built in Hyderabad + Dubai · Bootstrapped
+          <div className="flex items-center gap-4">
+            <span>Independent · Remote-first</span>
+            <span className="hidden md:inline text-[#B7B4C2]">Focused software for real operators.</span>
           </div>
         </div>
       </div>

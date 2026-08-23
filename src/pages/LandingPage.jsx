@@ -1,35 +1,31 @@
 import React from 'react';
 import Nav from '@/components/redesign/Nav';
 import Hero from '@/components/redesign/Hero';
-import AIDemoBlock from '@/components/redesign/AIDemoBlock';
-import ProductsInDetail from '@/components/redesign/ProductsInDetail';
-import { Thesis, Process, Endgame } from '@/components/redesign/Sections';
+import Products from '@/components/redesign/Products';
 import {
-  TechStack,
-  Security,
-  WhyUs,
-} from '@/components/redesign/MoreSections';
+  Thesis,
+  Services,
+  WhyVellmont,
+  Endgame,
+} from '@/components/redesign/Sections';
 import Footer from '@/components/redesign/Footer';
 import Seo from '@/components/redesign/Seo';
 
 const LandingPage = () => {
   return (
-    <main className="min-h-screen bg-[#05070d] text-neutral-100 font-sans antialiased">
+    <main className="min-h-screen bg-[#F5EFE7] text-[#1E1A3D] font-sans antialiased">
       <Seo
-        title="Vellmont Services — AI Product Lab For Vertical SaaS"
-        description="Vellmont Services is an AI-powered SaaS company building enterprise software across healthcare, logistics, finance, business automation and consumer AI."
+        title="Vellmont Services — Software for real work"
+        description="Vellmont Services is a focused product studio building production-ready software for healthcare, travel, finance, education, and everyday business — MedQuePMS, Vellroute, Vedjyotix, InviteSync, Vellbill, Tutora, and Vellpass. Book a demo to talk through a project."
         canonical="https://vellmontservices.com/"
         image="https://res.cloudinary.com/dzdaksuzp/image/upload/v1750354259/Vellmont_final_logo_Png_isk7ol.png"
       />
       <Nav />
       <Hero />
-      <ProductsInDetail />
-      <AIDemoBlock />
       <Thesis />
-      <TechStack />
-      <Security />
-      <Process />
-      <WhyUs />
+      <Products />
+      <Services />
+      <WhyVellmont />
       <Endgame />
       <Footer />
     </main>

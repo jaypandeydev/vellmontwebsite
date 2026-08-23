@@ -10,10 +10,10 @@ const LAST_UPDATED = 'May 2026';
 function SectionLabel({ left, right }) {
   return (
     <div className="flex justify-between items-baseline mb-4">
-      <div className="font-mono text-[11px] uppercase tracking-wider text-neutral-500">
+      <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#8F8AA0]">
         {left}
       </div>
-      <div className="font-mono text-[11px] uppercase tracking-wider text-neutral-500">
+      <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#8F8AA0]">
         {right}
       </div>
     </div>
@@ -31,19 +31,21 @@ function Section({ id, label, count, title, children }) {
       className="px-5 md:px-10 lg:px-20 pb-8"
     >
       <SectionLabel left={label} right={count} />
-      <h2 className={`${typography.sectionHeading} mb-3 text-white`}>
+      <h2 className={`${typography.sectionHeading} mb-3 text-[#1E1A3D]`}>
         {title}
       </h2>
-      <div className="max-w-[760px] text-[14px] leading-[1.7] text-neutral-300 space-y-3">
+      <div className="max-w-[760px] text-[14px] leading-[1.7] text-[#4B4762] space-y-3">
         {children}
       </div>
     </motion.section>
   );
 }
 
+const linkClass = 'underline underline-offset-4 text-[#5848F8] hover:text-[#3B2AD6] transition-colors';
+
 const TermsPage = () => {
   return (
-    <main className="min-h-screen bg-[#050816] text-neutral-100 font-sans antialiased">
+    <main className="min-h-screen bg-[#F5EFE7] text-[#1E1A3D] font-sans antialiased">
       <Seo
         title="Terms of Service — Vellmont Services"
         description="The terms that govern your use of vellmontservices.com and the products and services Vellmont Services offers."
@@ -53,30 +55,28 @@ const TermsPage = () => {
       <Nav />
 
       <section className="px-5 md:px-10 lg:px-20 pt-8 md:pt-12 pb-6">
-        <div className="flex flex-wrap gap-x-6 gap-y-2 mb-5 font-mono text-[11px] uppercase tracking-wider text-neutral-400">
+        <div className="flex flex-wrap gap-x-6 gap-y-2 mb-5 font-mono text-[11px] uppercase tracking-[0.18em] text-[#6B667E]">
           <span>TERMS OF SERVICE</span>
           <span>LAST UPDATED · {LAST_UPDATED}</span>
         </div>
-        <h1 className={`${typography.displayHeadline} max-w-[640px] mb-5 text-white`}>
+        <h1 className={`${typography.displayHeadline} max-w-[640px] mb-5 text-[#1E1A3D]`}>
           The rules of the{' '}
-          <span className={`${typography.italicAccent}`}>
-            road
-          </span>
-          .
+          <span className={typography.italicAccent}>road</span>
+          <span className="text-[#1E1A3D]">.</span>
         </h1>
-        <p className="text-[15px] leading-[1.6] text-neutral-400 max-w-[680px]">
+        <p className="text-[15px] leading-[1.6] text-[#4B4762] max-w-[680px]">
           By using vellmontservices.com or any Vellmont Services product, you
-          agree to these terms. Please read them — they're meant to be plain
+          agree to these terms. Please read them &mdash; they&rsquo;re meant to be plain
           English, not lawyer-speak.
         </p>
       </section>
 
       <Section id="acceptance" label="── 01 · ACCEPTANCE ────────" count="01/08 ──" title="Acceptance of terms">
         <p>
-          These Terms of Service ("Terms") form a legal agreement between you
+          These Terms of Service (&ldquo;Terms&rdquo;) form a legal agreement between you
           and <strong>Vellmont Services OPC PVT Ltd</strong> (India) and{' '}
           <strong>VELLMONT IT SERVICES L.L.C</strong> (UAE) (together,
-          "Vellmont", "we", "us"). By accessing or using our website or
+          &ldquo;Vellmont&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;). By accessing or using our website or
           products you accept these Terms; if you do not agree, do not use
           the site or products.
         </p>
@@ -106,8 +106,8 @@ const TermsPage = () => {
 
       <Section id="ip" label="── 04 · INTELLECTUAL PROP ─" count="04/08 ──" title="Intellectual property">
         <p>
-          All content on this site — including the Vellmont name and logo,
-          product names, copy, and design — is owned by Vellmont or its
+          All content on this site &mdash; including the Vellmont name and logo,
+          product names, copy, and design &mdash; is owned by Vellmont or its
           licensors and is protected by intellectual-property law. You may
           not copy, reproduce, or create derivative works without written
           permission, except for normal browsing and personal reference.
@@ -120,8 +120,8 @@ const TermsPage = () => {
 
       <Section id="disclaimer" label="── 05 · DISCLAIMER ────────" count="05/08 ──" title="Disclaimer of warranties">
         <p>
-          The site and our services are provided <strong>"as is"</strong> and{' '}
-          <strong>"as available"</strong>, without warranty of any kind,
+          The site and our services are provided <strong>&ldquo;as is&rdquo;</strong> and{' '}
+          <strong>&ldquo;as available&rdquo;</strong>, without warranty of any kind,
           express or implied, including warranties of merchantability,
           fitness for a particular purpose, or non-infringement.
         </p>
@@ -157,7 +157,7 @@ const TermsPage = () => {
 
       <Section id="changes-and-contact" label="── 08 · CHANGES & CONTACT ─" count="08/08 ──" title="Changes to these terms & contact">
         <p>
-          We may update these Terms from time to time. The "Last updated"
+          We may update these Terms from time to time. The &ldquo;Last updated&rdquo;
           date at the top of this page reflects the most recent revision.
           Continued use of the site or services after a change means you
           accept the revised Terms.
@@ -168,7 +168,7 @@ const TermsPage = () => {
         <ul className="list-disc pl-5 space-y-1">
           <li>
             Email:{' '}
-            <a href="mailto:support@vellmontservices.com" className="underline underline-offset-4 text-indigo-300 hover:text-indigo-200 transition-colors">support@vellmontservices.com</a>
+            <a href="mailto:support@vellmontservices.com" className={linkClass}>support@vellmontservices.com</a>
           </li>
           <li>India office: WeWork Rajapushpa Summit, Financial District, Hyderabad, Telangana 500032</li>
           <li>UAE office: No. 3001-586, Artco Marlin Investment LLC, Al Muraqqabat, Deira, Dubai</li>
