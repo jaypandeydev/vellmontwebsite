@@ -177,7 +177,41 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 pt-6 border-t border-[rgba(30,26,61,0.08)] text-[12px] text-[#8F8AA0]">
+        {/* Registered-entity strip — GST / CIN for India, Corporate Tax / License for UAE */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-[rgba(30,26,61,0.08)] text-[12px] text-[#4B4762]">
+          <div>
+            <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#8F8AA0] mb-1.5">
+              🇮🇳 Vellmont Services OPC PVT Ltd — India
+            </div>
+            <div className="flex flex-wrap gap-x-4 gap-y-1">
+              <span>
+                <span className="text-[#8F8AA0]">CIN</span>{' '}
+                <span className="font-mono text-[#1E1A3D]">U62099TS2025OPC199523</span>
+              </span>
+              <span>
+                <span className="text-[#8F8AA0]">GSTIN</span>{' '}
+                <span className="font-mono text-[#1E1A3D]">36AALCV1337P1ZQ</span>
+              </span>
+            </div>
+          </div>
+          <div className="md:text-right">
+            <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#8F8AA0] mb-1.5">
+              🇦🇪 VELLMONT IT SERVICES L.L.C — Dubai, UAE
+            </div>
+            <div className="flex flex-wrap gap-x-4 gap-y-1 md:justify-end">
+              <span>
+                <span className="text-[#8F8AA0]">License</span>{' '}
+                <span className="font-mono text-[#1E1A3D]">1582679</span>
+              </span>
+              <span>
+                <span className="text-[#8F8AA0]">Corporate Tax</span>{' '}
+                <span className="font-mono text-[#1E1A3D]">105383947600001</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 pt-4 mt-4 border-t border-[rgba(30,26,61,0.08)] text-[12px] text-[#8F8AA0]">
           <div>
             © {year} Vellmont Services OPC PVT Ltd · VELLMONT IT SERVICES L.L.C
           </div>
