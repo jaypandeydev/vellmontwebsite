@@ -40,6 +40,11 @@ export function loadConfig(env = process.env) {
     notifyRetry: {
       maxAttempts: Number(env.NOTIFY_MAX_ATTEMPTS || 5),
       sweepIntervalMinutes: Number(env.NOTIFY_SWEEP_MINUTES || 10),
+      // Never-attempted rows are only swept once older than this, so the
+      // sweeper does not race the request handler's own send.
+      graceSeconds: Number(env.NOTIFY_GRACE_SECONDS || 120),
+      // A send claim older than this is considered abandoned (process died).
+      claimSeconds: Number(env.NOTIFY_CLAIM_SECONDS || 300),
     },
     dbConnectTimeoutMs: Number(env.DB_CONNECT_TIMEOUT_MS || 5000),
     dbQueryTimeoutMs: Number(env.DB_QUERY_TIMEOUT_MS || 15000),

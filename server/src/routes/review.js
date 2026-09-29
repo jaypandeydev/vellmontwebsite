@@ -198,7 +198,7 @@ export function reviewRouter({ cfg, pool, cvStore, mailer }) {
     if (!app) return res.status(404).type('html').send(errorPage({ user: req.session.u, status: 404, message: 'Application not found.' }));
     if (!mailer.enabled) return res.status(400).type('html').send(errorPage({ user: req.session.u, status: 400, message: 'Email notifications are not configured on this server.' }));
     const cv = cfg.notifyAttachCv ? await cvStore.get(app) : null;
-    const r = await attemptNotification({ pool, mailer, cfg, app, cvBuffer: cv });
+    const r = await attemptNotification({ pool, mailer, cfg, app, cvBuffer: cv, force: true });
     log.info('review.notify_resend', { applicationId: app.id, user: req.session.u, sent: r.sent });
     res.redirect(303, `${COOKIE_PATH}/applications/${app.id}?notified=${r.sent ? '1' : '0'}`);
   }));

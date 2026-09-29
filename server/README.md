@@ -78,15 +78,22 @@ application. Delivery state is stored on the row (`notified_at`,
 application's detail page, so failures are observable without logging
 applicant details (logs carry the application id and an error code only).
 
-Retry: a sweeper re-sends failed notifications every `NOTIFY_SWEEP_MINUTES`
-(default 10) until `NOTIFY_MAX_ATTEMPTS` (default 5), for applications under
-7 days old, and each detail page has a **Send now / Send again** button.
+Retry: a sweeper runs 15 s after boot and then every `NOTIFY_SWEEP_MINUTES`
+(default 10). It re-sends failed notifications until `NOTIFY_MAX_ATTEMPTS`
+(default 5) and also picks up applications that were **never attempted** —
+the process restarted between the commit and the send, or SMTP was
+configured after applications had been collected — once they are older than
+`NOTIFY_GRACE_SECONDS` (default 120) so it never races the request handler's
+own send. Only rows under 7 days old are swept. Every send first claims the
+row with one conditional `UPDATE` (attempt counter + timestamp), so the
+request handler, the sweeper and a reviewer's **Send now / Send again**
+button can never email the same application twice; a claim older than
+`NOTIFY_CLAIM_SECONDS` (default 300) is treated as abandoned and retried.
 
 Known limitation: the retry loop lives inside the single API process (no
-external queue). If the process is down when an application arrives, no
-application is stored either, so nothing is lost silently; if SMTP is down
-for longer than the retry budget, the application stays in the dashboard
-with "Not sent" and can be re-sent manually. Email-only delivery
+external queue) and is bounded by the attempt cap and the 7-day window. If
+SMTP is down for longer than that budget, the application stays in the
+dashboard with "Not sent" and can be re-sent manually. Email-only delivery
 (`NOTIFY_ATTACH_CV=1` with nobody checking the dashboard) is therefore *not*
 a reliable channel on its own and is not recommended.
 
