@@ -7,8 +7,10 @@ import Seo from '@/components/redesign/Seo';
 import { typography } from '@/components/redesign/tokens';
 import ApplicationForm from '@/components/careers/ApplicationForm';
 import {
-  BRANDS, DEPARTMENTS, TRACKED_QUERY_PARAMS, findRole, findBrand,
+  ASTROLOGER_ROLE, BRANDS, DEPARTMENTS, TRACKED_QUERY_PARAMS, findRole, findBrand,
 } from '../../shared/careersCatalog';
+
+const ASTROLOGER_APPLICATION_URL = 'https://vedjyotix.com/en/join-as-astrologer';
 
 const cardBase =
   'rounded-2xl bg-white border border-[rgba(30,26,61,0.1)] hover:border-[rgba(30,26,61,0.2)] transition-colors shadow-[0_1px_2px_rgba(30,26,61,0.04)]';
@@ -51,8 +53,8 @@ const expectations = [
   },
   {
     n: '02',
-    title: 'One short form, no account',
-    body: 'Tell us who you are, what you do, and attach your CV. It takes a few minutes and works fine on a phone.',
+    title: 'Choose your application',
+    body: 'Most roles use the form below. Astrologers continue to VedJyotix for its dedicated application.',
   },
   {
     n: '03',
@@ -84,6 +86,10 @@ const CareersPage = () => {
   const [activeRole, setActiveRole] = useState(query.role ? query.role.slug : '');
 
   useEffect(() => {
+    if (query.role?.slug === ASTROLOGER_ROLE) {
+      window.location.replace(ASTROLOGER_APPLICATION_URL);
+      return;
+    }
     if (query.role) {
       const el = document.getElementById('apply');
       if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 250);
@@ -212,7 +218,8 @@ const CareersPage = () => {
         </h2>
         <p className={`${typography.body} mt-4 max-w-[640px]`}>
           Pick the closest match and it will be preselected in the form. If nothing fits, choose
-          &ldquo;Other / General Application&rdquo; and tell us what you do.
+          &ldquo;Other / General Application&rdquo; and tell us what you do. Astrologer applications
+          open on VedJyotix.
         </p>
 
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -232,16 +239,18 @@ const CareersPage = () => {
               <ul className="flex flex-wrap gap-2" aria-label={`${d.label} roles`}>
                 {d.roles.map((r) => {
                   const active = activeRole === r.slug;
+                  const roleClass = `rounded-full border px-3 py-1.5 text-[13px] transition-colors ${active ? 'bg-[#5848F8] border-[#5848F8] text-white' : 'bg-[#F5EFE7] border-[rgba(30,26,61,0.12)] text-[#1E1A3D] hover:border-[#5848F8] hover:text-[#3B2AD6]'}`;
                   return (
                     <li key={r.slug}>
-                      <button
-                        type="button"
-                        onClick={() => chooseRole(r.slug)}
-                        aria-pressed={active}
-                        className={`rounded-full border px-3 py-1.5 text-[13px] transition-colors ${active ? 'bg-[#5848F8] border-[#5848F8] text-white' : 'bg-[#F5EFE7] border-[rgba(30,26,61,0.12)] text-[#1E1A3D] hover:border-[#5848F8] hover:text-[#3B2AD6]'}`}
-                      >
-                        {r.label}
-                      </button>
+                      {r.slug === ASTROLOGER_ROLE ? (
+                        <a href={ASTROLOGER_APPLICATION_URL} className={roleClass} aria-label="Astrologer application on VedJyotix">
+                          {r.label} <span aria-hidden="true">↗</span>
+                        </a>
+                      ) : (
+                        <button type="button" onClick={() => chooseRole(r.slug)} aria-pressed={active} className={roleClass}>
+                          {r.label}
+                        </button>
+                      )}
                     </li>
                   );
                 })}
