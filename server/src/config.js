@@ -31,10 +31,18 @@ export function loadConfig(env = process.env) {
     },
     turnstileSecret: env.TURNSTILE_SECRET_KEY || '',
     rateLimit: {
-      submitPerHour: Number(env.RATE_SUBMIT_PER_HOUR || 5),
-      submitPerDay: Number(env.RATE_SUBMIT_PER_DAY || 15),
+      // Every POST attempt counts (valid or not), measured before the upload
+      // is parsed. Genuine applicants rarely need more than a few tries.
+      attemptsPer15Min: Number(env.RATE_ATTEMPTS_PER_15MIN || 8),
+      attemptsPerDay: Number(env.RATE_ATTEMPTS_PER_DAY || 30),
       loginPer15Min: Number(env.RATE_LOGIN_PER_15MIN || 10),
     },
+    notifyRetry: {
+      maxAttempts: Number(env.NOTIFY_MAX_ATTEMPTS || 5),
+      sweepIntervalMinutes: Number(env.NOTIFY_SWEEP_MINUTES || 10),
+    },
+    dbConnectTimeoutMs: Number(env.DB_CONNECT_TIMEOUT_MS || 5000),
+    dbQueryTimeoutMs: Number(env.DB_QUERY_TIMEOUT_MS || 15000),
     minFormSeconds: Number(env.MIN_FORM_SECONDS || 4),
     duplicateWindowMinutes: Number(env.DUPLICATE_WINDOW_MINUTES || 60),
   };

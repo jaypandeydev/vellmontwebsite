@@ -2,7 +2,7 @@
 // editorial palette. Every dynamic value passes through esc().
 import {
   APPLICATION_STATUSES, BRANDS, ALL_ROLES, DEPARTMENTS, EXPERIENCE_BANDS, NOTICE_PERIODS,
-  ASTRO_SPECIALISATIONS, CONSULTATION_LANGUAGES, ASTRO_EXPERIENCE_BANDS, CONSULTATION_AVAILABILITY,
+  ASTRO_SPECIALISATIONS, CONSULTATION_LANGUAGES, ASTRO_EXPERIENCE_BANDS, CONSULTATION_AVAILABILITY, COUNTRIES,
   labelFor,
 } from '../../shared/careersCatalog.js';
 
@@ -106,7 +106,7 @@ export function listPage({ user, apps, filters, total, page, pageSize, counts })
   const statusChips = APPLICATION_STATUSES.map((s) => `<span class="pill ${esc(s.slug)}">${esc(s.label)} ${counts[s.slug] || 0}</span>`).join(' ');
   const rows = apps.length ? apps.map((a) => `<tr>
       <td class="dim small" style="white-space:nowrap">${esc(fmtDate(a.created_at))}</td>
-      <td><a href="/careers/review/applications/${esc(a.id)}"><strong>${esc(a.full_name)}</strong></a><br><span class="dim small">${esc(a.city)}, ${esc(a.country)}</span></td>
+      <td><a href="/careers/review/applications/${esc(a.id)}"><strong>${esc(a.full_name)}</strong></a><br><span class="dim small">${esc(a.city)}, ${esc(labelFor(COUNTRIES, a.country))}</span></td>
       <td>${esc(roleLabel(a))}<br><span class="dim small">${esc(labelFor(DEPARTMENTS, a.department))}</span></td>
       <td>${esc(labelFor(BRANDS, a.brand))}</td>
       <td>${esc(labelFor(EXPERIENCE_BANDS, a.experience_band))}<br><span class="dim small">${esc(labelFor(NOTICE_PERIODS, a.notice_period))}</span></td>
@@ -137,7 +137,7 @@ export function listPage({ user, apps, filters, total, page, pageSize, counts })
   });
 }
 
-export function detailPage({ user, app, events, flash }) {
+export function detailPage({ user, app, events, flash, mailEnabled = false }) {
   const dt = (k, v) => v ? `<dt>${esc(k)}</dt><dd>${v}</dd>` : '';
   const link = (u) => u ? `<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(u)}</a>` : '';
   const src = app.source || {};
@@ -165,7 +165,7 @@ export function detailPage({ user, app, events, flash }) {
         <div class="card"><h2>Candidate</h2><dl class="kv">
           ${dt('Email', `<a href="mailto:${esc(app.email)}">${esc(app.email)}</a>`)}
           ${dt('Phone', `<a href="tel:${esc(app.phone)}">${esc(app.phone)}</a>`)}
-          ${dt('Location', esc(`${app.city}, ${app.country}`))}
+          ${dt('Location', esc(`${app.city}, ${labelFor(COUNTRIES, app.country)}`))}
           ${dt('Department', esc(labelFor(DEPARTMENTS, app.department)))}
           ${dt('Role', esc(roleLabel(app)))}
           ${dt('Brand', esc(labelFor(BRANDS, app.brand)))}
@@ -197,7 +197,15 @@ export function detailPage({ user, app, events, flash }) {
             <button class="btn ghost" type="submit">Save notes</button>
           </form></div>
         <div class="card" style="margin-top:14px"><h2>Timeline</h2><ul class="timeline" style="padding-left:16px;margin:0">${timeline || '<li class="dim small">No events yet.</li>'}</ul>
-          ${app.notified_at ? `<p class="dim small" style="margin:10px 0 0">Reviewer email sent ${esc(fmtDate(app.notified_at))}</p>` : app.notify_error ? `<p class="dim small" style="margin:10px 0 0">Reviewer email failed (${esc(app.notify_error)})</p>` : ''}
+          <div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(30,26,61,.08)">
+            <div class="eyebrow" style="margin-bottom:4px">Hiring-team email</div>
+            ${app.notified_at
+              ? `<p class="small muted" style="margin:0">Sent ${esc(fmtDate(app.notified_at))}${app.notify_attempts > 1 ? ` after ${esc(app.notify_attempts)} attempts` : ''}.</p>`
+              : app.notify_attempts > 0
+                ? `<p class="small" style="margin:0;color:var(--red)">Not sent — ${esc(app.notify_error || 'failed')} (${esc(app.notify_attempts)} attempt${app.notify_attempts === 1 ? '' : 's'}). Retried automatically; the application itself is safely stored.</p>`
+                : mailEnabled ? `<p class="small dim" style="margin:0">Pending.</p>` : `<p class="small dim" style="margin:0">Notifications are off on this server.</p>`}
+            ${mailEnabled ? `<form method="post" action="/careers/review/applications/${esc(app.id)}/notify" style="margin:8px 0 0"><button class="btn ghost" type="submit">${app.notified_at ? 'Send again' : 'Send now'}</button></form>` : ''}
+          </div>
         </div>
       </div>
     </div>`,

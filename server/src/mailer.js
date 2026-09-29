@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import { labelFor, BRANDS, ALL_ROLES, EXPERIENCE_BANDS, NOTICE_PERIODS } from '../../shared/careersCatalog.js';
+import { labelFor, BRANDS, ALL_ROLES, EXPERIENCE_BANDS, NOTICE_PERIODS, COUNTRIES } from '../../shared/careersCatalog.js';
 import { log, errSummary } from './log.js';
 
 export function createMailer(cfg) {
@@ -28,7 +28,7 @@ export function createMailer(cfg) {
         `Name:        ${app.full_name}`,
         `Email:       ${app.email}`,
         `Phone:       ${app.phone}`,
-        `Location:    ${app.city}, ${app.country}`,
+        `Location:    ${app.city}, ${labelFor(COUNTRIES, app.country)}`,
         `Experience:  ${labelFor(EXPERIENCE_BANDS, app.experience_band)}`,
         `Notice:      ${labelFor(NOTICE_PERIODS, app.notice_period)}`,
         `Skills:      ${app.skills}`,

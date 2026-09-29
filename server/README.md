@@ -15,6 +15,8 @@ runtime, so anything that must *persist* has to live here.
 
 Statuses: New → Shortlisted → Interview → Hired / Rejected. Every change is
 recorded in `careers_status_events` with the reviewer and an optional note.
+Country is stored as an ISO code from the shared catalogue (`IN`, `AE`) and
+rendered as "India" / "UAE" in the dashboard, CSV export and emails.
 
 ## What it protects against
 
@@ -24,10 +26,24 @@ recorded in `careers_status_events` with the reviewer and an optional note.
 - **CV policy**: PDF/DOC/DOCX, ≤ 5 MB, checked by extension, MIME *and* magic
   bytes; filenames sanitised; stored as `bytea` (default) or in a 0600 file
   outside the web root. Never on the public host, never in Git.
-- **Spam**: honeypot field, minimum fill time, per-IP sliding-window limits
-  (5/hour, 15/day by default), optional Cloudflare Turnstile.
-- **Duplicates**: per-form idempotency key (a retry returns the same
-  reference) + same email/role within 60 min → 409 with the earlier reference.
+- **Spam**: honeypot field + minimum fill time (rejected with a generic,
+  retryable 400 — nothing stored, no reference shown), optional Cloudflare
+  Turnstile.
+- **Rate limits**: every POST attempt (valid or invalid) counts, per client
+  IP, and is checked *before* the multipart body is parsed — 8 per 15 min
+  and 30 per day by default, 429 + `Retry-After`. Check and increment are a
+  single step, so concurrent requests cannot slip through. Behind Caddy set
+  `TRUST_PROXY=1` (one trusted hop: the client IP is the last
+  `X-Forwarded-For` entry Caddy appends; spoofed entries are ignored).
+- **Duplicates**: the insert runs in one transaction under a Postgres
+  advisory lock on (email, role), so simultaneous submissions serialise: the
+  same idempotency key returns the stored reference (200), a different key for
+  the same email + role inside the 60-minute window gets 409 with the earlier
+  reference, and exactly one row, CV and initial status event are written.
+- **Failures**: all async routes forward errors to one handler. Database
+  outages return 503 + `Retry-After` (connect/query timeouts are set), other
+  errors 500; connections are always released and transactions rolled back;
+  responses never include applicant data or database error text.
 - **Review auth**: username + scrypt-hashed password, HMAC-signed expiring
   cookie (`HttpOnly; SameSite=Strict; Secure`), login rate limit, same-origin
   check on every POST, `noindex` + `no-store` on every review page.
@@ -49,8 +65,30 @@ CV_STORAGE_DIR          only when CV_STORAGE=fs
 ```
 
 Optional: `NOTIFY_EMAIL` + `SMTP_*` (email the hiring team on every
-application; `NOTIFY_ATTACH_CV=1` attaches the CV), `TURNSTILE_SECRET_KEY`
-(+ `VITE_TURNSTILE_SITE_KEY` in the site build), rate-limit knobs.
+application; `NOTIFY_ATTACH_CV=1` attaches the CV — off by default),
+`TURNSTILE_SECRET_KEY` (+ `VITE_TURNSTILE_SITE_KEY` in the site build),
+rate-limit and retry knobs.
+
+## Notifications: the dashboard is the source of truth
+
+The Postgres row is written and confirmed to the applicant **before** any
+email is attempted. An email failure never loses or rolls back an
+application. Delivery state is stored on the row (`notified_at`,
+`notify_attempts`, `notify_error`, `notify_last_attempt_at`) and shown on the
+application's detail page, so failures are observable without logging
+applicant details (logs carry the application id and an error code only).
+
+Retry: a sweeper re-sends failed notifications every `NOTIFY_SWEEP_MINUTES`
+(default 10) until `NOTIFY_MAX_ATTEMPTS` (default 5), for applications under
+7 days old, and each detail page has a **Send now / Send again** button.
+
+Known limitation: the retry loop lives inside the single API process (no
+external queue). If the process is down when an application arrives, no
+application is stored either, so nothing is lost silently; if SMTP is down
+for longer than the retry budget, the application stays in the dashboard
+with "Not sent" and can be re-sent manually. Email-only delivery
+(`NOTIFY_ATTACH_CV=1` with nobody checking the dashboard) is therefore *not*
+a reliable channel on its own and is not recommended.
 
 ## Local development
 

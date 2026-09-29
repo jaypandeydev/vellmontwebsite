@@ -148,6 +148,13 @@ export const CONSULTATION_AVAILABILITY = [
   { slug: 'flexible', label: 'Flexible / on demand' },
 ];
 
+// Applicant's CURRENT country (not nationality, not preferred job location).
+// Stored as the ISO code. Both the form and the server validate against this.
+export const COUNTRIES = [
+  { slug: 'IN', label: 'India' },
+  { slug: 'AE', label: 'UAE' },
+];
+
 export const APPLICATION_STATUSES = [
   { slug: 'new', label: 'New' },
   { slug: 'shortlisted', label: 'Shortlisted' },

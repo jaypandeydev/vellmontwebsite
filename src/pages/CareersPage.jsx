@@ -129,7 +129,7 @@ const CareersPage = () => {
           <span className="text-[#1E1A3D]">.</span>
         </h1>
         <p className={`${typography.bodyLg} mt-6 max-w-[660px]`}>
-          We&rsquo;re a small, remote-first team building software for the people who keep
+          We&rsquo;re a small team building software for the people who keep
           clinics, astrology consultations, tours, classrooms and small businesses running.
           Opportunities span three brands: <strong className="font-medium text-[#1E1A3D]">Vellmont Services</strong>,{' '}
           <strong className="font-medium text-[#1E1A3D]">VedJyotix</strong> and{' '}

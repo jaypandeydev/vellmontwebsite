@@ -5,7 +5,7 @@ import { hashPassword } from '../src/auth.js';
 
 export const TEST_PASSWORD = 'correct-horse-battery-staple';
 
-export async function startTestServer(overrides = {}, { reset = true } = {}) {
+export async function startTestServer(overrides = {}, { reset = true, migrate: doMigrate = true, mailer } = {}) {
   const databaseUrl = process.env.DATABASE_URL_TEST || process.env.DATABASE_URL;
   if (!databaseUrl) throw new Error('Set DATABASE_URL_TEST to a scratch Postgres database');
   const cfg = loadConfig({
@@ -15,23 +15,27 @@ export async function startTestServer(overrides = {}, { reset = true } = {}) {
     REVIEW_USERNAME: 'reviewer',
     REVIEW_PASSWORD_HASH: hashPassword(TEST_PASSWORD, { N: 1024 }),
     MIN_FORM_SECONDS: '1',
-    RATE_SUBMIT_PER_HOUR: '1000',
-    RATE_SUBMIT_PER_DAY: '1000',
+    RATE_ATTEMPTS_PER_15MIN: '1000',
+    RATE_ATTEMPTS_PER_DAY: '1000',
+    DB_CONNECT_TIMEOUT_MS: '1500',
     COOKIE_SECURE: '0',
     ...overrides,
   });
   if (cfg.missing.length) throw new Error('test config missing: ' + cfg.missing.join(', '));
   const pool = createPool(cfg);
-  if (reset) await pool.query('DROP TABLE IF EXISTS careers_status_events, careers_cv_blobs, careers_applications CASCADE');
-  await migrate(pool);
-  const { app } = await createApp({ cfg, pool });
+  if (doMigrate) {
+    if (reset) await pool.query('DROP TABLE IF EXISTS careers_status_events, careers_cv_blobs, careers_applications CASCADE');
+    await migrate(pool);
+  }
+  const { app, sweeper } = await createApp({ cfg, pool, mailer });
   const server = await new Promise((resolve) => {
     const s = app.listen(0, '127.0.0.1', () => resolve(s));
   });
   const base = `http://127.0.0.1:${server.address().port}`;
   return {
-    cfg, pool, base,
+    cfg, pool, base, sweeper,
     async close() {
+      if (sweeper) sweeper.stop();
       await new Promise((r) => server.close(r));
       await pool.end();
     },
@@ -48,7 +52,7 @@ export function validFields(extra = {}) {
     email: 'candidate@example.com',
     phone: '+91 98765 43210',
     city: 'Hyderabad',
-    country: 'India',
+    country: 'IN',
     department: 'engineering',
     role: 'frontend-developer',
     brand: 'vellmont',
@@ -81,8 +85,8 @@ export function buildForm(fields, { cv = PDF_BYTES, cvName = 'My CV.pdf', cvType
   return fd;
 }
 
-export async function submit(base, fields, opts) {
-  const res = await fetch(`${base}/api/careers/applications`, { method: 'POST', body: buildForm(fields, opts) });
+export async function submit(base, fields, opts = {}) {
+  const res = await fetch(`${base}/api/careers/applications`, { method: 'POST', body: buildForm(fields, opts), headers: opts.headers || {} });
   const json = await res.json();
   return { status: res.status, json };
 }

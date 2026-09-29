@@ -39,7 +39,7 @@ test('filenames are sanitised', () => {
 
 test('validation normalises phone and drops astrology fields for non-astrologers', () => {
   const r = validateApplication({
-    full_name: ' Jane ', email: 'JANE@Example.com', phone: '0091 (987) 654-3210', city: 'Pune', country: 'India',
+    full_name: ' Jane ', email: 'JANE@Example.com', phone: '0091 (987) 654-3210', city: 'Pune', country: 'IN',
     role: 'accountant', brand: 'any', experience_band: 'fresher', skills: 'Tally', notice_period: 'immediate', consent: 'yes',
     idempotency_key: '2f1a0c3e-7b8d-4e2a-9f10-1234567890ab', astro_specialisations: ['vedic'],
   });

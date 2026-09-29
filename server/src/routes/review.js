@@ -1,13 +1,14 @@
 import { Router } from 'express';
 import express from 'express';
-import { APPLICATION_STATUSES, isValidSlug, findRole, findBrand, labelFor, ALL_ROLES, BRANDS, DEPARTMENTS, EXPERIENCE_BANDS, NOTICE_PERIODS } from '../../../shared/careersCatalog.js';
+import { APPLICATION_STATUSES, isValidSlug, findRole, findBrand, labelFor, ALL_ROLES, BRANDS, DEPARTMENTS, EXPERIENCE_BANDS, NOTICE_PERIODS, COUNTRIES } from '../../../shared/careersCatalog.js';
 import {
   getSession, checkCredentials, createSessionToken, sessionCookie, isSameOriginRequest, COOKIE_PATH,
 } from '../auth.js';
 import { createLimiter } from '../rateLimit.js';
 import { hashIp } from '../spam.js';
 import { loginPage, listPage, detailPage, errorPage } from '../views.js';
-import { referenceFor } from './applications.js';
+import { referenceFor, attemptNotification } from '../notifications.js';
+import { wrap } from '../asyncRoute.js';
 import { log } from '../log.js';
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -18,7 +19,7 @@ function noStore(res) {
   res.setHeader('X-Robots-Tag', 'noindex, nofollow');
 }
 
-export function reviewRouter({ cfg, pool, cvStore }) {
+export function reviewRouter({ cfg, pool, cvStore, mailer }) {
   const router = Router();
   const loginLimiter = createLimiter({ windowMs: 15 * 60 * 1000, max: cfg.rateLimit.loginPer15Min });
   const form = express.urlencoded({ extended: false, limit: '32kb' });
@@ -95,7 +96,7 @@ export function reviewRouter({ cfg, pool, cvStore }) {
 
   const LIST_COLS = 'id, created_at, full_name, email, city, country, department, role, role_other, brand, experience_band, notice_period, status, source';
 
-  router.get('/', async (req, res) => {
+  router.get('/', wrap(async (req, res) => {
     const filters = parseFilters(req.query);
     const page = Math.max(1, Number.parseInt(req.query.page, 10) || 1);
     const { sql, params } = whereFor(filters);
@@ -106,9 +107,9 @@ export function reviewRouter({ cfg, pool, cvStore }) {
     ]);
     const countMap = Object.fromEntries(counts.rows.map((r) => [r.status, r.n]));
     res.type('html').send(listPage({ user: req.session.u, apps: rows.rows, filters, total: total.rows[0].n, page, pageSize: PAGE_SIZE, counts: countMap }));
-  });
+  }));
 
-  router.get('/export.csv', async (req, res) => {
+  router.get('/export.csv', wrap(async (req, res) => {
     const filters = parseFilters(req.query);
     const { sql, params } = whereFor(filters);
     const rows = await pool.query(`SELECT * FROM careers_applications ${sql} ORDER BY created_at DESC LIMIT 5000`, params);
@@ -121,7 +122,7 @@ export function reviewRouter({ cfg, pool, cvStore }) {
     const lines = [header.join(',')];
     for (const a of rows.rows) {
       lines.push([
-        referenceFor(a.id), new Date(a.created_at).toISOString(), labelFor(APPLICATION_STATUSES, a.status), a.full_name, a.email, a.phone, a.city, a.country,
+        referenceFor(a.id), new Date(a.created_at).toISOString(), labelFor(APPLICATION_STATUSES, a.status), a.full_name, a.email, a.phone, a.city, labelFor(COUNTRIES, a.country),
         labelFor(DEPARTMENTS, a.department), labelFor(ALL_ROLES, a.role), a.role_other, labelFor(BRANDS, a.brand), labelFor(EXPERIENCE_BANDS, a.experience_band),
         labelFor(NOTICE_PERIODS, a.notice_period), a.skills, a.linkedin_url, a.portfolio_url, a.astro_specialisations, a.astro_languages, a.astro_experience,
         a.astro_availability, a.source, a.cv_filename,
@@ -130,7 +131,7 @@ export function reviewRouter({ cfg, pool, cvStore }) {
     res.setHeader('Content-Type', 'text/csv; charset=utf-8');
     res.setHeader('Content-Disposition', `attachment; filename="careers-applications-${new Date().toISOString().slice(0, 10)}.csv"`);
     res.send('\uFEFF' + lines.join('\r\n'));
-  });
+  }));
 
   async function loadApp(id) {
     if (!UUID_RE.test(id)) return null;
@@ -139,14 +140,15 @@ export function reviewRouter({ cfg, pool, cvStore }) {
     return { ...r.rows[0], reference: referenceFor(r.rows[0].id) };
   }
 
-  router.get('/applications/:id', async (req, res) => {
+  router.get('/applications/:id', wrap(async (req, res) => {
     const app = await loadApp(req.params.id);
     if (!app) return res.status(404).type('html').send(errorPage({ user: req.session.u, status: 404, message: 'Application not found.' }));
     const events = await pool.query('SELECT at, from_status, to_status, note, actor FROM careers_status_events WHERE application_id = $1 ORDER BY at DESC, id DESC', [app.id]);
-    res.type('html').send(detailPage({ user: req.session.u, app, events: events.rows, flash: typeof req.query.saved === 'string' ? 'Saved.' : null }));
-  });
+    const flash = typeof req.query.saved === 'string' ? 'Saved.' : typeof req.query.notified === 'string' ? (req.query.notified === '1' ? 'Notification email sent.' : 'Notification email failed — see the timeline card.') : null;
+    res.type('html').send(detailPage({ user: req.session.u, app, events: events.rows, flash, mailEnabled: mailer.enabled }));
+  }));
 
-  router.get('/applications/:id/cv', async (req, res) => {
+  router.get('/applications/:id/cv', wrap(async (req, res) => {
     const app = await loadApp(req.params.id);
     if (!app) return res.status(404).type('html').send(errorPage({ user: req.session.u, status: 404, message: 'Application not found.' }));
     const data = await cvStore.get(app);
@@ -158,9 +160,9 @@ export function reviewRouter({ cfg, pool, cvStore }) {
     res.setHeader('Content-Disposition', `attachment; filename="${asciiName}"; filename*=UTF-8''${encodeURIComponent(app.cv_filename)}`);
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.send(data);
-  });
+  }));
 
-  router.post('/applications/:id/status', form, async (req, res) => {
+  router.post('/applications/:id/status', form, wrap(async (req, res) => {
     const app = await loadApp(req.params.id);
     if (!app) return res.status(404).type('html').send(errorPage({ user: req.session.u, status: 404, message: 'Application not found.' }));
     const to = String(req.body.status || '');
@@ -180,15 +182,26 @@ export function reviewRouter({ cfg, pool, cvStore }) {
     }
     log.info('review.status_changed', { applicationId: app.id, from: app.status, to, user: req.session.u });
     res.redirect(303, `${COOKIE_PATH}/applications/${app.id}?saved=1`);
-  });
+  }));
 
-  router.post('/applications/:id/notes', form, async (req, res) => {
+  router.post('/applications/:id/notes', form, wrap(async (req, res) => {
     const app = await loadApp(req.params.id);
     if (!app) return res.status(404).type('html').send(errorPage({ user: req.session.u, status: 404, message: 'Application not found.' }));
     const notes = String(req.body.reviewer_notes || '').slice(0, 5000);
     await pool.query('UPDATE careers_applications SET reviewer_notes = $2 WHERE id = $1', [app.id, notes || null]);
     res.redirect(303, `${COOKIE_PATH}/applications/${app.id}?saved=1`);
-  });
+  }));
+
+  // Manual re-send of the hiring-team notification (e.g. after fixing SMTP).
+  router.post('/applications/:id/notify', form, wrap(async (req, res) => {
+    const app = await loadApp(req.params.id);
+    if (!app) return res.status(404).type('html').send(errorPage({ user: req.session.u, status: 404, message: 'Application not found.' }));
+    if (!mailer.enabled) return res.status(400).type('html').send(errorPage({ user: req.session.u, status: 400, message: 'Email notifications are not configured on this server.' }));
+    const cv = cfg.notifyAttachCv ? await cvStore.get(app) : null;
+    const r = await attemptNotification({ pool, mailer, cfg, app, cvBuffer: cv });
+    log.info('review.notify_resend', { applicationId: app.id, user: req.session.u, sent: r.sent });
+    res.redirect(303, `${COOKIE_PATH}/applications/${app.id}?notified=${r.sent ? '1' : '0'}`);
+  }));
 
   return router;
 }

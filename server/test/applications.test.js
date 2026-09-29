@@ -137,15 +137,24 @@ test('same email + role within the window is refused as a duplicate', async () =
   assert.equal(c.status, 201);
 });
 
-test('honeypot and too-fast submissions are silently dropped', async () => {
+test('honeypot and too-fast submissions are rejected with a generic retryable error, never a reference', async () => {
   const before = (await t.pool.query('SELECT count(*)::int AS n FROM careers_applications')).rows[0].n;
   const hp = await submit(t.base, validFields({ email: 'bot@example.com', website: 'http://spam', idempotency_key: crypto.randomUUID() }));
-  assert.equal(hp.status, 202);
-  assert.equal(hp.json.accepted, false);
-  const fast = await submit(t.base, validFields({ email: 'bot2@example.com', form_elapsed_ms: '100', idempotency_key: crypto.randomUUID() }));
-  assert.equal(fast.status, 202);
+  assert.equal(hp.status, 400);
+  assert.equal(hp.json.ok, false);
+  assert.equal(hp.json.reference, undefined);
+  assert.doesNotMatch(JSON.stringify(hp.json), /honeypot|bot|spam|fast|elapsed/i);
+  const key = crypto.randomUUID();
+  const fast = await submit(t.base, validFields({ email: 'human@example.com', form_elapsed_ms: '100', idempotency_key: key }));
+  assert.equal(fast.status, 400);
+  assert.equal(fast.json.reference, undefined);
+  assert.equal(fast.json.message, hp.json.message, 'same wording for both heuristics');
   const after_ = (await t.pool.query('SELECT count(*)::int AS n FROM careers_applications')).rows[0].n;
   assert.equal(after_, before);
+  // The same human retries a few seconds later with the same form → stored.
+  const retry = await submit(t.base, validFields({ email: 'human@example.com', form_elapsed_ms: '6000', idempotency_key: key }));
+  assert.equal(retry.status, 201);
+  assert.match(retry.json.reference, /^VC-[0-9A-F]{8}$/);
 });
 
 test('unknown attribution keys and junk role/brand params are dropped', async () => {
@@ -159,15 +168,21 @@ test('unknown attribution keys and junk role/brand params are dropped', async ()
   assert.equal(row.source.referrer, undefined);
 });
 
-test('per-IP rate limit kicks in', async () => {
-  const s = await startTestServer({ RATE_SUBMIT_PER_HOUR: '2', RATE_SUBMIT_PER_DAY: '100' }, { reset: false });
+test('per-IP attempt limit counts invalid attempts and returns Retry-After', async () => {
+  const s = await startTestServer({ RATE_ATTEMPTS_PER_15MIN: '3', RATE_ATTEMPTS_PER_DAY: '100' }, { reset: false });
   try {
-    const r1 = await submit(s.base, validFields({ email: 'r1@example.com', idempotency_key: crypto.randomUUID() }));
-    const r2 = await submit(s.base, validFields({ email: 'r2@example.com', idempotency_key: crypto.randomUUID() }));
-    const r3 = await submit(s.base, validFields({ email: 'r3@example.com', idempotency_key: crypto.randomUUID() }));
-    assert.equal(r1.status, 201);
-    assert.equal(r2.status, 201);
-    assert.equal(r3.status, 429);
+    const bad1 = await submit(s.base, validFields({ email: 'nope', idempotency_key: crypto.randomUUID() }));
+    const bad2 = await submit(s.base, validFields({ email: 'nope', idempotency_key: crypto.randomUUID() }));
+    assert.equal(bad1.status, 400);
+    assert.equal(bad2.status, 400);
+    const ok = await submit(s.base, validFields({ email: 'r1@example.com', idempotency_key: crypto.randomUUID() }));
+    assert.equal(ok.status, 201);
+    const res = await fetch(`${s.base}/api/careers/applications`, { method: 'POST', body: buildForm(validFields({ email: 'r2@example.com', idempotency_key: crypto.randomUUID() })) });
+    assert.equal(res.status, 429);
+    const json = await res.json();
+    assert.equal(json.code, 'rate_limited');
+    assert.match(res.headers.get('retry-after'), /^\d+$/);
+    assert.match(json.message, /wait about \d+ minutes/);
   } finally {
     await s.close();
   }

@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import { Loader2, CheckCircle2, AlertCircle, Upload } from 'lucide-react';
+import { Loader2, CheckCircle2, AlertCircle, Info, Upload } from 'lucide-react';
 import {
   BRANDS, DEPARTMENTS, EXPERIENCE_BANDS, NOTICE_PERIODS, ASTRO_SPECIALISATIONS,
   CONSULTATION_LANGUAGES, ASTRO_EXPERIENCE_BANDS, CONSULTATION_AVAILABILITY,
   ASTROLOGER_ROLE, OTHER_ROLE, CV_MAX_BYTES, CV_ALLOWED_EXTENSIONS, CV_POLICY_TEXT,
-  TRACKED_QUERY_PARAMS, findRole, findDepartment,
+  TRACKED_QUERY_PARAMS, COUNTRIES, findRole, findDepartment, isValidSlug,
 } from '../../../shared/careersCatalog';
 import { submitApplication, ApiError } from '@/lib/careersApi';
 
@@ -60,7 +60,7 @@ function validate(values, file) {
     e.phone = 'Include your country code, e.g. +91 98765 43210.';
   }
   if (!values.city.trim()) e.city = 'Please enter your current city.';
-  if (!values.country.trim()) e.country = 'Please enter your current country.';
+  if (!isValidSlug(COUNTRIES, values.country)) e.country = 'Please select your current country.';
   if (!values.department) e.department = 'Please choose a department.';
   if (!findRole(values.role)) e.role = 'Please choose a role.';
   if (values.role === OTHER_ROLE && values.role_other.trim().length < 2) e.role_other = 'Tell us which role you are looking for.';
@@ -211,7 +211,7 @@ export default function ApplicationForm({ preset = {}, attribution = {}, roleReq
   });
   const [file, setFile] = useState(null);
   const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState('idle'); // idle | submitting | success | error
+  const [status, setStatus] = useState('idle'); // idle | submitting | success | error | notice
   const [serverMessage, setServerMessage] = useState('');
   const [reference, setReference] = useState('');
   const [turnstileToken, setTurnstileToken] = useState('');
@@ -328,11 +328,9 @@ export default function ApplicationForm({ preset = {}, attribution = {}, roleReq
       if (err.name === 'AbortError') return;
       setStatus('error');
       if (err instanceof ApiError) {
-        if (err.code === 'duplicate' && err.reference) {
-          setReference(err.reference);
-          setStatus('success');
-          return;
-        }
+        // 409: an earlier application already exists for this email + role.
+        // Nothing new was stored, so this is a notice, not a confirmation.
+        if (err.code === 'duplicate') setStatus('notice');
         setServerMessage(err.message);
         if (err.errors && Object.keys(err.errors).length) {
           setErrors((prev) => ({ ...prev, ...err.errors }));
@@ -408,6 +406,11 @@ export default function ApplicationForm({ preset = {}, attribution = {}, roleReq
             <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" aria-hidden="true" />
             <span>{serverMessage}</span>
           </div>
+        ) : status === 'notice' && serverMessage ? (
+          <div role="status" aria-live="polite" className="flex items-start gap-2.5 rounded-lg bg-[#5848F8]/10 text-[#2E1E5C] px-4 py-3 text-[13.5px] leading-[1.5]">
+            <Info className="w-4 h-4 mt-0.5 shrink-0" aria-hidden="true" />
+            <span>{serverMessage}</span>
+          </div>
         ) : (
           <p className="text-[13px] text-[#8F8AA0]">
             Fields marked <span className="text-[#5848F8]">*</span> are required. No account needed.
@@ -431,8 +434,8 @@ export default function ApplicationForm({ preset = {}, attribution = {}, roleReq
         <Field id="city" label="Current city" required error={errors.city}>
           <input id="city" name="city" type="text" autoComplete="address-level2" value={values.city} onChange={onChange} placeholder="Hyderabad" disabled={submitting} className={`${inputBase} ${errors.city ? inputError : ''}`} {...aria('city', errors.city)} />
         </Field>
-        <Field id="country" label="Country" required error={errors.country}>
-          <input id="country" name="country" type="text" autoComplete="country-name" value={values.country} onChange={onChange} placeholder="India" disabled={submitting} className={`${inputBase} ${errors.country ? inputError : ''}`} {...aria('country', errors.country)} />
+        <Field id="country" label="Current country" required error={errors.country}>
+          <Select id="country" name="country" value={values.country} onChange={onChange} options={COUNTRIES} placeholder="Select country" error={errors.country} disabled={submitting} />
         </Field>
       </div>
 

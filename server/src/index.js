@@ -17,7 +17,7 @@ try {
   process.exit(1);
 }
 
-const { app } = await createApp({ cfg, pool });
+const { app, sweeper } = await createApp({ cfg, pool });
 const server = app.listen(cfg.port, cfg.host, () => {
   log.info('listening', { host: cfg.host, port: cfg.port, storage: cfg.cvStorage, mail: cfg.mailConfigured, turnstile: Boolean(cfg.turnstileSecret) });
 });
@@ -25,6 +25,7 @@ const server = app.listen(cfg.port, cfg.host, () => {
 for (const sig of ['SIGINT', 'SIGTERM']) {
   process.on(sig, () => {
     log.info('shutdown', { sig });
+    if (sweeper) sweeper.stop();
     server.close(() => pool.end().finally(() => process.exit(0)));
     setTimeout(() => process.exit(0), 5000).unref();
   });

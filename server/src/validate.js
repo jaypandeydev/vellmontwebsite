@@ -1,7 +1,7 @@
 import {
   BRANDS, EXPERIENCE_BANDS, NOTICE_PERIODS, ASTRO_SPECIALISATIONS,
   CONSULTATION_LANGUAGES, ASTRO_EXPERIENCE_BANDS, CONSULTATION_AVAILABILITY,
-  ASTROLOGER_ROLE, OTHER_ROLE, TRACKED_QUERY_PARAMS,
+  ASTROLOGER_ROLE, OTHER_ROLE, TRACKED_QUERY_PARAMS, COUNTRIES,
   findRole, findBrand, isValidSlug,
 } from '../../shared/careersCatalog.js';
 
@@ -66,8 +66,8 @@ export function validateApplication(body) {
 
   d.city = clip(str(body.city), 100);
   if (!d.city) errors.city = 'Please enter your current city.';
-  d.country = clip(str(body.country), 100);
-  if (!d.country) errors.country = 'Please enter your current country.';
+  d.country = str(body.country).toUpperCase();
+  if (!isValidSlug(COUNTRIES, d.country)) errors.country = 'Please select your current country.';
 
   const role = findRole(str(body.role));
   if (!role) errors.role = 'Please choose a role.';
