@@ -63,7 +63,7 @@ test('process dies mid-send: the abandoned claim expires and the sweeper re-send
   try {
     const tooSoon = await b.sweeper.sweep();
     assert.equal(tooSoon.sent, 0, 'claim still fresh → not re-sent');
-    assert.equal(tooSoon.skipped, 1, 'listed, but the claim is refused');
+    assert.equal(tooSoon.candidates, 0, 'an active claim is not even listed');
     assert.equal(mailer.calls.length, 0);
     await sleep(1200);
     const s = await b.sweeper.sweep();

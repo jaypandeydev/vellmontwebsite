@@ -92,6 +92,7 @@ export async function migrate(pool) {
     -- Notification bookkeeping (added after the first release; safe on existing rows).
     ALTER TABLE careers_applications ADD COLUMN IF NOT EXISTS notify_attempts integer NOT NULL DEFAULT 0;
     ALTER TABLE careers_applications ADD COLUMN IF NOT EXISTS notify_last_attempt_at timestamptz;
+    ALTER TABLE careers_applications ADD COLUMN IF NOT EXISTS notify_claim_id text;
     CREATE INDEX IF NOT EXISTS careers_applications_notify_pending_idx ON careers_applications (created_at) WHERE notified_at IS NULL;
   `);
   log.info('db.migrated');

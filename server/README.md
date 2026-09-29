@@ -69,7 +69,7 @@ application; `NOTIFY_ATTACH_CV=1` attaches the CV — off by default),
 `TURNSTILE_SECRET_KEY` (+ `VITE_TURNSTILE_SITE_KEY` in the site build),
 rate-limit and retry knobs.
 
-## Notifications: the dashboard is the source of truth
+## Notifications: retryable, at-least-once delivery
 
 The Postgres row is written and confirmed to the applicant **before** any
 email is attempted. An email failure never loses or rolls back an
@@ -78,6 +78,12 @@ application. Delivery state is stored on the row (`notified_at`,
 application's detail page, so failures are observable without logging
 applicant details (logs carry the application id and an error code only).
 
+Delivery is **at-least-once**: every send is retried until it is recorded as
+sent, so if SMTP accepted an email but the process died before success was
+written, the retry sends it again and the hiring team may receive a duplicate.
+The private dashboard and the stored application remain the source of truth;
+email is a notification, not the record.
+
 Retry: a sweeper runs 15 s after boot and then every `NOTIFY_SWEEP_MINUTES`
 (default 10). It re-sends failed notifications until `NOTIFY_MAX_ATTEMPTS`
 (default 5) and also picks up applications that were **never attempted** —
@@ -85,10 +91,15 @@ the process restarted between the commit and the send, or SMTP was
 configured after applications had been collected — once they are older than
 `NOTIFY_GRACE_SECONDS` (default 120) so it never races the request handler's
 own send. Only rows under 7 days old are swept. Every send first claims the
-row with one conditional `UPDATE` (attempt counter + timestamp), so the
-request handler, the sweeper and a reviewer's **Send now / Send again**
-button can never email the same application twice; a claim older than
-`NOTIFY_CLAIM_SECONDS` (default 300) is treated as abandoned and retried.
+row with one conditional `UPDATE` that stores a claim token, so the request
+handler, the sweeper and a reviewer's **Send now / Send again** button never
+start two sends for the same application at once: **Send again** may re-send
+an already-notified application but never overrides an active claim (a
+second click, or a click while the sweeper is sending, is reported as "already
+being sent"). Results are recorded only by the claim's owner, so a sender
+that finishes after its claim expired and was taken over cannot overwrite the
+newer state. A claim older than `NOTIFY_CLAIM_SECONDS` (default 300) is
+treated as abandoned (dead process) and taken over by the next sender.
 
 Known limitation: the retry loop lives inside the single API process (no
 external queue) and is bounded by the attempt cap and the 7-day window. If

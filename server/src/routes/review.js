@@ -144,7 +144,8 @@ export function reviewRouter({ cfg, pool, cvStore, mailer }) {
     const app = await loadApp(req.params.id);
     if (!app) return res.status(404).type('html').send(errorPage({ user: req.session.u, status: 404, message: 'Application not found.' }));
     const events = await pool.query('SELECT at, from_status, to_status, note, actor FROM careers_status_events WHERE application_id = $1 ORDER BY at DESC, id DESC', [app.id]);
-    const flash = typeof req.query.saved === 'string' ? 'Saved.' : typeof req.query.notified === 'string' ? (req.query.notified === '1' ? 'Notification email sent.' : 'Notification email failed — see the timeline card.') : null;
+    const notifiedFlash = { 1: 'Notification email sent.', 0: 'Notification email failed — see the timeline card.', busy: 'A notification for this application is already being sent. Refresh in a moment.' };
+    const flash = typeof req.query.saved === 'string' ? 'Saved.' : typeof req.query.notified === 'string' ? (notifiedFlash[req.query.notified] || null) : null;
     res.type('html').send(detailPage({ user: req.session.u, app, events: events.rows, flash, mailEnabled: mailer.enabled }));
   }));
 
@@ -199,8 +200,8 @@ export function reviewRouter({ cfg, pool, cvStore, mailer }) {
     if (!mailer.enabled) return res.status(400).type('html').send(errorPage({ user: req.session.u, status: 400, message: 'Email notifications are not configured on this server.' }));
     const cv = cfg.notifyAttachCv ? await cvStore.get(app) : null;
     const r = await attemptNotification({ pool, mailer, cfg, app, cvBuffer: cv, force: true });
-    log.info('review.notify_resend', { applicationId: app.id, user: req.session.u, sent: r.sent });
-    res.redirect(303, `${COOKIE_PATH}/applications/${app.id}?notified=${r.sent ? '1' : '0'}`);
+    log.info('review.notify_resend', { applicationId: app.id, user: req.session.u, sent: r.sent, skipped: Boolean(r.skipped) });
+    res.redirect(303, `${COOKIE_PATH}/applications/${app.id}?notified=${r.skipped ? 'busy' : r.sent ? '1' : '0'}`);
   }));
 
   return router;
