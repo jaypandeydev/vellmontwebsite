@@ -24,6 +24,7 @@ const cols = [
       { label: 'Services', href: '/#services' },
       { label: 'How we work', href: '/#how-we-work' },
       { label: 'Book a demo', href: CALENDLY_URL, ext: true },
+      { label: 'Careers', to: '/careers' },
       { label: 'Contact', to: '/contact' },
     ],
   },

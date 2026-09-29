@@ -1,0 +1,22 @@
+{
+  "name": "vellmont-careers-api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Careers application intake + private review dashboard for vellmontservices.com/careers",
+  "engines": {
+    "node": ">=20.10"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --env-file=.env --watch src/index.js",
+    "test": "node --test --test-concurrency=1 test/*.test.js",
+    "hash-password": "node scripts/hash-password.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "multer": "^2.0.2",
+    "nodemailer": "^7.0.6",
+    "pg": "^8.16.3"
+  }
+}

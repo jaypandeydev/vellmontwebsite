@@ -33,6 +33,17 @@ vellmontservices.com {
         respond 410
     }
 
+    # Careers: application intake API + private review dashboard are served
+    # by the Node service in server/ (systemd unit vellmont-careers, port 4010).
+    # Both paths must be routed BEFORE the SPA fallback below.
+    @careers path /api/careers/* /careers/review /careers/review/*
+    handle @careers {
+        request_body {
+            max_size 6MB
+        }
+        reverse_proxy 127.0.0.1:4010
+    }
+
     # Everything else: single-page app with history-mode fallback. Serve the
     # requested file if it exists, otherwise index.html so React Router can
     # resolve the route. Without this, deep links like /contact, /terms, and

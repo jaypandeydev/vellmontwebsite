@@ -91,6 +91,16 @@ const PrivacyPolicyPage = () => {
             form, email, or phone.
           </li>
           <li>
+            <strong>Job applications:</strong> if you apply through our
+            careers page, the details you enter (name, contact details,
+            location, role and brand preference, experience, skills, notice
+            period, optional links and introduction), your CV, and the
+            recruitment campaign that brought you to the page. Astrologer
+            applicants may also share specialisations, consultation languages
+            and availability. We do not ask for ID numbers, bank details or
+            other sensitive documents.
+          </li>
+          <li>
             <strong>Information collected automatically:</strong> standard web
             server logs (IP address, user agent, referrer, timestamps) for
             security and debugging.
@@ -107,6 +117,10 @@ const PrivacyPolicyPage = () => {
         <ul className="list-disc pl-5 space-y-1.5">
           <li>To respond to inquiries you send us.</li>
           <li>To deliver the services you request.</li>
+          <li>
+            To consider job applicants for current and future roles across
+            Vellmont Services, VedJyotix and MedQuePMS, with your consent.
+          </li>
           <li>To improve the site and our products.</li>
           <li>To meet legal, accounting, and regulatory obligations.</li>
         </ul>
@@ -134,7 +148,11 @@ const PrivacyPolicyPage = () => {
           long as needed to respond and for a reasonable record-keeping
           period afterward (typically up to 24 months). Server logs are
           rotated within 30 days unless retained for a specific security
-          investigation.
+          investigation. Job applications and CVs are kept while we consider
+          you for current and future roles (typically up to 24 months) and
+          are visible only to the hiring team; email{' '}
+          <a href="mailto:support@vellmontservices.com" className={linkClass}>support@vellmontservices.com</a>{' '}
+          with your application reference to have them deleted sooner.
         </p>
       </Section>
 

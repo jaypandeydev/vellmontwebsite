@@ -198,6 +198,12 @@ export default defineConfig({
 	],
 	server: {
 		cors: true,
+		// Careers API + private review dashboard run as a separate Node service
+		// (see server/). Proxy them in dev so the page can call same-origin paths.
+		proxy: {
+			'/api/careers': { target: 'http://127.0.0.1:4010', changeOrigin: false },
+			'/careers/review': { target: 'http://127.0.0.1:4010', changeOrigin: false },
+		},
 		headers: {
 			'Cross-Origin-Embedder-Policy': 'credentialless',
 		},

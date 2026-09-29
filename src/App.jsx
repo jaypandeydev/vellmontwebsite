@@ -4,6 +4,7 @@ import { AnimatePresence } from 'framer-motion';
 import { Toaster } from '@/components/ui/toaster';
 import LandingPage from '@/pages/LandingPage';
 import ContactPage from '@/pages/ContactPage';
+import CareersPage from '@/pages/CareersPage';
 import PrivacyPolicyPage from '@/pages/PrivacyPolicyPage';
 import TermsPage from '@/pages/TermsPage';
 
@@ -29,6 +30,7 @@ function App() {
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<LandingPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/careers" element={<CareersPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms" element={<TermsPage />} />
 

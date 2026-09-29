@@ -62,6 +62,12 @@ export default function Nav() {
               </a>
             ))}
             <Link
+              to="/careers"
+              className="px-3.5 py-2 rounded-full hover:text-[#1E1A3D] hover:bg-[rgba(30,26,61,0.05)] transition-colors"
+            >
+              Careers
+            </Link>
+            <Link
               to="/contact"
               className="px-3.5 py-2 rounded-full hover:text-[#1E1A3D] hover:bg-[rgba(30,26,61,0.05)] transition-colors"
             >
@@ -120,6 +126,13 @@ export default function Nav() {
                   {l.label}
                 </a>
               ))}
+              <Link
+                to="/careers"
+                onClick={close}
+                className="rounded-md px-3 py-3 text-[15px] text-[#1E1A3D] hover:bg-[rgba(30,26,61,0.05)] transition-colors"
+              >
+                Careers
+              </Link>
               <Link
                 to="/contact"
                 onClick={close}
