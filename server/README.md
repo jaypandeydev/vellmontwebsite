@@ -131,31 +131,124 @@ createdb vellmont_careers_test
 DATABASE_URL_TEST=postgresql://localhost:5432/vellmont_careers_test npm test
 ```
 
-## Deploying to the VPS (147.93.106.12, Caddy)
+## Deploying to the VPS (Docker Compose — what actually runs)
 
-The site's GitHub Action only rsyncs `dist/`; the API is deployed separately.
+The API runs on the Vellmont VPS as two Docker containers managed by
+Compose under **`/opt/vellmont-careers`**, owned by the `deploy` user (that
+user has no root, so there is no systemd unit and no dedicated system
+account — Docker's restart policy provides the supervision instead).
+The site's GitHub Action only rsyncs `dist/`; the API is deployed
+separately with the files in [`deploy/compose/`](deploy/compose/).
+
+| Piece | Where |
+|---|---|
+| `vellmont-careers-api` | node:22-alpine image built from `app/` (= `server/` + `shared/` of one commit), listens on `127.0.0.1:4010` |
+| `vellmont-careers-db` | `postgres:16-alpine`, named volume `vellmont_careers_pgdata`, not published on any port |
+| Secrets | `.env` (DB passwords, `CAREERS_SHA`) and `api.env` (session secret, reviewer hash, SMTP…) — both `0600`, never in Git |
+| Deployed commit | `DEPLOYED_SHA` file + image tag `vellmont-careers-api:<sha>` |
+| Backups | `backups/` (local dumps), `backup.sh`, `backup.env` (off-host remote), cron at 01:20 UTC |
+| Routing | `@careers` block in the live Caddy site block (see repo `Caddyfile`), reload via `caddy reload` (admin API, no root) |
+
+### First-time install
 
 ```bash
-# once
-sudo useradd --system --home /opt/vellmont-careers --shell /usr/sbin/nologin careers
-sudo mkdir -p /opt/vellmont-careers /var/lib/vellmont-careers/cv
-sudo chown -R careers:careers /opt/vellmont-careers /var/lib/vellmont-careers
-sudo install -m 600 -o careers -g careers /dev/null /etc/vellmont-careers.env   # then edit: values from .env.example
-sudo cp server/deploy/vellmont-careers.service /etc/systemd/system/
-sudo systemctl daemon-reload && sudo systemctl enable vellmont-careers
+# on your machine, from the repo root
+git archive --format=tar <sha> server shared | gzip > careers.tar.gz
+scp careers.tar.gz server/deploy/compose/{docker-compose.yml,Dockerfile,setup-secrets.sh,backup.sh,patch-caddy.py} hostinger:~/vellmont-careers/
+scp -r server/deploy/compose/init hostinger:~/vellmont-careers/
 
-# each release (from the repo root, on the server or via rsync)
-rsync -az --delete shared/ /opt/vellmont-careers/shared/
-rsync -az --delete --exclude node_modules --exclude .env server/ /opt/vellmont-careers/server/
-cd /opt/vellmont-careers/server && sudo -u careers npm ci --omit=dev
-sudo systemctl restart vellmont-careers && sudo systemctl status vellmont-careers
-curl -s https://vellmontservices.com/api/careers/health
+# on the server
+cd ~/vellmont-careers && mkdir app && tar -xzf careers.tar.gz -C app && cp Dockerfile app/ && rm careers.tar.gz
+echo <sha> > DEPLOYED_SHA && chmod 700 . && ./setup-secrets.sh        # writes .env, api.env, REVIEWER_CREDENTIALS.txt (0600)
+sudo mv ~/vellmont-careers /opt/vellmont-careers && cd /opt/vellmont-careers
+docker compose up -d --build && curl -s http://127.0.0.1:4010/api/careers/health
+python3 patch-caddy.py && caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile && caddy reload --config /etc/caddy/Caddyfile --adapter caddyfile
+cp backup.env.example backup.env   # then set RCLONE_REMOTE (a crypt remote) — see Backups
+( crontab -l; echo "20 1 * * * cd /opt/vellmont-careers && bash backup.sh >> /opt/vellmont-careers/backups/backup.log 2>&1 # vellmont-careers-backup";
+  echo "40 2 * * 0 cd /opt/vellmont-careers && bash backup.sh --verify >> /opt/vellmont-careers/backups/backup.log 2>&1 # vellmont-careers-backup-verify" ) | crontab -
 ```
 
-Caddy: add the `@careers` handle block from the repo `Caddyfile` fragment to
-the `vellmontservices.com { }` site block on the server (it must come before
-the SPA fallback), then `sudo caddy validate && sudo systemctl reload caddy`.
+`setup-secrets.sh` generates the DB passwords, session secret, IP-hash salt
+and a reviewer password, hashes the password with scrypt and writes
+`REVIEWER_CREDENTIALS.txt` for a one-time, over-SSH handoff
+(`ssh hostinger cat /opt/vellmont-careers/REVIEWER_CREDENTIALS.txt`, then
+`shred -u` it). It never prints a secret and refuses to overwrite.
 
-Database options: a new **Neon** project (the org already runs VedJyotix on
-Neon; set `DATABASE_SSL=1` and `?sslmode=require`) or a local Postgres on the
-VPS. Either survives site deploys because the site deploy never touches it.
+### Deploy a new API commit
+
+```bash
+./server/deploy/compose/release.sh <sha>     # from the repo root on your machine
+```
+
+This ships `server/` + `shared/` from exactly that commit, keeps the previous
+tree as `app.prev`, rebuilds the image, restarts **only** the `api`
+container, updates `DEPLOYED_SHA`, and prints the health JSON. Postgres and
+its volume are untouched.
+
+### Schema changes
+
+The API applies its own schema at boot with idempotent statements
+(`CREATE TABLE IF NOT EXISTS`, `ALTER TABLE … ADD COLUMN IF NOT EXISTS` in
+`src/db.js`). A deploy that changes the schema therefore needs nothing more
+than the restart `release.sh` performs. Keep migrations additive; never drop
+or rename columns in a release that older code might still run against.
+Take a backup first (`backup.sh`) if a change touches existing rows.
+
+### Restart, status, logs
+
+```bash
+cd /opt/vellmont-careers
+docker compose ps                                 # both containers "healthy"
+docker compose restart api                        # after editing api.env
+docker compose logs --since 1h api                # JSON lines: ids, status codes, timings — never applicant data
+curl -s http://127.0.0.1:4010/api/careers/health  # {"ok":true,"storage":"db","notifications":"off"|"email"}
+docker compose exec -T postgres psql -U careers_owner -d careers -Atc "SELECT count(*) FROM careers_applications"
+```
+
+Enabling email later: fill `NOTIFY_EMAIL` and `SMTP_*` in `api.env`, then
+`docker compose up -d api`; health should report `"notifications":"email"`.
+
+### Backups
+
+`backup.sh` (nightly via cron) takes a custom-format `pg_dump` of the
+`careers` database — applications, status history **and CV bytes** (CVs are
+`bytea` rows in the same database) — into `backups/`, keeps 30 days
+locally, writes `LATEST_OK`, then copies the dump to the off-host rclone
+remote named in `backup.env` (`RCLONE_REMOTE`, an rclone **crypt** remote so
+dumps are encrypted client-side with keys only the operator holds), verifies
+it with `rclone cryptcheck`, prunes remote copies older than 90 days and
+writes `OFFHOST_OK`. A failed copy writes `OFFHOST_LAST_ERROR` and exits
+non-zero (visible in `backups/backup.log`). Noticing failures: check that
+`LATEST_OK` and `OFFHOST_OK` are from last night, or set `HEARTBEAT_URL` in
+`backup.env` to a healthchecks-style ping that alerts when a night is missed. The crypt keys are handed off in
+`BACKUP_ENCRYPTION_KEYS.txt` (0600, shred after storing) — without them the
+remote copies cannot be read anywhere else.
+
+```bash
+./backup.sh                  # dump + off-host copy now
+./backup.sh --verify         # restore newest LOCAL dump into a scratch DB, print row/blob counts   (weekly via cron)
+./backup.sh --verify-remote  # fetch newest REMOTE dump, restore it into a scratch DB, print counts
+```
+
+**Restore for real** (after confirming with the team — this replaces data):
+
+```bash
+cd /opt/vellmont-careers && docker compose stop api
+docker compose exec -T postgres psql -U careers_owner -d postgres -c "DROP DATABASE careers" -c "CREATE DATABASE careers OWNER careers_app"
+docker compose exec -T postgres pg_restore -U careers_owner -d careers --no-owner --role=careers_app < backups/careers-<timestamp>.dump
+docker compose start api
+```
+
+(`rclone copyto careers-crypt:careers-<timestamp>.dump backups/` first if the
+local copy is gone.)
+
+### Roll back
+
+- **API only:** `cd /opt/vellmont-careers && rm -rf app && mv app.prev app && docker compose up -d --build api` (or run `release.sh <previous-sha>`), then fix `DEPLOYED_SHA`. Schema changes are additive, so older code keeps running against a newer schema.
+- **Routing:** `cp ~/caddy-backups/Caddyfile.bak.<timestamp> /etc/caddy/Caddyfile && caddy reload --config /etc/caddy/Caddyfile --adapter caddyfile`.
+- **Data:** see *Restore for real* above.
+- **Everything:** `docker compose down` stops the stack without deleting the volume; `docker compose down -v` would delete all applications and CVs — never run that without a verified backup.
+
+Database options considered: a dedicated **Neon** project would also work
+(set `DATABASE_SSL=1` and `?sslmode=require`), but the VPS-local container
+keeps the credentials on the server and inside the existing backup scheme.

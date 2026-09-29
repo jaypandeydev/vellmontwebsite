@@ -1,0 +1,50 @@
+# Vellmont careers: application intake API + private review dashboard.
+# Runs as the `deploy` user via Docker (no root on this VPS). Secrets live in
+# .env (compose interpolation) and api.env (service environment), both 0600.
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: vellmont-careers-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: careers_owner
+      POSTGRES_PASSWORD: ${CAREERS_OWNER_PASSWORD:?set in .env}
+      POSTGRES_DB: careers
+      CAREERS_APP_PASSWORD: ${CAREERS_APP_PASSWORD:?set in .env}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U careers_owner -d careers"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+    networks: [internal]
+
+  api:
+    build: ./app
+    image: vellmont-careers-api:${CAREERS_SHA:-local}
+    container_name: vellmont-careers-api
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file: ./api.env
+    environment:
+      DATABASE_URL: postgresql://careers_app:${CAREERS_APP_PASSWORD}@postgres:5432/careers
+    ports:
+      - "127.0.0.1:4010:4010"
+    networks: [internal]
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:4010/api/careers/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+volumes:
+  pgdata:
+    name: vellmont_careers_pgdata
+
+networks:
+  internal: {}
