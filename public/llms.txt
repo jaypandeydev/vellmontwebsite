@@ -28,6 +28,10 @@ Vellmont was founded in 2025 to build the software that "long-tail" Indian busin
 3. Ship in weeks, not quarters
 4. Stick around — we don't build and ghost; we keep iterating with you
 
+## Careers
+
+- [Careers](https://vellmontservices.com/careers): Submit your profile and CV for current and future roles across Vellmont Services, VedJyotix and MedQuePMS — engineering, QA, product & design, people & finance, customer & business, astrology, internships.
+
 ## Contact
 
 - Email (general): support@vellmontservices.com

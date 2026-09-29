@@ -71,6 +71,16 @@ PORT=80
 - **Production**: Port 80 (HTTP)
 - **Development**: Port 5173 (Vite dev server)
 
+## 💼 Careers API (separate service)
+
+`/careers` submits applications to a small Node + Postgres service in
+[`server/`](server/README.md). The static site deploy does **not** deploy it.
+It runs as the `vellmont-careers` systemd unit on port 4010 and Caddy proxies
+`/api/careers/*` and `/careers/review*` to it (see the `@careers` block in
+`Caddyfile`). Setup, required environment variables and the release steps are
+in `server/README.md`. Until it is configured, the form shows an honest error
+and stores nothing.
+
 ## 🔍 Health Monitoring
 
 ### Health Check Endpoint

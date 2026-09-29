@@ -1,0 +1,30 @@
+# /etc/systemd/system/vellmont-careers.service
+#
+# sudo useradd --system --home /opt/vellmont-careers --shell /usr/sbin/nologin careers
+# sudo mkdir -p /opt/vellmont-careers /var/lib/vellmont-careers/cv
+# sudo chown -R careers:careers /opt/vellmont-careers /var/lib/vellmont-careers
+# sudo install -m 600 -o careers .env /etc/vellmont-careers.env
+# sudo systemctl daemon-reload && sudo systemctl enable --now vellmont-careers
+[Unit]
+Description=Vellmont careers application API
+After=network.target
+
+[Service]
+Type=simple
+User=careers
+Group=careers
+WorkingDirectory=/opt/vellmont-careers/server
+EnvironmentFile=/etc/vellmont-careers.env
+ExecStart=/usr/bin/node src/index.js
+Restart=always
+RestartSec=3
+# Hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/vellmont-careers
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

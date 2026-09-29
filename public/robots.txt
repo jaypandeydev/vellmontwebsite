@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
 Disallow: /invitation-manager/
+Disallow: /api/
+Disallow: /careers/review
 
 # Allow common AI crawlers explicitly
 User-agent: GPTBot
