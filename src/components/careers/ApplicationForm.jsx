@@ -11,6 +11,7 @@ import {
 import { submitApplication, ApiError } from '@/lib/careersApi';
 
 const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY || '';
+const ASTROLOGER_APPLICATION_URL = 'https://vedjyotix.com/en/join-as-astrologer';
 
 const labelClass = 'font-mono text-[10px] uppercase tracking-[0.18em] text-[#8F8AA0]';
 const inputBase =
@@ -244,7 +245,13 @@ export default function ApplicationForm({ preset = {}, attribution = {}, roleReq
     setValues((v) => ({ ...v, [name]: value }));
     setErrors((e) => (e[name] ? { ...e, [name]: undefined } : e));
   };
-  const onChange = (e) => set(e.target.name, e.target.type === 'checkbox' ? e.target.checked : e.target.value);
+  const onChange = (e) => {
+    if (e.target.name === 'role' && e.target.value === ASTROLOGER_ROLE) {
+      window.location.assign(ASTROLOGER_APPLICATION_URL);
+      return;
+    }
+    set(e.target.name, e.target.type === 'checkbox' ? e.target.checked : e.target.value);
+  };
 
   const onDepartment = (e) => {
     const slug = e.target.value;
