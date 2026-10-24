@@ -24,8 +24,8 @@ const demos = {
     ),
     prompts: ['Pharmacy CRM demo', 'IVR booking flow', 'Doctor dashboard'],
   },
-  vedjyotix: {
-    label: 'vedjyotix',
+  astropage: {
+    label: 'astropage',
     render: () => (
       <>
         <div className="font-mono text-[10px] opacity-50 mb-1.5">

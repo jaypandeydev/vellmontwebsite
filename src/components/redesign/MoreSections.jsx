@@ -191,7 +191,7 @@ export function Security() {
 const roadmap = [
   { year: 'Q1 2025', title: 'Vellmont founded', body: 'Studio born in Hyderabad to build for India\'s long-tail SMBs.' },
   { year: 'Q2 2025', title: 'MedQuePMS development', body: 'Clinic OS architecture: queue, consult, pharmacy, billing, AI.' },
-  { year: 'Q3 2025', title: 'Vedjyotix launch', body: 'Astrology platform + verified astrologer marketplace go live.' },
+  { year: 'Q3 2025', title: 'Astropage launch', body: 'Astrology platform + verified astrologer marketplace go live.' },
   { year: 'Q4 2025', title: 'InviteSync + Vellbill launch', body: 'Invitation management on web + mobile, and GST-compliant invoicing ship.' },
   { year: 'Q1–Q2 2026', title: 'Tutora + Vellroute launch', body: 'Global tutor marketplace and tour-operator OS roll out across pilot accounts.' },
   { year: '2026 onwards', title: 'AI-powered SaaS portfolio', body: 'MedQuePMS leads commercial expansion into healthcare while the wider portfolio serves logistics, finance, business automation, visitor management, events and consumer AI.' },
@@ -314,7 +314,7 @@ const testimonials = [
   },
   {
     quote:
-      "Vedjyotix's AI reports + the verified astrologer marketplace are a real combination — instant compatibility + real human depth on call.",
+      "Astropage's AI reports + the verified astrologer marketplace are a real combination — instant compatibility + real human depth on call.",
     name: 'Marketplace Astrologer',
     role: 'Early partner · placeholder',
     initials: 'MA',

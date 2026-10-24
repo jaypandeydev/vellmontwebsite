@@ -10,7 +10,7 @@ const cols = [
     links: [
       { label: 'MedQuePMS', href: 'https://medquepms.vellmontservices.com', ext: true },
       { label: 'Vellroute', href: 'https://vellroute.com', ext: true },
-      { label: 'Vedjyotix', href: 'https://vedjyotix.com', ext: true },
+      { label: 'Astropage', href: 'https://vedjyotix.com', ext: true },
       { label: 'InviteSync', href: 'https://invitesync.com', ext: true },
       { label: 'Vellbill', href: 'https://vellbill.com', ext: true },
       { label: 'Tutora', href: 'https://tutorra.vellmontservices.com', ext: true },
