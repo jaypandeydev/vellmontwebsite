@@ -54,7 +54,7 @@ const expectations = [
   {
     n: '02',
     title: 'Choose your application',
-    body: 'Most roles use the form below. Astrologers continue to VedJyotix for its dedicated application.',
+    body: 'Most roles use the form below. Astrologers continue to Astropage for its dedicated application.',
   },
   {
     n: '03',
@@ -219,7 +219,7 @@ const CareersPage = () => {
         <p className={`${typography.body} mt-4 max-w-[640px]`}>
           Pick the closest match and it will be preselected in the form. If nothing fits, choose
           &ldquo;Other / General Application&rdquo; and tell us what you do. Astrologer applications
-          open on VedJyotix.
+          open on Astropage.
         </p>
 
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -243,7 +243,7 @@ const CareersPage = () => {
                   return (
                     <li key={r.slug}>
                       {r.slug === ASTROLOGER_ROLE ? (
-                        <a href={ASTROLOGER_APPLICATION_URL} className={roleClass} aria-label="Astrologer application on VedJyotix">
+                        <a href={ASTROLOGER_APPLICATION_URL} className={roleClass} aria-label="Astrologer application on Astropage">
                           {r.label} <span aria-hidden="true">↗</span>
                         </a>
                       ) : (
