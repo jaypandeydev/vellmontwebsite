@@ -119,7 +119,7 @@ const PrivacyPolicyPage = () => {
           <li>To deliver the services you request.</li>
           <li>
             To consider job applicants for current and future roles across
-            Vellmont Services, VedJyotix and MedQuePMS, with your consent.
+            Vellmont Services, Astropage and MedQuePMS, with your consent.
           </li>
           <li>To improve the site and our products.</li>
           <li>To meet legal, accounting, and regulatory obligations.</li>

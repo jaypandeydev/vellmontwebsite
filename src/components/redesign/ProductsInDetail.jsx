@@ -29,7 +29,7 @@ const AI_FLOWS = {
     outcome: 'Leads, packages, vendors, bookings, payments and traveller communication stay synchronized.',
     flows: ['AI tourist onboarding', 'Itinerary automation', 'Vendor coordination', 'Multilingual travel comms'],
   },
-  vedjyotix: {
+  astropage: {
     system: 'Astrology marketplace engine',
     outcome: 'AI reports and verified astrologer consultations combine into a full consumer product.',
     flows: ['AI kundli reports', 'Match insights', 'Consultation routing', 'Multilingual guidance'],
@@ -89,7 +89,7 @@ const CASE_STUDIES = {
     intelligence: 'AI drafts itinerary options and keeps traveller communication multilingual.',
     fabric: ['CRM', 'Vendors', 'Payments', 'Portal'],
   },
-  vedjyotix: {
+  astropage: {
     headline: 'Astrology marketplace engine',
     status: 'consumer / live',
     metrics: [

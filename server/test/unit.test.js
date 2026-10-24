@@ -58,3 +58,18 @@ test('limiter enforces max per window', () => {
   assert.equal(l.hit('a', 20).allowed, false);
   assert.equal(l.hit('a', 1100).allowed, true);
 });
+
+test('legacy brand slug "vedjyotix" maps to Astropage for links, validation and labels', async () => {
+  const { findBrand, labelFor, BRANDS } = await import('../../shared/careersCatalog.js');
+  assert.equal(findBrand('vedjyotix').slug, 'astropage');
+  assert.equal(findBrand('astropage').label, 'Astropage');
+  assert.equal(labelFor(BRANDS, 'vedjyotix'), 'Astropage');
+  const r = validateApplication({
+    full_name: 'Jane', email: 'jane@example.com', phone: '+919876543210', city: 'Pune', country: 'IN',
+    role: 'accountant', brand: 'vedjyotix', experience_band: 'fresher', skills: 'Tally', notice_period: 'immediate', consent: 'yes',
+    idempotency_key: '2f1a0c3e-7b8d-4e2a-9f10-1234567890ab', landing_brand: 'vedjyotix',
+  });
+  assert.equal(r.ok, true);
+  assert.equal(r.data.brand, 'astropage');
+  assert.equal(r.data.source.landing_brand, 'astropage');
+});

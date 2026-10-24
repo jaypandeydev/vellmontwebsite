@@ -63,12 +63,12 @@ test('"Other" role requires the desired role text', async () => {
 });
 
 test('astrologer role requires the astrology fields; other astrology roles ignore them', async () => {
-  const missing = await submit(t.base, validFields({ department: 'astrology', role: 'astrologer', brand: 'vedjyotix', email: 'a1@example.com', idempotency_key: crypto.randomUUID() }));
+  const missing = await submit(t.base, validFields({ department: 'astrology', role: 'astrologer', brand: 'astropage', email: 'a1@example.com', idempotency_key: crypto.randomUUID() }));
   assert.equal(missing.status, 400);
   for (const f of ['astro_specialisations', 'astro_languages', 'astro_experience', 'astro_availability']) assert.ok(missing.json.errors[f], f);
 
   const ok = await submit(t.base, validFields({
-    department: 'astrology', role: 'astrologer', brand: 'vedjyotix', email: 'a2@example.com', idempotency_key: crypto.randomUUID(),
+    department: 'astrology', role: 'astrologer', brand: 'astropage', email: 'a2@example.com', idempotency_key: crypto.randomUUID(),
     astro_specialisations: ['vedic', 'kp'], astro_languages: ['hindi', 'telugu'], astro_experience: '5-10', astro_availability: 'flexible',
   }));
   assert.equal(ok.status, 201);

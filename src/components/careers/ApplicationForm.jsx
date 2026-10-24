@@ -491,7 +491,7 @@ export default function ApplicationForm({ preset = {}, attribution = {}, roleReq
         <div className="md:col-span-2 rounded-xl border border-[#7B3EA2]/25 bg-[#EAD9F3]/40 p-4 sm:p-5 grid grid-cols-1 md:grid-cols-2 gap-5">
           <div className="md:col-span-2">
             <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#5E2E7D]">Astrologer details</div>
-            <p className="text-[13px] text-[#4B4762] mt-1">Helps us match you with the right consultations on VedJyotix.</p>
+            <p className="text-[13px] text-[#4B4762] mt-1">Helps us match you with the right consultations on Astropage.</p>
           </div>
           <div className="md:col-span-2">
             <CheckGroup name="astro_specialisations" legend="Astrology specialisations" options={ASTRO_SPECIALISATIONS} value={values.astro_specialisations} onToggle={(s) => toggleIn('astro_specialisations', s)} error={errors.astro_specialisations} />

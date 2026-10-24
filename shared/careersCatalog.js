@@ -8,7 +8,7 @@
 
 export const BRANDS = [
   { slug: 'vellmont', label: 'Vellmont Services', blurb: 'Custom software, AI builds and the studio behind every product.' },
-  { slug: 'vedjyotix', label: 'VedJyotix', blurb: 'Astrology platform with a verified astrologer marketplace.' },
+  { slug: 'astropage', label: 'Astropage', blurb: 'Astrology platform with a verified astrologer marketplace.' },
   { slug: 'medquepms', label: 'MedQuePMS', blurb: 'Clinic and hospital operating system for India.' },
   { slug: 'any', label: 'Open to any', blurb: 'Happy to work across any Vellmont brand.' },
 ];
@@ -193,9 +193,13 @@ export function findRole(slug) {
   return ALL_ROLES.find((r) => r.slug === slug) || null;
 }
 
+// Old brand slugs still accepted from recruitment links and stored rows.
+export const BRAND_ALIASES = { vedjyotix: 'astropage' };
+
 export function findBrand(slug) {
   if (!slug) return null;
-  return BRANDS.find((b) => b.slug === slug) || null;
+  const canonical = BRAND_ALIASES[slug] || slug;
+  return BRANDS.find((b) => b.slug === canonical) || null;
 }
 
 export function findDepartment(slug) {
@@ -208,6 +212,7 @@ export function isValidSlug(list, slug) {
 }
 
 export function labelFor(list, slug) {
-  const hit = list.find((item) => item.slug === slug);
+  const key = list === BRANDS ? (BRAND_ALIASES[slug] || slug) : slug;
+  const hit = list.find((item) => item.slug === key);
   return hit ? hit.label : slug;
 }

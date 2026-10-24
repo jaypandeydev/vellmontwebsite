@@ -24,9 +24,9 @@ const brandCards = [
     tint: 'bg-[#E3D9F5]',
   },
   {
-    slug: 'vedjyotix',
-    name: 'VedJyotix',
-    logo: 'https://vedjyotix.com/favicon.svg',
+    slug: 'astropage',
+    name: 'Astropage',
+    logo: '/logos/astropage.png',
     href: 'https://vedjyotix.com',
     ext: true,
     body: 'Astrology platform — Kundli, numerology, gun milan and a verified astrologer marketplace for chat and video consultations. Multilingual.',
@@ -111,8 +111,8 @@ const CareersPage = () => {
   return (
     <main className="min-h-screen bg-[#F5EFE7] text-[#1E1A3D] font-sans antialiased">
       <Seo
-        title="Careers at Vellmont — Vellmont Services, VedJyotix & MedQuePMS"
-        description="Build your career with Vellmont. Submit your profile and CV for current and future roles across Vellmont Services, VedJyotix and MedQuePMS — engineering, QA, product & design, people & finance, customer & business, astrology, and internships."
+        title="Careers at Vellmont — Vellmont Services, Astropage & MedQuePMS"
+        description="Build your career with Vellmont. Submit your profile and CV for current and future roles across Vellmont Services, Astropage and MedQuePMS — engineering, QA, product & design, people & finance, customer & business, astrology, and internships."
         canonical="https://vellmontservices.com/careers"
         image="https://res.cloudinary.com/dzdaksuzp/image/upload/v1750354259/Vellmont_final_logo_Png_isk7ol.png"
       />
@@ -132,7 +132,7 @@ const CareersPage = () => {
           We&rsquo;re a small team building software for the people who keep
           clinics, astrology consultations, tours, classrooms and small businesses running.
           Opportunities span three brands: <strong className="font-medium text-[#1E1A3D]">Vellmont Services</strong>,{' '}
-          <strong className="font-medium text-[#1E1A3D]">VedJyotix</strong> and{' '}
+          <strong className="font-medium text-[#1E1A3D]">Astropage</strong> and{' '}
           <strong className="font-medium text-[#1E1A3D]">MedQuePMS</strong>.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-3">

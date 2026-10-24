@@ -85,7 +85,7 @@ const TermsPage = () => {
       <Section id="services" label="── 02 · SERVICES ──────────" count="02/08 ──" title="The services we provide">
         <p>
           Vellmont operates this marketing website and a portfolio of
-          software products (currently MedQuePMS, Vedjyotix, Vellroute,
+          software products (currently MedQuePMS, Astropage, Vellroute,
           Tutora, InviteSync, Vellbill, and Vellpass) and offers custom
           software development. Each product may have its own additional terms; where
           there is a conflict, the product-specific terms apply for that
