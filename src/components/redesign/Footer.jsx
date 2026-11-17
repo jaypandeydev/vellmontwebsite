@@ -182,12 +182,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-[rgba(30,26,61,0.08)] text-[12px] text-[#4B4762]">
           <div>
             <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#8F8AA0] mb-1.5">
-              🇮🇳 Vellmont Services OPC PVT Ltd — India
+              🇮🇳 Vellmont Services Private Limited — India
             </div>
             <div className="flex flex-wrap gap-x-4 gap-y-1">
               <span>
                 <span className="text-[#8F8AA0]">CIN</span>{' '}
-                <span className="font-mono text-[#1E1A3D]">U62099TS2025OPC199523</span>
+                <span className="font-mono text-[#1E1A3D]">U62099TS2025PTC199523</span>
               </span>
               <span>
                 <span className="text-[#8F8AA0]">GSTIN</span>{' '}
@@ -214,7 +214,7 @@ export default function Footer() {
 
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 pt-4 mt-4 border-t border-[rgba(30,26,61,0.08)] text-[12px] text-[#8F8AA0]">
           <div>
-            © {year} Vellmont Services OPC PVT Ltd · VELLMONT IT SERVICES L.L.C
+            © {year} Vellmont Services Private Limited · VELLMONT IT SERVICES L.L.C
           </div>
           <div className="flex items-center gap-4">
             <span>Independent · Remote-first</span>
