@@ -20,7 +20,7 @@ const offices = [
     locationLabel: 'Dubai',
   },
   {
-    company: 'Vellmont Services OPC PVT Ltd',
+    company: 'Vellmont Services Private Limited',
     lines: [
       'WeWork Rajapushpa Summit, SY. 130P & 115/1P',
       'Financial District, Nanakramguda Rd, Manikonda Jagir',

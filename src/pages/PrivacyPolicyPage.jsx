@@ -5,7 +5,7 @@ import Footer from '@/components/redesign/Footer';
 import Seo from '@/components/redesign/Seo';
 import { typography } from '@/components/redesign/tokens';
 
-const LAST_UPDATED = 'May 2026';
+const LAST_UPDATED = 'November 2026';
 
 function SectionLabel({ left, right }) {
   return (
@@ -74,8 +74,9 @@ const PrivacyPolicyPage = () => {
 
       <Section id="who-we-are" label="── 01 · WHO WE ARE ────────" count="01/08 ──" title="Who we are">
         <p>
-          Vellmont Services is operated by <strong>Vellmont Services OPC PVT
-          Ltd</strong> (registered in India) and <strong>VELLMONT IT SERVICES
+          Vellmont Services is operated by <strong>Vellmont Services Private
+          Limited</strong> (registered in India, formerly Vellmont Services OPC
+          Private Limited) and <strong>VELLMONT IT SERVICES
           L.L.C</strong> (registered in the UAE). When this policy refers to
           &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;, it refers to both entities collectively.
           Contact details are at the bottom of this page.

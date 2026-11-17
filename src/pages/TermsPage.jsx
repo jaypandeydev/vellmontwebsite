@@ -5,7 +5,7 @@ import Footer from '@/components/redesign/Footer';
 import Seo from '@/components/redesign/Seo';
 import { typography } from '@/components/redesign/tokens';
 
-const LAST_UPDATED = 'May 2026';
+const LAST_UPDATED = 'November 2026';
 
 function SectionLabel({ left, right }) {
   return (
@@ -74,7 +74,7 @@ const TermsPage = () => {
       <Section id="acceptance" label="── 01 · ACCEPTANCE ────────" count="01/08 ──" title="Acceptance of terms">
         <p>
           These Terms of Service (&ldquo;Terms&rdquo;) form a legal agreement between you
-          and <strong>Vellmont Services OPC PVT Ltd</strong> (India) and{' '}
+          and <strong>Vellmont Services Private Limited</strong> (India, formerly Vellmont Services OPC Private Limited) and{' '}
           <strong>VELLMONT IT SERVICES L.L.C</strong> (UAE) (together,
           &ldquo;Vellmont&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;). By accessing or using our website or
           products you accept these Terms; if you do not agree, do not use
